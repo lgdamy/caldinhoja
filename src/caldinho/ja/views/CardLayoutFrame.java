@@ -5,6 +5,8 @@
  */
 package caldinho.ja.views;
 
+import java.awt.CardLayout;
+
 /**
  *
  * @author LuizGuilherme
@@ -17,6 +19,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
     public CardLayoutFrame() {
         initComponents();
     }
+    public String cardname = "index";
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,57 +30,166 @@ public class CardLayoutFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jButton4 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        paiPanel = new javax.swing.JPanel();
+        indexPnl = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        estoquePnl = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        clientesPnl = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        vendasPnl = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        receitasPnl = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        estoqueBtn = new javax.swing.JButton();
+        clientesBtn = new javax.swing.JButton();
+        vendasBtn = new javax.swing.JButton();
+        receitasBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
-        setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
-        setMaximumSize(new java.awt.Dimension(1024, 768));
-        setPreferredSize(new java.awt.Dimension(1024, 768));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setMaximumSize(new java.awt.Dimension(1024, 790));
+        setPreferredSize(new java.awt.Dimension(1024, 790));
         setResizable(false);
 
-        jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        paiPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        paiPanel.setLayout(new java.awt.CardLayout());
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/caldinho/ja/images/caldinhojagrande.jpg"))); // NOI18N
+
+        javax.swing.GroupLayout indexPnlLayout = new javax.swing.GroupLayout(indexPnl);
+        indexPnl.setLayout(indexPnlLayout);
+        indexPnlLayout.setHorizontalGroup(
+            indexPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(indexPnlLayout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 690, Short.MAX_VALUE)
+        indexPnlLayout.setVerticalGroup(
+            indexPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jButton4.setText("Estoque");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        paiPanel.add(indexPnl, "index");
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("ESTOQUE");
+
+        javax.swing.GroupLayout estoquePnlLayout = new javax.swing.GroupLayout(estoquePnl);
+        estoquePnl.setLayout(estoquePnlLayout);
+        estoquePnlLayout.setHorizontalGroup(
+            estoquePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(estoquePnlLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 984, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        estoquePnlLayout.setVerticalGroup(
+            estoquePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(estoquePnlLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addContainerGap(635, Short.MAX_VALUE))
+        );
+
+        paiPanel.add(estoquePnl, "estoque");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("CLIENTES");
+
+        javax.swing.GroupLayout clientesPnlLayout = new javax.swing.GroupLayout(clientesPnl);
+        clientesPnl.setLayout(clientesPnlLayout);
+        clientesPnlLayout.setHorizontalGroup(
+            clientesPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(clientesPnlLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 984, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        clientesPnlLayout.setVerticalGroup(
+            clientesPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(clientesPnlLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addContainerGap(635, Short.MAX_VALUE))
+        );
+
+        paiPanel.add(clientesPnl, "clientes");
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("VENDAS");
+
+        javax.swing.GroupLayout vendasPnlLayout = new javax.swing.GroupLayout(vendasPnl);
+        vendasPnl.setLayout(vendasPnlLayout);
+        vendasPnlLayout.setHorizontalGroup(
+            vendasPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(vendasPnlLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 984, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        vendasPnlLayout.setVerticalGroup(
+            vendasPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(vendasPnlLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4)
+                .addContainerGap(635, Short.MAX_VALUE))
+        );
+
+        paiPanel.add(vendasPnl, "vendas");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("RECEITAS");
+
+        javax.swing.GroupLayout receitasPnlLayout = new javax.swing.GroupLayout(receitasPnl);
+        receitasPnl.setLayout(receitasPnlLayout);
+        receitasPnlLayout.setHorizontalGroup(
+            receitasPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(receitasPnlLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 984, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        receitasPnlLayout.setVerticalGroup(
+            receitasPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(receitasPnlLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel5)
+                .addContainerGap(635, Short.MAX_VALUE))
+        );
+
+        paiPanel.add(receitasPnl, "receitas");
+
+        estoqueBtn.setText("Estoque");
+        estoqueBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4estoqueActionPerformed(evt);
+                estoqueBtnestoqueActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Clientes");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        clientesBtn.setText("Clientes");
+        clientesBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2clientesActionPerformed(evt);
+                clientesBtnclientesActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Vendas");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        vendasBtn.setText("Vendas");
+        vendasBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3vendasActionPerformed(evt);
+                vendasBtnvendasActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Receitas");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        receitasBtn.setText("Receitas");
+        receitasBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1receitasActionPerformed(evt);
+                receitasBtnreceitasActionPerformed(evt);
             }
         });
 
@@ -87,55 +199,74 @@ public class CardLayoutFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(paiPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(10, 10, 10))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(estoqueBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(clientesBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(vendasBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(receitasBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton1, jButton2, jButton3, jButton4});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {clientesBtn, estoqueBtn, receitasBtn, vendasBtn});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(paiPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(estoqueBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(clientesBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(vendasBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(receitasBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton4estoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4estoqueActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4estoqueActionPerformed
+    private void estoqueBtnestoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estoqueBtnestoqueActionPerformed
+        CardLayout card = (CardLayout)paiPanel.getLayout();
+        if (cardname.equals("estoque"))
+            cardname = "index";
+        else
+            cardname="estoque";
+        card.show(paiPanel, cardname);
+    }//GEN-LAST:event_estoqueBtnestoqueActionPerformed
 
-    private void jButton2clientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2clientesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2clientesActionPerformed
+    private void clientesBtnclientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientesBtnclientesActionPerformed
+        CardLayout card = (CardLayout)paiPanel.getLayout();
+        if (cardname.equals("clientes"))
+            cardname = "index";
+        else
+            cardname="clientes";
+        card.show(paiPanel, cardname);
+    }//GEN-LAST:event_clientesBtnclientesActionPerformed
 
-    private void jButton3vendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3vendasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3vendasActionPerformed
+    private void vendasBtnvendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vendasBtnvendasActionPerformed
+        CardLayout card = (CardLayout)paiPanel.getLayout();
+        if (cardname.equals("vendas"))
+            cardname = "index";
+        else
+            cardname="vendas";
+        card.show(paiPanel, cardname);
+    }//GEN-LAST:event_vendasBtnvendasActionPerformed
 
-    private void jButton1receitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1receitasActionPerformed
-        //TODO RECEITAS
-
-    }//GEN-LAST:event_jButton1receitasActionPerformed
+    private void receitasBtnreceitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_receitasBtnreceitasActionPerformed
+        CardLayout card = (CardLayout)paiPanel.getLayout();
+        if (cardname.equals("receitas"))
+            cardname = "index";
+        else
+            cardname="receitas";
+        card.show(paiPanel, cardname);
+    }//GEN-LAST:event_receitasBtnreceitasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -173,10 +304,20 @@ public class CardLayoutFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton clientesBtn;
+    private javax.swing.JPanel clientesPnl;
+    private javax.swing.JButton estoqueBtn;
+    private javax.swing.JPanel estoquePnl;
+    private javax.swing.JPanel indexPnl;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel paiPanel;
+    private javax.swing.JButton receitasBtn;
+    private javax.swing.JPanel receitasPnl;
+    private javax.swing.JButton vendasBtn;
+    private javax.swing.JPanel vendasPnl;
     // End of variables declaration//GEN-END:variables
 }
