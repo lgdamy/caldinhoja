@@ -50,7 +50,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         setAlwaysOnTop(true);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setMaximumSize(new java.awt.Dimension(1024, 790));
-        setPreferredSize(new java.awt.Dimension(1024, 790));
+        setPreferredSize(new java.awt.Dimension(1024, 780));
         setResizable(false);
 
         paiPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -165,28 +165,32 @@ public class CardLayoutFrame extends javax.swing.JFrame {
 
         paiPanel.add(receitasPnl, "receitas");
 
-        estoqueBtn.setText("Estoque");
+        estoqueBtn.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        estoqueBtn.setText("ESTOQUE");
         estoqueBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 estoqueBtnestoqueActionPerformed(evt);
             }
         });
 
-        clientesBtn.setText("Clientes");
+        clientesBtn.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        clientesBtn.setText("CLIENTES");
         clientesBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clientesBtnclientesActionPerformed(evt);
             }
         });
 
-        vendasBtn.setText("Vendas");
+        vendasBtn.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        vendasBtn.setText("VENDAS");
         vendasBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 vendasBtnvendasActionPerformed(evt);
             }
         });
 
-        receitasBtn.setText("Receitas");
+        receitasBtn.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        receitasBtn.setText("RECEITAS");
         receitasBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 receitasBtnreceitasActionPerformed(evt);
@@ -222,10 +226,10 @@ public class CardLayoutFrame extends javax.swing.JFrame {
                 .addComponent(paiPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(estoqueBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(clientesBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(vendasBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(receitasBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(estoqueBtn)
+                    .addComponent(clientesBtn)
+                    .addComponent(vendasBtn)
+                    .addComponent(receitasBtn))
                 .addContainerGap())
         );
 
