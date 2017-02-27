@@ -6,6 +6,7 @@
 package caldinho.ja.views;
 
 import java.awt.CardLayout;
+import java.awt.Color;
 
 /**
  *
@@ -230,45 +231,70 @@ public class CardLayoutFrame extends javax.swing.JFrame {
                     .addComponent(clientesBtn)
                     .addComponent(vendasBtn)
                     .addComponent(receitasBtn))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void estoqueBtnestoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estoqueBtnestoqueActionPerformed
-        CardLayout card = (CardLayout)paiPanel.getLayout();
-        if (cardname.equals("estoque"))
+        CardLayout card = (CardLayout) paiPanel.getLayout();
+        if (cardname.equals("estoque")) {
             cardname = "index";
-        else
-            cardname="estoque";
+            estoqueBtn.setBackground(Color.LIGHT_GRAY);
+        } else {
+            cardname = "estoque";
+            estoqueBtn.setBackground(Color.GRAY);
+            clientesBtn.setBackground(Color.LIGHT_GRAY);
+            vendasBtn.setBackground(Color.LIGHT_GRAY);
+            receitasBtn.setBackground(Color.LIGHT_GRAY);
+        }
         card.show(paiPanel, cardname);
     }//GEN-LAST:event_estoqueBtnestoqueActionPerformed
 
     private void clientesBtnclientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientesBtnclientesActionPerformed
-        CardLayout card = (CardLayout)paiPanel.getLayout();
-        if (cardname.equals("clientes"))
+        CardLayout card = (CardLayout) paiPanel.getLayout();
+        if (cardname.equals("clientes")) {
             cardname = "index";
-        else
-            cardname="clientes";
+            clientesBtn.setBackground(Color.LIGHT_GRAY);
+        } else {
+            cardname = "clientes";
+            estoqueBtn.setBackground(Color.LIGHT_GRAY);
+            clientesBtn.setBackground(Color.GRAY);
+            vendasBtn.setBackground(Color.LIGHT_GRAY);
+            receitasBtn.setBackground(Color.LIGHT_GRAY);
+        }
         card.show(paiPanel, cardname);
     }//GEN-LAST:event_clientesBtnclientesActionPerformed
 
     private void vendasBtnvendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vendasBtnvendasActionPerformed
-        CardLayout card = (CardLayout)paiPanel.getLayout();
-        if (cardname.equals("vendas"))
+        CardLayout card = (CardLayout) paiPanel.getLayout();
+        if (cardname.equals("vendas")) {
             cardname = "index";
-        else
-            cardname="vendas";
+            vendasBtn.setBackground(Color.LIGHT_GRAY);
+        } else {
+            cardname = "vendas";
+            card.show(paiPanel, cardname);
+            estoqueBtn.setBackground(Color.LIGHT_GRAY);
+            clientesBtn.setBackground(Color.LIGHT_GRAY);
+            vendasBtn.setBackground(Color.GRAY);
+            receitasBtn.setBackground(Color.LIGHT_GRAY);
+        }
         card.show(paiPanel, cardname);
     }//GEN-LAST:event_vendasBtnvendasActionPerformed
 
     private void receitasBtnreceitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_receitasBtnreceitasActionPerformed
-        CardLayout card = (CardLayout)paiPanel.getLayout();
-        if (cardname.equals("receitas"))
+        CardLayout card = (CardLayout) paiPanel.getLayout();
+        if (cardname.equals("receitas")) {
             cardname = "index";
-        else
-            cardname="receitas";
+            receitasBtn.setBackground(Color.LIGHT_GRAY);
+        } else {
+            cardname = "receitas";
+            estoqueBtn.setBackground(Color.LIGHT_GRAY);
+            clientesBtn.setBackground(Color.LIGHT_GRAY);
+            vendasBtn.setBackground(Color.LIGHT_GRAY);
+            receitasBtn.setBackground(Color.GRAY);
+        }
         card.show(paiPanel, cardname);
     }//GEN-LAST:event_receitasBtnreceitasActionPerformed
 
