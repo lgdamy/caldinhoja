@@ -5,6 +5,7 @@
  */
 package caldinho.ja.views;
 
+import caldinho.ja.CaldoVerde;
 import java.awt.CardLayout;
 import java.awt.Color;
 
@@ -21,7 +22,12 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         initComponents();
     }
     public String cardname = "index";
-
+    //SETAR OS INGREDIENTES
+    //CALDO VERDE
+    public CaldoVerde caldoVerde = new CaldoVerde();
+    public String strIngCaldoVerde;
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -41,7 +47,16 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         vendasPnl = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         receitasPnl = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
+        receitasCardsPnl = new javax.swing.JPanel();
+        receitasPnlCaldoVerde = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        ingredientesCaldoVerde = new javax.swing.JTextPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        passosCaldoVerde = new javax.swing.JTextPane();
+        jLabel8 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox();
         estoqueBtn = new javax.swing.JButton();
         clientesBtn = new javax.swing.JButton();
         vendasBtn = new javax.swing.JButton();
@@ -84,7 +99,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
             estoquePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(estoquePnlLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 984, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1014, Short.MAX_VALUE)
                 .addContainerGap())
         );
         estoquePnlLayout.setVerticalGroup(
@@ -92,7 +107,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
             .addGroup(estoquePnlLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
-                .addContainerGap(635, Short.MAX_VALUE))
+                .addContainerGap(638, Short.MAX_VALUE))
         );
 
         paiPanel.add(estoquePnl, "estoque");
@@ -107,7 +122,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
             clientesPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(clientesPnlLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 984, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 1014, Short.MAX_VALUE)
                 .addContainerGap())
         );
         clientesPnlLayout.setVerticalGroup(
@@ -115,7 +130,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
             .addGroup(clientesPnlLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3)
-                .addContainerGap(635, Short.MAX_VALUE))
+                .addContainerGap(638, Short.MAX_VALUE))
         );
 
         paiPanel.add(clientesPnl, "clientes");
@@ -130,7 +145,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
             vendasPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(vendasPnlLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 984, Short.MAX_VALUE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 1014, Short.MAX_VALUE)
                 .addContainerGap())
         );
         vendasPnlLayout.setVerticalGroup(
@@ -138,14 +153,72 @@ public class CardLayoutFrame extends javax.swing.JFrame {
             .addGroup(vendasPnlLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel4)
-                .addContainerGap(635, Short.MAX_VALUE))
+                .addContainerGap(638, Short.MAX_VALUE))
         );
 
         paiPanel.add(vendasPnl, "vendas");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("RECEITAS");
+        receitasCardsPnl.setLayout(new java.awt.CardLayout());
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("Caldo Verde");
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel7.setText("Ingredientes");
+
+        jScrollPane1.setViewportView(ingredientesCaldoVerde);
+
+        passosCaldoVerde.setEditable(false);
+        passosCaldoVerde.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jScrollPane2.setViewportView(passosCaldoVerde);
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel8.setText("Passo-a-passo");
+
+        javax.swing.GroupLayout receitasPnlCaldoVerdeLayout = new javax.swing.GroupLayout(receitasPnlCaldoVerde);
+        receitasPnlCaldoVerde.setLayout(receitasPnlCaldoVerdeLayout);
+        receitasPnlCaldoVerdeLayout.setHorizontalGroup(
+            receitasPnlCaldoVerdeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(receitasPnlCaldoVerdeLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(receitasPnlCaldoVerdeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(receitasPnlCaldoVerdeLayout.createSequentialGroup()
+                        .addGroup(receitasPnlCaldoVerdeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7))
+                        .addGap(18, 18, 18)
+                        .addGroup(receitasPnlCaldoVerdeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(receitasPnlCaldoVerdeLayout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addGap(0, 400, Short.MAX_VALUE))
+                            .addComponent(jScrollPane2))))
+                .addContainerGap())
+        );
+        receitasPnlCaldoVerdeLayout.setVerticalGroup(
+            receitasPnlCaldoVerdeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(receitasPnlCaldoVerdeLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(receitasPnlCaldoVerdeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(receitasPnlCaldoVerdeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)))
+        );
+
+        receitasCardsPnl.add(receitasPnlCaldoVerde, "card2");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Caldo Verde", "Abóbora com Carne", "Mandioquinha com Alho Poró", "Palmito", "Canja de Galinha", "Ervilha", "Feijão" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout receitasPnlLayout = new javax.swing.GroupLayout(receitasPnl);
         receitasPnl.setLayout(receitasPnlLayout);
@@ -153,15 +226,19 @@ public class CardLayoutFrame extends javax.swing.JFrame {
             receitasPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(receitasPnlLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 984, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(receitasCardsPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         receitasPnlLayout.setVerticalGroup(
             receitasPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(receitasPnlLayout.createSequentialGroup()
+                .addComponent(receitasCardsPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(receitasPnlLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel5)
-                .addContainerGap(635, Short.MAX_VALUE))
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         paiPanel.add(receitasPnl, "receitas");
@@ -296,7 +373,17 @@ public class CardLayoutFrame extends javax.swing.JFrame {
             receitasBtn.setBackground(Color.GRAY);
         }
         card.show(paiPanel, cardname);
+        //String buffer=0;
+        for(int i = 0; i<CaldoVerde.getIngredientes().size();i++){
+            
+        }
+        passosCaldoVerde.setText(CaldoVerde.getReceita());
+       
     }//GEN-LAST:event_receitasBtnreceitasActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -324,7 +411,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(CardLayoutFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -339,14 +426,23 @@ public class CardLayoutFrame extends javax.swing.JFrame {
     private javax.swing.JButton estoqueBtn;
     private javax.swing.JPanel estoquePnl;
     private javax.swing.JPanel indexPnl;
+    private javax.swing.JTextPane ingredientesCaldoVerde;
+    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel paiPanel;
+    private javax.swing.JTextPane passosCaldoVerde;
     private javax.swing.JButton receitasBtn;
+    private javax.swing.JPanel receitasCardsPnl;
     private javax.swing.JPanel receitasPnl;
+    private javax.swing.JPanel receitasPnlCaldoVerde;
     private javax.swing.JButton vendasBtn;
     private javax.swing.JPanel vendasPnl;
     // End of variables declaration//GEN-END:variables
