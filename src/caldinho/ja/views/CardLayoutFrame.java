@@ -12,6 +12,7 @@ import caldinho.ja.MandioqAlhoPorro;
 import caldinho.ja.Palmito;
 import java.awt.CardLayout;
 import java.awt.Color;
+import javax.swing.JLabel;
 
 /**
  *
@@ -93,6 +94,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         passosFeijao = new javax.swing.JTextPane();
         jLabel20 = new javax.swing.JLabel();
         receitaComboBox = new javax.swing.JComboBox();
+        fotosCaldos = new javax.swing.JLabel();
         estoqueBtn = new javax.swing.JButton();
         clientesBtn = new javax.swing.JButton();
         vendasBtn = new javax.swing.JButton();
@@ -245,7 +247,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
                     .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(receitasPnlCaldoVerdeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
                     .addComponent(jScrollPane1)))
         );
 
@@ -300,7 +302,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
                     .addComponent(jLabel11))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(receitasPnlMandioqAlhoPoroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
                     .addComponent(jScrollPane3)))
         );
 
@@ -355,7 +357,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
                     .addComponent(jLabel14))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(receitasPnlAboboraCarneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
                     .addComponent(jScrollPane5)))
         );
 
@@ -410,7 +412,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
                     .addComponent(jLabel17))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(receitasPnlPalmitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
+                    .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
                     .addComponent(jScrollPane7)))
         );
 
@@ -465,7 +467,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
                     .addComponent(jLabel20))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(receitasPnlFeijaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
+                    .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
                     .addComponent(jScrollPane9)))
         );
 
@@ -478,14 +480,18 @@ public class CardLayoutFrame extends javax.swing.JFrame {
             }
         });
 
+        fotosCaldos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/caldinho/ja/images/CaldoVerde.jpg"))); // NOI18N
+
         javax.swing.GroupLayout receitasPnlLayout = new javax.swing.GroupLayout(receitasPnl);
         receitasPnl.setLayout(receitasPnlLayout);
         receitasPnlLayout.setHorizontalGroup(
             receitasPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(receitasPnlLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(receitaComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGroup(receitasPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(receitaComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fotosCaldos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(receitasCardsPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         receitasPnlLayout.setVerticalGroup(
@@ -496,6 +502,8 @@ public class CardLayoutFrame extends javax.swing.JFrame {
             .addGroup(receitasPnlLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(receitaComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46)
+                .addComponent(fotosCaldos, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -650,7 +658,6 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         passosPalmito.setText(Palmito.getReceita());
         ingredientesFeijao.setText(buffer5);
         passosFeijao.setText(Feijao.getReceita());
-       
     }//GEN-LAST:event_receitasBtnreceitasActionPerformed
 
     private void receitaComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_receitaComboBoxActionPerformed
@@ -659,27 +666,35 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         switch (receitaComboBox.getSelectedIndex()){
             case 0:
                 selected = "receitaCaldoVerde";
+                fotosCaldos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/caldinho/ja/images/CaldoVerde.jpg")));
                 break;
             case 1:
                 selected = "receitaAboboraCarne";
+                fotosCaldos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/caldinho/ja/images/AboboraCarne.jpg")));
                 break;
             case 2:
                 selected = "receitaMandioqAlhoPoro";
+                fotosCaldos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/caldinho/ja/images/MandioqAlhoPoro.jpg")));
                 break;
             case 3:
                 selected = "receitaPalmito";
+                fotosCaldos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/caldinho/ja/images/Palmito.jpg")));
                 break;
             case 4:
                 selected = "receitaCanja";
+                fotosCaldos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/caldinho/ja/images/Canja.jpg")));
                 break;
             case 5:
                 selected = "receitaErvilha";
+                fotosCaldos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/caldinho/ja/images/Ervilha.jpg")));
                 break;
             case 6:
                 selected = "receitaFeijao";
+                fotosCaldos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/caldinho/ja/images/Feijao.jpg")));
                 break;
         }
         cardReceitas.show(receitasCardsPnl, selected);
+        
     }//GEN-LAST:event_receitaComboBoxActionPerformed
 
     /**
@@ -722,6 +737,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
     private javax.swing.JPanel clientesPnl;
     private javax.swing.JButton estoqueBtn;
     private javax.swing.JPanel estoquePnl;
+    private javax.swing.JLabel fotosCaldos;
     private javax.swing.JPanel indexPnl;
     private javax.swing.JTextPane ingredientesAboboraCarne;
     private javax.swing.JTextPane ingredientesCaldoVerde;
