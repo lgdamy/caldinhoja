@@ -22,12 +22,12 @@ public class MandioqAlhoPorro extends Caldinho {
             new Ingrediente("Sal", 5,"pt"),
             new Ingrediente("Amido",2,"col sopa")));
     private static final String receita =
-            "1.Cobrir o fundo da panela com as mandioquinhas\n"
-            + "2.Encher com água até o volume máximo\n"
-            + "3.Adicionar uma 1tbsp de caldo de galinha\n"
-            + "4.Colocar por 10 minutos de pressão\n"
-            + "5.Bater com o mixer ja dentro do caldeirão com duas colheres de amido\n"
-            + "6.Refogar o alho poró bem picadinho no azeite\n"
+            "1.Cobrir o fundo da panela com as mandioquinhas\n\n"
+            + "2.Encher com água até o volume máximo\n\n"
+            + "3.Adicionar uma 1tbsp de caldo de galinha\n\n"
+            + "4.Colocar por 10 minutos de pressão\n\n"
+            + "5.Bater com o mixer ja dentro do caldeirão com duas colheres de amido\n\n"
+            + "6.Refogar o alho poró bem picadinho no azeite\n\n"
             + "7.Usar uma colher do refogado por porção";
     private static final String fotoPath = "endereço da foto"; //PRECISAMOS TIRAR FOTO
     private static final int qtdPanela = 0; //PRECISAMOS FAZER SOPA
@@ -35,4 +35,25 @@ public class MandioqAlhoPorro extends Caldinho {
     public void fazCaldo(float qtd) {
                 
     }
+
+    public static String getNome() {
+        return nome;
+    }
+
+    public static ArrayList<Ingrediente> getIngredientes() {
+        return ingredientes;
+    }
+
+    public static String getReceita() {
+        return receita;
+    }
+
+    public static String getFotoPath() {
+        return fotoPath;
+    }
+
+    public static int getQtdPanela() {
+        return qtdPanela;
+    }
+    
 }

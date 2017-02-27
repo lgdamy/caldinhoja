@@ -23,12 +23,12 @@ public class AboboraCarne extends Caldinho {
             new Ingrediente("Sal", 6, "pt"),
             new Ingrediente("Amido",2,"col sopa")));
     private static final String receita =
-            "1.Refogar na panela de pressão uma cebola e duas colheres pequenas de alho\n"
-            + "2.Colocar na panela a moranga cortada às pressas sem as sementes\n"
-            + "3.Adicionar uma 1tbsp de caldo de galinha e água até o volume máximo\n"
-            + "4.Cozinhar por 10 minutos na pressão\n"
-            + "5.Bater com o mixer ja dentro do caldeirão com duas colheres de amido\n"
-            + "6.Fritar a carne moída com 1/2tbsp de caldo de carne\n+"
+            "1.Refogar na panela de pressão uma cebola e duas colheres pequenas de alho\n\n"
+            + "2.Colocar na panela a moranga cortada às pressas sem as sementes\n\n"
+            + "3.Adicionar uma 1tbsp de caldo de galinha e água até o volume máximo\n\n"
+            + "4.Cozinhar por 10 minutos na pressão\n\n"
+            + "5.Bater com o mixer ja dentro do caldeirão com duas colheres de amido\n\n"
+            + "6.Fritar a carne moída com 1/2tbsp de caldo de carne\n\n"
             + "7.Misturar a carne na sopa e em seguida adicionar 6 pitadas de sal";
     private static final String fotoPath = "endereço da foto"; //PRECISAMOS TIRAR FOTO
     private static final int qtdPanela = 0; //PRECISAMOS FAZER SOPA
@@ -36,4 +36,25 @@ public class AboboraCarne extends Caldinho {
     public void fazCaldo(float qtd) {
                 
     }
+
+    public static String getNome() {
+        return nome;
+    }
+
+    public static ArrayList<Ingrediente> getIngredientes() {
+        return ingredientes;
+    }
+
+    public static String getReceita() {
+        return receita;
+    }
+
+    public static String getFotoPath() {
+        return fotoPath;
+    }
+
+    public static int getQtdPanela() {
+        return qtdPanela;
+    }
+    
 }

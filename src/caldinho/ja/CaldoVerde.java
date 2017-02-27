@@ -20,7 +20,7 @@ public class CaldoVerde extends Caldinho {
             new Ingrediente("Calabresa",1,"un"),
             new Ingrediente("Couve-Manteiga",1,"maço"),
             new Ingrediente("Sal", 3,"pt"),
-            new Ingrediente("Amido",2,"col. sopa")));
+            new Ingrediente("Amido",2,"col sopa")));
     private static final String receita =
             "1.Cobrir o fundo da panela com 7 batatas grandes\n\n"
             + "2.Encher com água até o volume máximo\n\n"
