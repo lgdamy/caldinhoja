@@ -15,12 +15,12 @@ import java.util.Arrays;
 public class MandioqAlhoPorro extends Caldinho {
     private static final String nome = "Caldo de Mandioquinha com Alho Porró";
     private static final ArrayList<Ingrediente> ingredientes = new ArrayList<>(Arrays.asList(
-            new Ingrediente ("Mandioquinha",600),
-            new Ingrediente ("Caldo de Galinha",15),
-            new Ingrediente("Alho-Poró",1),
-            new Ingrediente("Azeite",5),
-            new Ingrediente("Sal", 5),
-            new Ingrediente("Amido",2)));
+            new Ingrediente ("Mandioquinha",600,"g"),
+            new Ingrediente ("Caldo de Galinha",15,"g"),
+            new Ingrediente("Alho-Poró",1,"maço"),
+            new Ingrediente("Azeite",5,"ml"),
+            new Ingrediente("Sal", 5,"pt"),
+            new Ingrediente("Amido",2,"col sopa")));
     private static final String receita =
             "1.Cobrir o fundo da panela com as mandioquinhas\n"
             + "2.Encher com água até o volume máximo\n"

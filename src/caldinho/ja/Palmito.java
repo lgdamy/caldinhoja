@@ -15,12 +15,12 @@ import java.util.Arrays;
 public class Palmito extends Caldinho {
     private static final String nome = "Creme de Palmito";
     private static final ArrayList<Ingrediente> ingredientes = new ArrayList<>(Arrays.asList(
-            new Ingrediente ("Palmito",350),
-            new Ingrediente ("Caldo de Legumes",15),
-            new Ingrediente("Leite",1000),
-            new Ingrediente("Alho",2),
-            new Ingrediente("Amido", 4),
-            new Ingrediente("Creme de Leite", 1)));
+            new Ingrediente ("Palmito",350,"g"),
+            new Ingrediente ("Caldo de Legumes",15,"g"),
+            new Ingrediente("Leite",1000,"ml"),
+            new Ingrediente("Alho",2,"col chá"),
+            new Ingrediente("Amido", 4,"col sopa"),
+            new Ingrediente("Creme de Leite", 1,"caixa")));
     private static final String receita =
             "1.Refogar no óleo duas colheres pequenas de alho\n"
             + "2.Adicionar no refogado duas xícaras de palmito e 1tbsp de caldo de legumes\n"

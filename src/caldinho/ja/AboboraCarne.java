@@ -15,13 +15,13 @@ import java.util.Arrays;
 public class AboboraCarne extends Caldinho {
     private static final String nome = "Caldo de Abóbora com Carne";
     private static final ArrayList<Ingrediente> ingredientes = new ArrayList<>(Arrays.asList(
-            new Ingrediente ("Moranga",1),
-            new Ingrediente ("Caldo de Galinha",15),
-            new Ingrediente("Carne Moída",500),
-            new Ingrediente("Cebola",1),
-            new Ingrediente("Alho", 2),
-            new Ingrediente("Sal", 6),
-            new Ingrediente("Amido",2)));
+            new Ingrediente ("Moranga",1,"un"),
+            new Ingrediente ("Caldo de Galinha",15,"g"),
+            new Ingrediente("Carne Moída",500,"g"),
+            new Ingrediente("Cebola",1,"un"),
+            new Ingrediente("Alho", 2,"col chá"),
+            new Ingrediente("Sal", 6, "pt"),
+            new Ingrediente("Amido",2,"col sopa")));
     private static final String receita =
             "1.Refogar na panela de pressão uma cebola e duas colheres pequenas de alho\n"
             + "2.Colocar na panela a moranga cortada às pressas sem as sementes\n"

@@ -15,12 +15,12 @@ import java.util.Arrays;
 public class Feijao extends Caldinho {
     private static final String nome = "Caldinho de Feijão";
     private static final ArrayList<Ingrediente> ingredientes = new ArrayList<>(Arrays.asList(
-            new Ingrediente ("Feijão",500),
-            new Ingrediente ("Caldo de Carne",15),
-            new Ingrediente("Bacon",300),
-            new Ingrediente("Cebola",1),
-            new Ingrediente("Cebolinha",1),
-            new Ingrediente("Alho", 4)));
+            new Ingrediente ("Feijão",500,"g"),
+            new Ingrediente ("Caldo de Carne",15,"g"),
+            new Ingrediente("Bacon",300,"g"),
+            new Ingrediente("Cebola",1,"un"),
+            new Ingrediente("Cebolinha",1,"ramo"),
+            new Ingrediente("Alho", 4,"col chá")));
     private static final String receita =
             "1.Colocar 3 xícaras de feijão e a capa do bacon na panela de pressão\n"
             + "2.Depois de colocar água até o volume máximo, adicione 1tbsp de caldo de carne\n"
