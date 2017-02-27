@@ -27,12 +27,8 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         initComponents();
     }
     public String cardname = "index";
-    //SETAR OS INGREDIENTES
-    //CALDO VERDE
-    public CaldoVerde caldoVerde = new CaldoVerde();
-    public String strIngCaldoVerde;
-    
-    
+    String ingredientesCaldoVerde, ingredientesMandioqAlhoPoro, ingredientesAboboraCarne, ingredientesPalmito, ingredientesFeijao, ingredientesCanja, ingredientesErvilha;
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -54,45 +50,13 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         receitasPnl = new javax.swing.JPanel();
         receitasCardsPnl = new javax.swing.JPanel();
         receitasPnlCaldoVerde = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        nomeCaldo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        ingredientesCaldoVerde = new javax.swing.JTextPane();
+        ingredientesText = new javax.swing.JTextPane();
         jScrollPane2 = new javax.swing.JScrollPane();
-        passosCaldoVerde = new javax.swing.JTextPane();
-        jLabel8 = new javax.swing.JLabel();
-        receitasPnlMandioqAlhoPoro = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        ingredientesMandioqAlhoPoro = new javax.swing.JTextPane();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        passosMandioqAlhoPoro = new javax.swing.JTextPane();
-        jLabel11 = new javax.swing.JLabel();
-        receitasPnlAboboraCarne = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        ingredientesAboboraCarne = new javax.swing.JTextPane();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        passosAboboraCarne = new javax.swing.JTextPane();
-        jLabel14 = new javax.swing.JLabel();
-        receitasPnlPalmito = new javax.swing.JPanel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        ingredientesPalmito = new javax.swing.JTextPane();
-        jScrollPane8 = new javax.swing.JScrollPane();
-        passosPalmito = new javax.swing.JTextPane();
-        jLabel17 = new javax.swing.JLabel();
-        receitasPnlFeijao = new javax.swing.JPanel();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        jScrollPane9 = new javax.swing.JScrollPane();
-        ingredientesFeijao = new javax.swing.JTextPane();
-        jScrollPane10 = new javax.swing.JScrollPane();
-        passosFeijao = new javax.swing.JTextPane();
-        jLabel20 = new javax.swing.JLabel();
+        passosText = new javax.swing.JTextPane();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         receitaComboBox = new javax.swing.JComboBox();
         fotosCaldos = new javax.swing.JLabel();
         estoqueBtn = new javax.swing.JButton();
@@ -101,6 +65,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         receitasBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("CALDINHO JÁ");
         setAlwaysOnTop(true);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setMaximumSize(new java.awt.Dimension(1024, 790));
@@ -137,7 +102,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
             estoquePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(estoquePnlLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 984, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 986, Short.MAX_VALUE)
                 .addContainerGap())
         );
         estoquePnlLayout.setVerticalGroup(
@@ -145,7 +110,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
             .addGroup(estoquePnlLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
-                .addContainerGap(638, Short.MAX_VALUE))
+                .addContainerGap(649, Short.MAX_VALUE))
         );
 
         paiPanel.add(estoquePnl, "estoque");
@@ -160,7 +125,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
             clientesPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(clientesPnlLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 984, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 986, Short.MAX_VALUE)
                 .addContainerGap())
         );
         clientesPnlLayout.setVerticalGroup(
@@ -168,7 +133,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
             .addGroup(clientesPnlLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3)
-                .addContainerGap(638, Short.MAX_VALUE))
+                .addContainerGap(649, Short.MAX_VALUE))
         );
 
         paiPanel.add(clientesPnl, "clientes");
@@ -183,7 +148,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
             vendasPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(vendasPnlLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 984, Short.MAX_VALUE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 986, Short.MAX_VALUE)
                 .addContainerGap())
         );
         vendasPnlLayout.setVerticalGroup(
@@ -191,30 +156,28 @@ public class CardLayoutFrame extends javax.swing.JFrame {
             .addGroup(vendasPnlLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel4)
-                .addContainerGap(638, Short.MAX_VALUE))
+                .addContainerGap(649, Short.MAX_VALUE))
         );
 
         paiPanel.add(vendasPnl, "vendas");
 
-        receitasCardsPnl.setLayout(new java.awt.CardLayout());
+        nomeCaldo.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        nomeCaldo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        nomeCaldo.setText("Caldo Verde");
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Caldo Verde");
+        ingredientesText.setEditable(false);
+        ingredientesText.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jScrollPane1.setViewportView(ingredientesText);
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel7.setText("Ingredientes");
+        passosText.setEditable(false);
+        passosText.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jScrollPane2.setViewportView(passosText);
 
-        ingredientesCaldoVerde.setEditable(false);
-        ingredientesCaldoVerde.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jScrollPane1.setViewportView(ingredientesCaldoVerde);
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel5.setText("Ingredientes");
 
-        passosCaldoVerde.setEditable(false);
-        passosCaldoVerde.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jScrollPane2.setViewportView(passosCaldoVerde);
-
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel8.setText("Passo-a-passo");
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel6.setText("Passo-a-passo");
 
         javax.swing.GroupLayout receitasPnlCaldoVerdeLayout = new javax.swing.GroupLayout(receitasPnlCaldoVerde);
         receitasPnlCaldoVerde.setLayout(receitasPnlCaldoVerdeLayout);
@@ -223,257 +186,45 @@ public class CardLayoutFrame extends javax.swing.JFrame {
             .addGroup(receitasPnlCaldoVerdeLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(receitasPnlCaldoVerdeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(receitasPnlCaldoVerdeLayout.createSequentialGroup()
+                    .addComponent(nomeCaldo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, receitasPnlCaldoVerdeLayout.createSequentialGroup()
                         .addGroup(receitasPnlCaldoVerdeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7))
-                        .addGap(18, 18, 18)
+                            .addComponent(jLabel5))
+                        .addGap(18, 18, Short.MAX_VALUE)
                         .addGroup(receitasPnlCaldoVerdeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(receitasPnlCaldoVerdeLayout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addGap(0, 370, Short.MAX_VALUE))
-                            .addComponent(jScrollPane2))))
+                            .addComponent(jLabel6)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 457, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         receitasPnlCaldoVerdeLayout.setVerticalGroup(
             receitasPnlCaldoVerdeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(receitasPnlCaldoVerdeLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(nomeCaldo)
+                .addGap(22, 22, 22)
                 .addGroup(receitasPnlCaldoVerdeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(receitasPnlCaldoVerdeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(receitasPnlCaldoVerdeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
                     .addComponent(jScrollPane1)))
         );
 
-        receitasCardsPnl.add(receitasPnlCaldoVerde, "receitaCaldoVerde");
-
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("Caldo de Mandioquinha com Alho Poró");
-
-        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel10.setText("Ingredientes");
-
-        ingredientesMandioqAlhoPoro.setEditable(false);
-        ingredientesMandioqAlhoPoro.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jScrollPane3.setViewportView(ingredientesMandioqAlhoPoro);
-
-        passosMandioqAlhoPoro.setEditable(false);
-        passosMandioqAlhoPoro.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jScrollPane4.setViewportView(passosMandioqAlhoPoro);
-
-        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel11.setText("Passo-a-passo");
-
-        javax.swing.GroupLayout receitasPnlMandioqAlhoPoroLayout = new javax.swing.GroupLayout(receitasPnlMandioqAlhoPoro);
-        receitasPnlMandioqAlhoPoro.setLayout(receitasPnlMandioqAlhoPoroLayout);
-        receitasPnlMandioqAlhoPoroLayout.setHorizontalGroup(
-            receitasPnlMandioqAlhoPoroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(receitasPnlMandioqAlhoPoroLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(receitasPnlMandioqAlhoPoroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(receitasPnlMandioqAlhoPoroLayout.createSequentialGroup()
-                        .addGroup(receitasPnlMandioqAlhoPoroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10))
-                        .addGap(18, 18, 18)
-                        .addGroup(receitasPnlMandioqAlhoPoroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(receitasPnlMandioqAlhoPoroLayout.createSequentialGroup()
-                                .addComponent(jLabel11)
-                                .addGap(0, 370, Short.MAX_VALUE))
-                            .addComponent(jScrollPane4))))
-                .addContainerGap())
+        javax.swing.GroupLayout receitasCardsPnlLayout = new javax.swing.GroupLayout(receitasCardsPnl);
+        receitasCardsPnl.setLayout(receitasCardsPnlLayout);
+        receitasCardsPnlLayout.setHorizontalGroup(
+            receitasCardsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(receitasPnlCaldoVerde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
-        receitasPnlMandioqAlhoPoroLayout.setVerticalGroup(
-            receitasPnlMandioqAlhoPoroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(receitasPnlMandioqAlhoPoroLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(receitasPnlMandioqAlhoPoroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel11))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(receitasPnlMandioqAlhoPoroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3)))
+        receitasCardsPnlLayout.setVerticalGroup(
+            receitasCardsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(receitasPnlCaldoVerde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        receitasCardsPnl.add(receitasPnlMandioqAlhoPoro, "receitaMandioqAlhoPoro");
-
-        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel12.setText("Sopa de Abóbora com Carne");
-
-        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel13.setText("Ingredientes");
-
-        ingredientesAboboraCarne.setEditable(false);
-        ingredientesAboboraCarne.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jScrollPane5.setViewportView(ingredientesAboboraCarne);
-
-        passosAboboraCarne.setEditable(false);
-        passosAboboraCarne.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jScrollPane6.setViewportView(passosAboboraCarne);
-
-        jLabel14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel14.setText("Passo-a-passo");
-
-        javax.swing.GroupLayout receitasPnlAboboraCarneLayout = new javax.swing.GroupLayout(receitasPnlAboboraCarne);
-        receitasPnlAboboraCarne.setLayout(receitasPnlAboboraCarneLayout);
-        receitasPnlAboboraCarneLayout.setHorizontalGroup(
-            receitasPnlAboboraCarneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(receitasPnlAboboraCarneLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(receitasPnlAboboraCarneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(receitasPnlAboboraCarneLayout.createSequentialGroup()
-                        .addGroup(receitasPnlAboboraCarneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel13))
-                        .addGap(18, 18, 18)
-                        .addGroup(receitasPnlAboboraCarneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(receitasPnlAboboraCarneLayout.createSequentialGroup()
-                                .addComponent(jLabel14)
-                                .addGap(0, 370, Short.MAX_VALUE))
-                            .addComponent(jScrollPane6))))
-                .addContainerGap())
-        );
-        receitasPnlAboboraCarneLayout.setVerticalGroup(
-            receitasPnlAboboraCarneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(receitasPnlAboboraCarneLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel12)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(receitasPnlAboboraCarneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
-                    .addComponent(jLabel14))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(receitasPnlAboboraCarneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
-                    .addComponent(jScrollPane5)))
-        );
-
-        receitasCardsPnl.add(receitasPnlAboboraCarne, "receitaAboboraCarne");
-
-        jLabel15.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel15.setText("Creme de Palmito");
-
-        jLabel16.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel16.setText("Ingredientes");
-
-        ingredientesPalmito.setEditable(false);
-        ingredientesPalmito.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jScrollPane7.setViewportView(ingredientesPalmito);
-
-        passosPalmito.setEditable(false);
-        passosPalmito.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jScrollPane8.setViewportView(passosPalmito);
-
-        jLabel17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel17.setText("Passo-a-passo");
-
-        javax.swing.GroupLayout receitasPnlPalmitoLayout = new javax.swing.GroupLayout(receitasPnlPalmito);
-        receitasPnlPalmito.setLayout(receitasPnlPalmitoLayout);
-        receitasPnlPalmitoLayout.setHorizontalGroup(
-            receitasPnlPalmitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(receitasPnlPalmitoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(receitasPnlPalmitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(receitasPnlPalmitoLayout.createSequentialGroup()
-                        .addGroup(receitasPnlPalmitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel16))
-                        .addGap(18, 18, 18)
-                        .addGroup(receitasPnlPalmitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(receitasPnlPalmitoLayout.createSequentialGroup()
-                                .addComponent(jLabel17)
-                                .addGap(0, 370, Short.MAX_VALUE))
-                            .addComponent(jScrollPane8))))
-                .addContainerGap())
-        );
-        receitasPnlPalmitoLayout.setVerticalGroup(
-            receitasPnlPalmitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(receitasPnlPalmitoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel15)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(receitasPnlPalmitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel16)
-                    .addComponent(jLabel17))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(receitasPnlPalmitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
-                    .addComponent(jScrollPane7)))
-        );
-
-        receitasCardsPnl.add(receitasPnlPalmito, "receitaPalmito");
-
-        jLabel18.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel18.setText("Caldinho de Feijão");
-
-        jLabel19.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel19.setText("Ingredientes");
-
-        ingredientesFeijao.setEditable(false);
-        ingredientesFeijao.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jScrollPane9.setViewportView(ingredientesFeijao);
-
-        passosFeijao.setEditable(false);
-        passosFeijao.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jScrollPane10.setViewportView(passosFeijao);
-
-        jLabel20.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel20.setText("Passo-a-passo");
-
-        javax.swing.GroupLayout receitasPnlFeijaoLayout = new javax.swing.GroupLayout(receitasPnlFeijao);
-        receitasPnlFeijao.setLayout(receitasPnlFeijaoLayout);
-        receitasPnlFeijaoLayout.setHorizontalGroup(
-            receitasPnlFeijaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(receitasPnlFeijaoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(receitasPnlFeijaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(receitasPnlFeijaoLayout.createSequentialGroup()
-                        .addGroup(receitasPnlFeijaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel19))
-                        .addGap(18, 18, 18)
-                        .addGroup(receitasPnlFeijaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(receitasPnlFeijaoLayout.createSequentialGroup()
-                                .addComponent(jLabel20)
-                                .addGap(0, 370, Short.MAX_VALUE))
-                            .addComponent(jScrollPane10))))
-                .addContainerGap())
-        );
-        receitasPnlFeijaoLayout.setVerticalGroup(
-            receitasPnlFeijaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(receitasPnlFeijaoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel18)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(receitasPnlFeijaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel19)
-                    .addComponent(jLabel20))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(receitasPnlFeijaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
-                    .addComponent(jScrollPane9)))
-        );
-
-        receitasCardsPnl.add(receitasPnlFeijao, "receitaFeijao");
-
+        receitaComboBox.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         receitaComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Caldo Verde", "Abóbora com Carne", "Mandioquinha com Alho Poró", "Palmito", "Canja de Galinha", "Ervilha", "Feijão" }));
+        receitaComboBox.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         receitaComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 receitaComboBoxActionPerformed(evt);
@@ -488,9 +239,9 @@ public class CardLayoutFrame extends javax.swing.JFrame {
             receitasPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(receitasPnlLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(receitasPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(receitaComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fotosCaldos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(receitasPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(fotosCaldos)
+                    .addComponent(receitaComboBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(receitasCardsPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -498,11 +249,11 @@ public class CardLayoutFrame extends javax.swing.JFrame {
             receitasPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(receitasPnlLayout.createSequentialGroup()
                 .addComponent(receitasCardsPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(1, 1, 1))
             .addGroup(receitasPnlLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(29, 29, 29)
                 .addComponent(receitaComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
+                .addGap(30, 30, 30)
                 .addComponent(fotosCaldos, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -568,13 +319,13 @@ public class CardLayoutFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(paiPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(estoqueBtn)
                     .addComponent(clientesBtn)
                     .addComponent(vendasBtn)
                     .addComponent(receitasBtn))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -639,62 +390,80 @@ public class CardLayoutFrame extends javax.swing.JFrame {
             receitasBtn.setBackground(Color.GRAY);
         }
         card.show(paiPanel, cardname);
-        String buffer1="", buffer2="", buffer3="", buffer4="",buffer5="",buffer6="",buffer7="";
-        for(int i = 0; i<CaldoVerde.getIngredientes().size();i++){
-            buffer1 +=(i+1)+". "+ CaldoVerde.getIngredientes().get(i).getNome() + " - "  +  (int)CaldoVerde.getIngredientes().get(i).getQtd()+ " " + CaldoVerde.getIngredientes().get(i).getUnidade()+"\n\n";
-            buffer2 +=(i+1)+". "+ MandioqAlhoPorro.getIngredientes().get(i).getNome() + " - "  +  (int)MandioqAlhoPorro.getIngredientes().get(i).getQtd()+ " " + MandioqAlhoPorro.getIngredientes().get(i).getUnidade()+"\n\n";
-            buffer3 +=(i+1)+". "+ AboboraCarne.getIngredientes().get(i).getNome() + " - "  +  (int)AboboraCarne.getIngredientes().get(i).getQtd()+ " " + AboboraCarne.getIngredientes().get(i).getUnidade()+"\n\n";
-            buffer4 +=(i+1)+". "+ Palmito.getIngredientes().get(i).getNome() + " - "  +  (int)Palmito.getIngredientes().get(i).getQtd()+ " " + Palmito.getIngredientes().get(i).getUnidade()+"\n\n";
-            buffer5 +=(i+1)+". "+ Feijao.getIngredientes().get(i).getNome() + " - "  +  (int)Feijao.getIngredientes().get(i).getQtd()+ " " + Feijao.getIngredientes().get(i).getUnidade()+"\n\n";
-            
+        
+        ingredientesCaldoVerde = ""; ingredientesMandioqAlhoPoro = ""; ingredientesAboboraCarne = ""; ingredientesPalmito = ""; ingredientesFeijao = ""; ingredientesCanja = ""; ingredientesErvilha = "";
+        for (int i = 0; i < CaldoVerde.getIngredientes().size(); i++) {
+            ingredientesCaldoVerde += (i + 1) + ". " + CaldoVerde.getIngredientes().get(i).getNome() + " - " + (int) CaldoVerde.getIngredientes().get(i).getQtd() + " " + CaldoVerde.getIngredientes().get(i).getUnidade() + "\n\n";
+            ingredientesMandioqAlhoPoro += (i + 1) + ". " + MandioqAlhoPorro.getIngredientes().get(i).getNome() + " - " + (int) MandioqAlhoPorro.getIngredientes().get(i).getQtd() + " " + MandioqAlhoPorro.getIngredientes().get(i).getUnidade() + "\n\n";
+            ingredientesAboboraCarne += (i + 1) + ". " + AboboraCarne.getIngredientes().get(i).getNome() + " - " + (int) AboboraCarne.getIngredientes().get(i).getQtd() + " " + AboboraCarne.getIngredientes().get(i).getUnidade() + "\n\n";
+            ingredientesPalmito += (i + 1) + ". " + Palmito.getIngredientes().get(i).getNome() + " - " + (int) Palmito.getIngredientes().get(i).getQtd() + " " + Palmito.getIngredientes().get(i).getUnidade() + "\n\n";
+            ingredientesFeijao += (i + 1) + ". " + Feijao.getIngredientes().get(i).getNome() + " - " + (int) Feijao.getIngredientes().get(i).getQtd() + " " + Feijao.getIngredientes().get(i).getUnidade() + "\n\n";
+
         }
-        ingredientesCaldoVerde.setText(buffer1);
-        passosCaldoVerde.setText(CaldoVerde.getReceita());
-        ingredientesMandioqAlhoPoro.setText(buffer2);
-        passosMandioqAlhoPoro.setText(MandioqAlhoPorro.getReceita());
-        ingredientesAboboraCarne.setText(buffer3);
-        passosAboboraCarne.setText(AboboraCarne.getReceita());
-        ingredientesPalmito.setText(buffer4);
-        passosPalmito.setText(Palmito.getReceita());
-        ingredientesFeijao.setText(buffer5);
-        passosFeijao.setText(Feijao.getReceita());
+        if(receitaComboBox.getSelectedIndex()==0){
+            ingredientesText.setText(ingredientesCaldoVerde);
+            passosText.setText(CaldoVerde.getReceita());
+            nomeCaldo.setText("Caldo Verde");
+        }
+
     }//GEN-LAST:event_receitasBtnreceitasActionPerformed
 
     private void receitaComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_receitaComboBoxActionPerformed
-        CardLayout cardReceitas = (CardLayout) receitasCardsPnl.getLayout();
-        String selected="";
-        switch (receitaComboBox.getSelectedIndex()){
+
+        String selected = "";
+        switch (receitaComboBox.getSelectedIndex()) {
             case 0:
                 selected = "receitaCaldoVerde";
                 fotosCaldos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/caldinho/ja/images/CaldoVerde.jpg")));
+                ingredientesText.setText(ingredientesCaldoVerde);
+                passosText.setText(CaldoVerde.getReceita());
+                nomeCaldo.setText("Caldo Verde");
                 break;
             case 1:
                 selected = "receitaAboboraCarne";
                 fotosCaldos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/caldinho/ja/images/AboboraCarne.jpg")));
+                ingredientesText.setText(ingredientesAboboraCarne);
+                passosText.setText(AboboraCarne.getReceita());
+                nomeCaldo.setText("Sopa de Abóbora com Carne");
                 break;
             case 2:
                 selected = "receitaMandioqAlhoPoro";
                 fotosCaldos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/caldinho/ja/images/MandioqAlhoPoro.jpg")));
+                ingredientesText.setText(ingredientesMandioqAlhoPoro);
+                passosText.setText(MandioqAlhoPorro.getReceita());
+                nomeCaldo.setText("Sopa de Mandioquinha com Alho Poró");
                 break;
             case 3:
                 selected = "receitaPalmito";
                 fotosCaldos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/caldinho/ja/images/Palmito.jpg")));
+                ingredientesText.setText(ingredientesPalmito);
+                passosText.setText(Palmito.getReceita());
+                nomeCaldo.setText("Creme de Palmito");
                 break;
             case 4:
                 selected = "receitaCanja";
                 fotosCaldos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/caldinho/ja/images/Canja.jpg")));
+                ingredientesText.setText(ingredientesCanja);
+                passosText.setText("//--FALTA AINDA COLOCAR OS DADOS DESSA RECEITA--//");
+                nomeCaldo.setText("Canja de Galinha");
                 break;
             case 5:
                 selected = "receitaErvilha";
                 fotosCaldos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/caldinho/ja/images/Ervilha.jpg")));
+                ingredientesText.setText(ingredientesErvilha);
+                passosText.setText("//--FALTA AINDA COLOCAR OS DADOS DESSA RECEITA--//");
+                nomeCaldo.setText("Creme de Ervilha");
                 break;
             case 6:
                 selected = "receitaFeijao";
                 fotosCaldos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/caldinho/ja/images/Feijao.jpg")));
+                ingredientesText.setText(ingredientesFeijao);
+                passosText.setText(Feijao.getReceita());
+                nomeCaldo.setText("Caldinho de Feijão");
                 break;
         }
-        cardReceitas.show(receitasCardsPnl, selected);
-        
+
+
     }//GEN-LAST:event_receitaComboBoxActionPerformed
 
     /**
@@ -723,7 +492,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(CardLayoutFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -739,55 +508,23 @@ public class CardLayoutFrame extends javax.swing.JFrame {
     private javax.swing.JPanel estoquePnl;
     private javax.swing.JLabel fotosCaldos;
     private javax.swing.JPanel indexPnl;
-    private javax.swing.JTextPane ingredientesAboboraCarne;
-    private javax.swing.JTextPane ingredientesCaldoVerde;
-    private javax.swing.JTextPane ingredientesFeijao;
-    private javax.swing.JTextPane ingredientesMandioqAlhoPoro;
-    private javax.swing.JTextPane ingredientesPalmito;
+    private javax.swing.JTextPane ingredientesText;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JScrollPane jScrollPane7;
-    private javax.swing.JScrollPane jScrollPane8;
-    private javax.swing.JScrollPane jScrollPane9;
+    private javax.swing.JLabel nomeCaldo;
     private javax.swing.JPanel paiPanel;
-    private javax.swing.JTextPane passosAboboraCarne;
-    private javax.swing.JTextPane passosCaldoVerde;
-    private javax.swing.JTextPane passosFeijao;
-    private javax.swing.JTextPane passosMandioqAlhoPoro;
-    private javax.swing.JTextPane passosPalmito;
+    private javax.swing.JTextPane passosText;
     private javax.swing.JComboBox receitaComboBox;
     private javax.swing.JButton receitasBtn;
     private javax.swing.JPanel receitasCardsPnl;
     private javax.swing.JPanel receitasPnl;
-    private javax.swing.JPanel receitasPnlAboboraCarne;
     private javax.swing.JPanel receitasPnlCaldoVerde;
-    private javax.swing.JPanel receitasPnlFeijao;
-    private javax.swing.JPanel receitasPnlMandioqAlhoPoro;
-    private javax.swing.JPanel receitasPnlPalmito;
     private javax.swing.JButton vendasBtn;
     private javax.swing.JPanel vendasPnl;
     // End of variables declaration//GEN-END:variables
