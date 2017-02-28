@@ -18,5 +18,5 @@ public abstract class Caldinho implements FazCaldo {
     private List<Ingrediente> ingredientes;
     private String receita;
     private String fotoPath;
-        
+      
 }

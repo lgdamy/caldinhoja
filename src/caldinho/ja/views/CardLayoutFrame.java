@@ -5,14 +5,17 @@
  */
 package caldinho.ja.views;
 
+import caldinho.ja.Caldinho;
 import caldinho.ja.AboboraCarne;
 import caldinho.ja.CaldoVerde;
+import caldinho.ja.Canja;
+import caldinho.ja.Ervilha;
 import caldinho.ja.Feijao;
 import caldinho.ja.MandioqAlhoPorro;
 import caldinho.ja.Palmito;
 import java.awt.CardLayout;
 import java.awt.Color;
-import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -59,6 +62,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         receitaComboBox = new javax.swing.JComboBox();
         fotosCaldos = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         estoqueBtn = new javax.swing.JButton();
         clientesBtn = new javax.swing.JButton();
         vendasBtn = new javax.swing.JButton();
@@ -66,7 +70,6 @@ public class CardLayoutFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("CALDINHO JÁ");
-        setAlwaysOnTop(true);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setMaximumSize(new java.awt.Dimension(1024, 790));
         setPreferredSize(new java.awt.Dimension(1024, 780));
@@ -233,15 +236,28 @@ public class CardLayoutFrame extends javax.swing.JFrame {
 
         fotosCaldos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/caldinho/ja/images/CaldoVerde.jpg"))); // NOI18N
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButton1.setText("FAZER SOPA");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout receitasPnlLayout = new javax.swing.GroupLayout(receitasPnl);
         receitasPnl.setLayout(receitasPnlLayout);
         receitasPnlLayout.setHorizontalGroup(
             receitasPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(receitasPnlLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(receitasPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(fotosCaldos)
-                    .addComponent(receitaComboBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(receitasPnlLayout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addGroup(receitasPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(fotosCaldos, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, receitasPnlLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(receitaComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(receitasCardsPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -255,6 +271,8 @@ public class CardLayoutFrame extends javax.swing.JFrame {
                 .addComponent(receitaComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(fotosCaldos, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -398,6 +416,8 @@ public class CardLayoutFrame extends javax.swing.JFrame {
             ingredientesAboboraCarne += (i + 1) + ". " + AboboraCarne.getIngredientes().get(i).getNome() + " - " + (int) AboboraCarne.getIngredientes().get(i).getQtd() + " " + AboboraCarne.getIngredientes().get(i).getUnidade() + "\n\n";
             ingredientesPalmito += (i + 1) + ". " + Palmito.getIngredientes().get(i).getNome() + " - " + (int) Palmito.getIngredientes().get(i).getQtd() + " " + Palmito.getIngredientes().get(i).getUnidade() + "\n\n";
             ingredientesFeijao += (i + 1) + ". " + Feijao.getIngredientes().get(i).getNome() + " - " + (int) Feijao.getIngredientes().get(i).getQtd() + " " + Feijao.getIngredientes().get(i).getUnidade() + "\n\n";
+            ingredientesCanja += (i + 1) + ". " + Canja.getIngredientes().get(i).getNome() + " - " + (int) Canja.getIngredientes().get(i).getQtd() + " " + Canja.getIngredientes().get(i).getUnidade() + "\n\n";
+            ingredientesErvilha += (i + 1) + ". " + Ervilha.getIngredientes().get(i).getNome() + " - " + (int) Ervilha.getIngredientes().get(i).getQtd() + " " + Ervilha.getIngredientes().get(i).getUnidade() + "\n\n";
 
         }
         if(receitaComboBox.getSelectedIndex()==0){
@@ -444,14 +464,14 @@ public class CardLayoutFrame extends javax.swing.JFrame {
                 selected = "receitaCanja";
                 fotosCaldos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/caldinho/ja/images/Canja.jpg")));
                 ingredientesText.setText(ingredientesCanja);
-                passosText.setText("//--FALTA AINDA COLOCAR OS DADOS DESSA RECEITA--//");
+                passosText.setText(Canja.getReceita());
                 nomeCaldo.setText("Canja de Galinha");
                 break;
             case 5:
                 selected = "receitaErvilha";
                 fotosCaldos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/caldinho/ja/images/Ervilha.jpg")));
                 ingredientesText.setText(ingredientesErvilha);
-                passosText.setText("//--FALTA AINDA COLOCAR OS DADOS DESSA RECEITA--//");
+                passosText.setText(Ervilha.getReceita());
                 nomeCaldo.setText("Creme de Ervilha");
                 break;
             case 6:
@@ -465,6 +485,35 @@ public class CardLayoutFrame extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_receitaComboBoxActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Caldinho sopa = null;
+        switch (receitaComboBox.getSelectedIndex()) {
+            case 0:
+                sopa = new CaldoVerde();
+                break;
+            case 1:
+                sopa = new AboboraCarne();
+                break;
+            case 2:
+                sopa = new MandioqAlhoPorro();
+                break;
+            case 3:
+                sopa = new Palmito();
+                break;
+            case 4:
+                sopa = new Canja();
+                break;
+            case 5:
+                sopa = new Ervilha();
+                break;
+            case 6:
+                sopa = new Feijao();
+                break;
+        }
+        sopa.fazCaldo(Float.parseFloat(JOptionPane.showInputDialog("Informe a quantidade de " + nomeCaldo.getText() + " que será feita")));
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -509,6 +558,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
     private javax.swing.JLabel fotosCaldos;
     private javax.swing.JPanel indexPnl;
     private javax.swing.JTextPane ingredientesText;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
