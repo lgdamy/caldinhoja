@@ -12,24 +12,23 @@ import java.util.Arrays;
  *
  * @author LuizGuilherme
  */
-public class AboboraCarne extends Caldinho {
-    private static final String nome = "Caldo de Abóbora com Carne";
+public class Canja extends Caldinho {
+    private static final String nome = "Caldo Verde";
     private static final ArrayList<Ingrediente> ingredientes = new ArrayList<>(Arrays.asList(
-            new Ingrediente ("Moranga",1,"un"),
-            new Ingrediente ("Caldo de Galinha",15,"g"),
-            new Ingrediente("Carne Moída",500,"g"),
-            new Ingrediente("Cebola",1,"un"),
-            new Ingrediente("Alho", 2,"col chá"),
-            new Ingrediente("Sal", 6, "pt"),
+            new Ingrediente ("Batata",1000,"g"),
+            new Ingrediente ("Caldo de Legumes",15,"g"),
+            new Ingrediente("Calabresa",1,"un"),
+            new Ingrediente("Couve-Manteiga",1,"maço"),
+            new Ingrediente("Sal", 3,"pt"),
             new Ingrediente("Amido",2,"col sopa")));
     private static final String receita =
-            "1.Refogar na panela de pressão uma cebola e duas colheres pequenas de alho\n\n"
-            + "2.Colocar na panela a moranga cortada às pressas sem as sementes\n\n"
-            + "3.Adicionar uma 1tbsp de caldo de galinha e água até o volume máximo\n\n"
-            + "4.Cozinhar por 10 minutos na pressão\n\n"
+            "1.Cobrir o fundo da panela com 7 batatas grandes\n\n"
+            + "2.Encher com água até o volume máximo\n\n"
+            + "3.Adicionar uma 1tbsp de caldo de legumes\n\n"
+            + "4.Colocar por 12 minutos de pressão\n\n"
             + "5.Bater com o mixer ja dentro do caldeirão com duas colheres de amido\n\n"
-            + "6.Fritar a carne moída com 1/2tbsp de caldo de carne\n\n"
-            + "7.Misturar a carne na sopa e em seguida adicionar 6 pitadas de sal";
+            + "6.Colocar a linguiça em rodelas, 3 pitadas de sal e deixar no fogo\n\n"
+            + "7.Quando estiver fervendo adicionar a couve cortada fininha";
     private static final String fotoPath = "endereço da foto"; //PRECISAMOS TIRAR FOTO
     private static final int qtdPanela = 0; //PRECISAMOS FAZER SOPA
     @Override

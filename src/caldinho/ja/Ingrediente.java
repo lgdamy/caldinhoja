@@ -12,10 +12,12 @@ package caldinho.ja;
 public class Ingrediente {
     private String nome;
     private float qtd;
+    private String unidade;
     
-    public Ingrediente(String nome, float qtd){
+    public Ingrediente(String nome, float qtd, String unidade){
         this.nome = nome;
         this.qtd = qtd;
+        this.unidade = unidade;
     }
     public Ingrediente(String nome){
         this.nome = nome;
@@ -38,6 +40,15 @@ public class Ingrediente {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+    public String getUnidade() {
+        return unidade;
+    }
+
+    public void setUnidade(String unidade) {
+        this.unidade = unidade;
+    }
+    
     
     
 }
