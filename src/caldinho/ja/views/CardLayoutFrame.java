@@ -5,14 +5,14 @@
  */
 package caldinho.ja.views;
 
-import caldinho.ja.Caldinho;
-import caldinho.ja.AboboraCarne;
-import caldinho.ja.CaldoVerde;
-import caldinho.ja.Canja;
-import caldinho.ja.Ervilha;
-import caldinho.ja.Feijao;
-import caldinho.ja.MandioqAlhoPorro;
-import caldinho.ja.Palmito;
+import caldinho.ja.escopo.Caldinho;
+import caldinho.ja.escopo.AboboraCarne;
+import caldinho.ja.escopo.CaldoVerde;
+import caldinho.ja.escopo.Canja;
+import caldinho.ja.escopo.Ervilha;
+import caldinho.ja.escopo.Feijao;
+import caldinho.ja.escopo.MandioqAlhoPorro;
+import caldinho.ja.escopo.Palmito;
 import java.awt.CardLayout;
 import java.awt.Color;
 import javax.swing.JOptionPane;

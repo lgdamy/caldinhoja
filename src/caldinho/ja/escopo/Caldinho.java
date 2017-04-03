@@ -1,4 +1,4 @@
-package caldinho.ja;
+package caldinho.ja.escopo;
 
 import java.util.List;
 

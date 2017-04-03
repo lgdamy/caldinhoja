@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package caldinho.ja;
+package caldinho.ja.escopo;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,23 +12,23 @@ import java.util.Arrays;
  *
  * @author LuizGuilherme
  */
-public class CaldoVerde extends Caldinho {
-    private static final String nome = "Caldo Verde";
+public class Palmito extends Caldinho {
+    private static final String nome = "Creme de Palmito";
     private static final ArrayList<Ingrediente> ingredientes = new ArrayList<>(Arrays.asList(
-            new Ingrediente ("Batata",1000,"g"),
+            new Ingrediente ("Palmito",350,"g"),
             new Ingrediente ("Caldo de Legumes",15,"g"),
-            new Ingrediente("Calabresa",1,"un"),
-            new Ingrediente("Couve-Manteiga",1,"maço"),
-            new Ingrediente("Sal", 3,"pt"),
-            new Ingrediente("Amido",2,"col sopa")));
+            new Ingrediente("Leite",1000,"ml"),
+            new Ingrediente("Alho",2,"col chá"),
+            new Ingrediente("Amido", 4,"col sopa"),
+            new Ingrediente("Creme de Leite", 1,"caixa")));
     private static final String receita =
-            "1.Cobrir o fundo da panela com 7 batatas grandes\n\n"
-            + "2.Encher com água até o volume máximo\n\n"
-            + "3.Adicionar uma 1tbsp de caldo de legumes\n\n"
-            + "4.Colocar por 12 minutos de pressão\n\n"
-            + "5.Bater com o mixer ja dentro do caldeirão com duas colheres de amido\n\n"
-            + "6.Colocar a linguiça em rodelas, 3 pitadas de sal e deixar no fogo\n\n"
-            + "7.Quando estiver fervendo adicionar a couve cortada fininha";
+            "1.Refogar no óleo duas colheres pequenas de alho\n\n"
+            + "2.Adicionar no refogado duas xícaras de palmito e 1tbsp de caldo de legumes\n\n"
+            + "3.Acrescentar 1 litro de leite, 750ml de água e 250ml da conserva\n\n"
+            + "4.Assim que ferver, abaixar o fogo e deixar por 5 minutos\n\n"
+            + "5.Bater no liquidificador com 4 colheres de amido\n\n"
+            + "6.Deixar ferver novamente, assim que engrossar adicionar uma caixa de creme de leite\n\n"
+            + "7.Servir com uma colher de sopa de palmito por porção";
     private static final String fotoPath = "endereço da foto"; //PRECISAMOS TIRAR FOTO
     private static final int qtdPanela = 0; //PRECISAMOS FAZER SOPA
     @Override
