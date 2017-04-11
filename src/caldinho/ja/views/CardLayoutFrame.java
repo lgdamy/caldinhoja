@@ -171,7 +171,8 @@ public class CardLayoutFrame extends javax.swing.JFrame {
 
         jButton2.setText("Novo");
 
-        jTextField1.setText("Pesquisa...");
+        jTextField1.setToolTipText("Pesquisa...");
+        jTextField1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
         jButton3.setText("Busca");
 
