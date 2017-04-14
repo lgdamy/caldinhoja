@@ -5,11 +5,15 @@
  */
 package caldinho.ja.escopo;
 
+import javax.persistence.*;
+
 /**
  *
  * @author lgalmeida
  */
+@Entity
 public class Cliente {
+    @Id @GeneratedValue
     private int id; //PK
     private String nome;
     private int ddd;
