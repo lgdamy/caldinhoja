@@ -4,12 +4,17 @@
  * and open the template in the editor.
  */
 package caldinho.ja.escopo;
+import java.io.Serializable;
+import javax.persistence.*;
 
 /**
  *
  * @author LuizGuilherme
  */
-public class Ingrediente {
+@Entity
+public class Ingrediente implements Serializable {
+    @Id @GeneratedValue
+    private int id;
     private String nome;
     private float qtd;
     private String unidade;
@@ -24,6 +29,15 @@ public class Ingrediente {
     }
     
     public Ingrediente(){}
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
 
     public float getQtd() {
         return qtd;
