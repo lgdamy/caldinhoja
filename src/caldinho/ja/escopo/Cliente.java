@@ -5,6 +5,7 @@
  */
 package caldinho.ja.escopo;
 
+import java.io.Serializable;
 import javax.persistence.*;
 
 /**
@@ -12,7 +13,7 @@ import javax.persistence.*;
  * @author lgalmeida
  */
 @Entity
-public class Cliente {
+public class Cliente implements Serializable {
     @Id @GeneratedValue
     private int id; //PK
     private String nome;
