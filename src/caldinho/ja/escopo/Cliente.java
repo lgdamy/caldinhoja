@@ -20,6 +20,7 @@ public class Cliente {
     private int telefone;
     private boolean interno;
     private String endereco;
+    private String apartamento;
 
     public int getId() {
         return id;
@@ -68,6 +69,15 @@ public class Cliente {
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
+
+    public String getApartamento() {
+        return apartamento;
+    }
+
+    public void setApartamento(String apartamento) {
+        this.apartamento = apartamento;
+    }
+    
     
       
 }
