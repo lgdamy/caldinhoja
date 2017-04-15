@@ -47,12 +47,25 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         estoquePnl = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         clientesPnl = new javax.swing.JPanel();
+        table = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
+        novoBtn = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
+        buscaBtn = new javax.swing.JButton();
+        novo = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        telefoneField = new java.awt.TextField();
+        apartamentoField = new java.awt.TextField();
+        nomeField = new java.awt.TextField();
+        enderecoField = new java.awt.TextField();
+        nvCliBtn = new javax.swing.JButton();
+        canNvCliBtn = new javax.swing.JButton();
         vendasPnl = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         receitasPnl = new javax.swing.JPanel();
@@ -108,7 +121,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
             estoquePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(estoquePnlLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 986, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 990, Short.MAX_VALUE)
                 .addContainerGap())
         );
         estoquePnlLayout.setVerticalGroup(
@@ -116,10 +129,12 @@ public class CardLayoutFrame extends javax.swing.JFrame {
             .addGroup(estoquePnlLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
-                .addContainerGap(668, Short.MAX_VALUE))
+                .addContainerGap(708, Short.MAX_VALUE))
         );
 
         paiPanel.add(estoquePnl, "estoque");
+
+        clientesPnl.setLayout(new java.awt.CardLayout());
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -169,48 +184,160 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(jTable1);
 
-        jButton2.setText("Novo");
+        novoBtn.setText("Novo");
+        novoBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                novoBtnActionPerformed(evt);
+            }
+        });
 
         jTextField1.setToolTipText("Pesquisa...");
         jTextField1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
-        jButton3.setText("Busca");
+        buscaBtn.setText("Busca");
 
-        javax.swing.GroupLayout clientesPnlLayout = new javax.swing.GroupLayout(clientesPnl);
-        clientesPnl.setLayout(clientesPnlLayout);
-        clientesPnlLayout.setHorizontalGroup(
-            clientesPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(clientesPnlLayout.createSequentialGroup()
+        javax.swing.GroupLayout tableLayout = new javax.swing.GroupLayout(table);
+        table.setLayout(tableLayout);
+        tableLayout.setHorizontalGroup(
+            tableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tableLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(clientesPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 986, Short.MAX_VALUE)
-                    .addGroup(clientesPnlLayout.createSequentialGroup()
-                        .addGroup(clientesPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(clientesPnlLayout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane3)))
-                .addContainerGap())
-        );
-        clientesPnlLayout.setVerticalGroup(
-            clientesPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(clientesPnlLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3)
+                .addGroup(tableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(tableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(novoBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(buscaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(clientesPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(clientesPnlLayout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(clientesPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton3)))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 812, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(tableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tableLayout.createSequentialGroup()
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
+        tableLayout.setVerticalGroup(
+            tableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tableLayout.createSequentialGroup()
+                .addContainerGap(82, Short.MAX_VALUE)
+                .addGroup(tableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(tableLayout.createSequentialGroup()
+                        .addComponent(novoBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(529, 529, 529)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buscaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+            .addGroup(tableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tableLayout.createSequentialGroup()
+                    .addContainerGap(23, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(705, Short.MAX_VALUE)))
+        );
+
+        clientesPnl.add(table, "table");
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("NOVO CLIENTE");
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel8.setText("NOME");
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel9.setText("ENDEREÇO");
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel10.setText("TELEFONE");
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel11.setText("APARTAMENTO");
+
+        telefoneField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        apartamentoField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        nomeField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        enderecoField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        nvCliBtn.setText("NOVO");
+
+        canNvCliBtn.setBackground(new java.awt.Color(255, 204, 204));
+        canNvCliBtn.setText("CANCELAR");
+        canNvCliBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                canNvCliBtnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout novoLayout = new javax.swing.GroupLayout(novo);
+        novo.setLayout(novoLayout);
+        novoLayout.setHorizontalGroup(
+            novoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(novoLayout.createSequentialGroup()
+                .addGroup(novoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(novoLayout.createSequentialGroup()
+                        .addGap(210, 210, 210)
+                        .addGroup(novoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel10)))
+                    .addGroup(novoLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(novoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(novoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(novoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(nomeField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(enderecoField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(telefoneField, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(apartamentoField, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(novoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(canNvCliBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nvCliBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(142, Short.MAX_VALUE))
+            .addGroup(novoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, novoLayout.createSequentialGroup()
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+        novoLayout.setVerticalGroup(
+            novoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(novoLayout.createSequentialGroup()
+                .addGap(95, 95, 95)
+                .addGroup(novoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(canNvCliBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(novoLayout.createSequentialGroup()
+                        .addGroup(novoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(novoLayout.createSequentialGroup()
+                                .addGroup(novoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(nomeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel8))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(novoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(enderecoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel9)))
+                            .addComponent(nvCliBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(novoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(apartamentoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel11))
+                        .addGap(12, 12, 12)
+                        .addGroup(novoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(telefoneField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10))))
+                .addContainerGap(552, Short.MAX_VALUE))
+            .addGroup(novoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, novoLayout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(716, Short.MAX_VALUE)))
+        );
+
+        clientesPnl.add(novo, "novo");
 
         paiPanel.add(clientesPnl, "clientes");
 
@@ -224,7 +351,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
             vendasPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(vendasPnlLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 986, Short.MAX_VALUE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 990, Short.MAX_VALUE)
                 .addContainerGap())
         );
         vendasPnlLayout.setVerticalGroup(
@@ -232,7 +359,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
             .addGroup(vendasPnlLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel4)
-                .addContainerGap(668, Short.MAX_VALUE))
+                .addContainerGap(708, Short.MAX_VALUE))
         );
 
         paiPanel.add(vendasPnl, "vendas");
@@ -588,6 +715,16 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void canNvCliBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_canNvCliBtnActionPerformed
+        CardLayout card = (CardLayout) clientesPnl.getLayout();
+        card.show(clientesPnl, "table");
+    }//GEN-LAST:event_canNvCliBtnActionPerformed
+
+    private void novoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novoBtnActionPerformed
+        CardLayout card = (CardLayout) clientesPnl.getLayout();
+        card.show(clientesPnl, "novo");
+    }//GEN-LAST:event_novoBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -624,28 +761,39 @@ public class CardLayoutFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private java.awt.TextField apartamentoField;
+    private javax.swing.JButton buscaBtn;
+    private javax.swing.JButton canNvCliBtn;
     private javax.swing.JButton clientesBtn;
     private javax.swing.JPanel clientesPnl;
+    private java.awt.TextField enderecoField;
     private javax.swing.JButton estoqueBtn;
     private javax.swing.JPanel estoquePnl;
     private javax.swing.JLabel fotosCaldos;
     private javax.swing.JPanel indexPnl;
     private javax.swing.JTextPane ingredientesText;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel nomeCaldo;
+    private java.awt.TextField nomeField;
+    private javax.swing.JPanel novo;
+    private javax.swing.JButton novoBtn;
+    private javax.swing.JButton nvCliBtn;
     private javax.swing.JPanel paiPanel;
     private javax.swing.JTextPane passosText;
     private javax.swing.JComboBox receitaComboBox;
@@ -653,6 +801,8 @@ public class CardLayoutFrame extends javax.swing.JFrame {
     private javax.swing.JPanel receitasCardsPnl;
     private javax.swing.JPanel receitasPnl;
     private javax.swing.JPanel receitasPnlCaldoVerde;
+    private javax.swing.JPanel table;
+    private java.awt.TextField telefoneField;
     private javax.swing.JButton vendasBtn;
     private javax.swing.JPanel vendasPnl;
     // End of variables declaration//GEN-END:variables
