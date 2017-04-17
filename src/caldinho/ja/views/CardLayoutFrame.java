@@ -102,11 +102,11 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         listaVendasScroll = new javax.swing.JScrollPane();
         listaVendasTable = new javax.swing.JTable();
-        inicioDate = new org.jdesktop.swingx.JXDatePicker();
-        fimDate = new org.jdesktop.swingx.JXDatePicker();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        dataInicio = new org.jdesktop.swingx.JXDatePicker();
+        dataFim = new org.jdesktop.swingx.JXDatePicker();
         receitasPnl = new javax.swing.JPanel();
         receitasCardsPnl = new javax.swing.JPanel();
         receitasPnlCaldoVerde = new javax.swing.JPanel();
@@ -168,7 +168,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
             .addGroup(estoquePnlLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
-                .addContainerGap(713, Short.MAX_VALUE))
+                .addContainerGap(724, Short.MAX_VALUE))
         );
 
         paiPanel.add(estoquePnl, "estoque");
@@ -259,7 +259,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         tableLayout.setVerticalGroup(
             tableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tableLayout.createSequentialGroup()
-                .addContainerGap(87, Short.MAX_VALUE)
+                .addContainerGap(98, Short.MAX_VALUE)
                 .addGroup(tableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(tableLayout.createSequentialGroup()
                         .addComponent(novoBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -271,9 +271,9 @@ public class CardLayoutFrame extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(tableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tableLayout.createSequentialGroup()
-                    .addContainerGap(26, Short.MAX_VALUE)
+                    .addContainerGap(32, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(707, Short.MAX_VALUE)))
+                    .addContainerGap(712, Short.MAX_VALUE)))
         );
 
         clientesPnl.add(table, "table");
@@ -365,12 +365,12 @@ public class CardLayoutFrame extends javax.swing.JFrame {
                         .addGroup(novoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(telefoneField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel10))))
-                .addContainerGap(557, Short.MAX_VALUE))
+                .addContainerGap(568, Short.MAX_VALUE))
             .addGroup(novoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, novoLayout.createSequentialGroup()
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(721, Short.MAX_VALUE)))
+                    .addContainerGap(732, Short.MAX_VALUE)))
         );
 
         clientesPnl.add(novo, "novo");
@@ -767,13 +767,13 @@ public class CardLayoutFrame extends javax.swing.JFrame {
                     .addGroup(listaVendaPnlLayout.createSequentialGroup()
                         .addGroup(listaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(listaVendaPnlLayout.createSequentialGroup()
-                                .addComponent(inicioDate, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(dataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel13))
                             .addGroup(listaVendaPnlLayout.createSequentialGroup()
-                                .addGroup(listaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                                    .addComponent(fimDate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(listaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                                    .addComponent(dataFim, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel14)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
@@ -790,15 +790,15 @@ public class CardLayoutFrame extends javax.swing.JFrame {
                     .addComponent(listaVendasScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(listaVendaPnlLayout.createSequentialGroup()
                         .addGroup(listaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(inicioDate, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel13))
+                            .addComponent(jLabel13)
+                            .addComponent(dataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(listaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(fimDate, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel14))
+                            .addComponent(jLabel14)
+                            .addComponent(dataFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         vendasPnl.add(listaVendaPnl, "listaVenda");
@@ -1271,6 +1271,8 @@ public class CardLayoutFrame extends javax.swing.JFrame {
     private javax.swing.JSlider cebolinhaSlider;
     private javax.swing.JButton clientesBtn;
     private javax.swing.JPanel clientesPnl;
+    private org.jdesktop.swingx.JXDatePicker dataFim;
+    private org.jdesktop.swingx.JXDatePicker dataInicio;
     private java.awt.TextField enderecoField;
     private javax.swing.JLabel ervilhaLabel;
     private javax.swing.JSlider ervilhaSlider;
@@ -1278,11 +1280,9 @@ public class CardLayoutFrame extends javax.swing.JFrame {
     private javax.swing.JPanel estoquePnl;
     private javax.swing.JLabel feijaoLabel;
     private javax.swing.JSlider feijaoSlider;
-    private org.jdesktop.swingx.JXDatePicker fimDate;
     private javax.swing.JLabel fotosCaldos;
     private javax.swing.JPanel indexPnl;
     private javax.swing.JTextPane ingredientesText;
-    private org.jdesktop.swingx.JXDatePicker inicioDate;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox jComboBox1;
