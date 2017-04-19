@@ -5,6 +5,7 @@
  */
 package caldinho.ja.escopo;
 
+import java.util.Calendar;
 import javax.persistence.*;
 
 /**
@@ -19,6 +20,7 @@ public class Venda {
     private Cliente cliente;
     private int[] caldinhos;//0-caldo verde 1-mandioquinha 2-abobora 3-palmito 4-feijao 5-canja 6-ervilha
     private int[] adicionais;//0-torradinha 1-cebolinha 2-bacon 3-queijo
+    private Calendar data;
 
     public int getId() {
         return id;
@@ -31,6 +33,16 @@ public class Venda {
     public Cliente getCliente() {
         return cliente;
     }
+
+    public Calendar getData() {
+        return data;
+    }
+
+    public void setData(Calendar data) {
+        this.data = data;
+    }
+    
+    
 /////SETTERS CALDINHOS/////
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
