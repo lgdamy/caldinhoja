@@ -20,7 +20,8 @@ public class Venda {
     private Cliente cliente;
     private int[] caldinhos;//0-caldo verde 1-mandioquinha 2-abobora 3-palmito 4-feijao 5-canja 6-ervilha
     private int[] adicionais;//0-torradinha 1-cebolinha 2-bacon 3-queijo
-    private Calendar data;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Calendar dataVenda;
 
     public int getId() {
         return id;
@@ -35,11 +36,11 @@ public class Venda {
     }
 
     public Calendar getData() {
-        return data;
+        return dataVenda;
     }
 
-    public void setData(Calendar data) {
-        this.data = data;
+    public void setData(Calendar dataVenda) {
+        this.dataVenda = dataVenda;
     }
     
     
