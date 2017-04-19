@@ -39,6 +39,6 @@ public class ClienteDAOImpl implements ClienteDAO {
     }
     @Override
     public List<Cliente> fetchClientes(){
-        return em.createQuery("SELECT cliente FROM Cliente cliente", Cliente.class).getResultList();
+        return em.createQuery("SELECT c FROM Cliente c", Cliente.class).getResultList();
     }
 }
