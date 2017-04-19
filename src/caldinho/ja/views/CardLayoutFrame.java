@@ -10,12 +10,15 @@ import caldinho.ja.escopo.Caldinho;
 import caldinho.ja.escopo.AboboraCarne;
 import caldinho.ja.escopo.CaldoVerde;
 import caldinho.ja.escopo.Canja;
+import caldinho.ja.escopo.Cliente;
 import caldinho.ja.escopo.Ervilha;
 import caldinho.ja.escopo.Feijao;
 import caldinho.ja.escopo.MandioqAlhoPorro;
 import caldinho.ja.escopo.Palmito;
+import caldinho.ja.escopo.Venda;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.util.Calendar;
 import javax.persistence.EntityManager;
 import javax.swing.JOptionPane;
 
@@ -28,6 +31,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
     /**
      * Creates new form CardLayoutFrame
      */
+    EntityManager em;
     public CardLayoutFrame() {
        
         initComponents();
@@ -385,6 +389,11 @@ public class CardLayoutFrame extends javax.swing.JFrame {
 
         novaVendaBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         novaVendaBtn.setText("NOVA VENDA");
+        novaVendaBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                novaVendaBtnActionPerformed(evt);
+            }
+        });
 
         listaVendasBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         listaVendasBtn.setText("LISTA DE VENDAS");
@@ -1219,6 +1228,18 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         CardLayout card = (CardLayout) vendasPnl.getLayout();
         card.show(vendasPnl, "novaVenda");
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void novaVendaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novaVendaBtnActionPerformed
+        Venda venda = new Venda();
+        ClienteDAOImpl cdao = new ClienteDAOImpl(em);
+        int ar[]={caldoVerdeSlider.getValue(),mandioquinhaSlider.getValue(),aboboraSlider.getValue()};
+  
+        venda.setCaldinhos(new int[]{caldoVerdeSlider.getValue(),mandioquinhaSlider.getValue(),aboboraSlider.getValue(),palmitoSlider.getValue(), feijaoSlider.getValue(),canjaSlider.getValue(),ervilhaSlider.getValue()});
+        venda.setAdicionais(new int[]{torradaSlider.getValue(), cebolinhaSlider.getValue(), baconSlider.getValue(), queijoSlider.getValue()});
+        //FALTA IMPLEMENTAR ISSO AINDA
+        venda.setCliente(new Cliente());
+        venda.setData(Calendar.getInstance());
+    }//GEN-LAST:event_novaVendaBtnActionPerformed
 
     /**
      * @param args the command line arguments

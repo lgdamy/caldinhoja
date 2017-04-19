@@ -18,7 +18,13 @@ public class Venda {
     private int id;
     @ManyToOne
     private Cliente cliente;
+    /**
+     * 0-caldo verde 1-mandioquinha 2-abobora 3-palmito 4-feijao 5-canja 6-ervilha
+     */
     private int[] caldinhos;//0-caldo verde 1-mandioquinha 2-abobora 3-palmito 4-feijao 5-canja 6-ervilha
+    /**
+     * 0-torradinha 1-cebolinha 2-bacon 3-queijo
+     */
     private int[] adicionais;//0-torradinha 1-cebolinha 2-bacon 3-queijo
     @Temporal(javax.persistence.TemporalType.DATE)
     private Calendar dataVenda;
@@ -121,5 +127,35 @@ public class Venda {
     public int getQtdQueijo(){
         return this.adicionais[3];
     }
+
+    /**
+     * Método para pegar os caldinhos em um vetor só
+     * @return [0]-Caldo Verde,[1]-Mandioquinha, [2]-Abóbora [3]-Palmito [4]-Feijão [5]-Canja [6]-Ervilha
+     */
+    public int[] getCaldinhos() {
+        return caldinhos;
+    }
+    /**
+     * Método para setar os caldinhos em um vetor só
+     * @param caldinhos  [0]-Caldo Verde,[1]-Mandioquinha, [2]-Abóbora [3]-Palmito [4]-Feijão [5]-Canja [6]-Ervilha
+     */
+    public void setCaldinhos(int[] caldinhos) {
+        this.caldinhos = caldinhos;
+    }
+    /**
+     * Método para pegar os adicionais em um vetor só
+     * @return [0]-Torradinhas,[1]-Cebolinhas,[2]-Bacon,[3]-Queijo
+     */
+    public int[] getAdicionais() {
+        return adicionais;
+    }
+    /**
+     * Método para setar todos os adicionais em um vetor só
+     * @param adicionais [0]-Torradinhas,[1]-Cebolinhas,[2]-Bacon,[3]-Queijo
+     */
+    public void setAdicionais(int[] adicionais) {
+        this.adicionais = adicionais;
+    }
+    
 
 }
