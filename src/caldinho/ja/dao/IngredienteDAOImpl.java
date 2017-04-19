@@ -39,6 +39,6 @@ public class IngredienteDAOImpl implements IngredienteDAO {
     }
     @Override
     public List<Ingrediente> fetchIngredientes(){
-        return em.createQuery("SELECT ingrediente FROM Ingrediente ingrediente", Ingrediente.class).getResultList();
+        return em.createQuery("SELECT i FROM Ingrediente i", Ingrediente.class).getResultList();
     }
 }
