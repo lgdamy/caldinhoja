@@ -127,7 +127,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="724" max="32767" attributes="0"/>
+                      <EmptySpace pref="734" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -187,7 +187,7 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace pref="98" max="32767" attributes="0"/>
+                          <EmptySpace pref="108" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <Component id="novoBtn" min="-2" pref="45" max="-2" attributes="0"/>
@@ -202,9 +202,9 @@
                       </Group>
                       <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace pref="32" max="32767" attributes="0"/>
+                              <EmptySpace pref="37" max="32767" attributes="0"/>
                               <Component id="jLabel3" min="-2" pref="35" max="-2" attributes="0"/>
-                              <EmptySpace pref="712" max="32767" attributes="0"/>
+                              <EmptySpace pref="717" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -307,7 +307,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="210" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
@@ -318,9 +318,14 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="nomeField" max="32767" attributes="0"/>
+                                  <Component id="nomeField" pref="384" max="32767" attributes="0"/>
                                   <Component id="enderecoField" max="32767" attributes="0"/>
-                                  <Component id="telefoneField" min="-2" pref="384" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="dddField" min="-2" pref="39" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="telefoneField" min="-2" pref="334" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="internoCheckBox" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Component id="apartamentoField" alignment="0" min="-2" pref="384" max="-2" attributes="0"/>
                           </Group>
@@ -366,19 +371,22 @@
                                       <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="telefoneField" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                                      <Component id="dddField" max="32767" attributes="0"/>
+                                      <Component id="telefoneField" alignment="1" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace pref="568" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="internoCheckBox" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="541" max="32767" attributes="0"/>
                       </Group>
                       <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="jLabel7" min="-2" pref="35" max="-2" attributes="0"/>
-                              <EmptySpace pref="732" max="32767" attributes="0"/>
+                              <EmptySpace pref="742" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -458,6 +466,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="NOVO"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nvCliBtnActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="canNvCliBtn">
                   <Properties>
@@ -468,6 +479,25 @@
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="canNvCliBtnActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JTextField" name="dddField">
+                  <Properties>
+                    <Property name="columns" type="int" value="2"/>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Tahoma" size="14" style="0"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JCheckBox" name="internoCheckBox">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Tahoma" size="14" style="0"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="INTERNO"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="internoCheckBoxActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -638,7 +668,7 @@
                               <Component id="queijoSlider" min="-2" max="-2" attributes="0"/>
                               <Component id="queijoLabel" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="57" max="32767" attributes="0"/>
+                          <EmptySpace pref="67" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -987,7 +1017,7 @@
                                   <Component id="jButton2" min="-2" pref="45" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="45" max="32767" attributes="0"/>
+                          <EmptySpace pref="55" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
