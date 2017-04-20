@@ -75,6 +75,8 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         enderecoField = new java.awt.TextField();
         nvCliBtn = new javax.swing.JButton();
         canNvCliBtn = new javax.swing.JButton();
+        dddField = new javax.swing.JTextField();
+        internoCheckBox = new javax.swing.JCheckBox();
         vendasPnl = new javax.swing.JPanel();
         novaVendaPnl = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -174,7 +176,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
             .addGroup(estoquePnlLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
-                .addContainerGap(724, Short.MAX_VALUE))
+                .addContainerGap(734, Short.MAX_VALUE))
         );
 
         paiPanel.add(estoquePnl, "estoque");
@@ -265,7 +267,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         tableLayout.setVerticalGroup(
             tableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tableLayout.createSequentialGroup()
-                .addContainerGap(98, Short.MAX_VALUE)
+                .addContainerGap(108, Short.MAX_VALUE)
                 .addGroup(tableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(tableLayout.createSequentialGroup()
                         .addComponent(novoBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -277,9 +279,9 @@ public class CardLayoutFrame extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(tableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tableLayout.createSequentialGroup()
-                    .addContainerGap(32, Short.MAX_VALUE)
+                    .addContainerGap(37, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(712, Short.MAX_VALUE)))
+                    .addContainerGap(717, Short.MAX_VALUE)))
         );
 
         clientesPnl.add(table, "table");
@@ -309,12 +311,28 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         enderecoField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         nvCliBtn.setText("NOVO");
+        nvCliBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nvCliBtnActionPerformed(evt);
+            }
+        });
 
         canNvCliBtn.setBackground(new java.awt.Color(255, 204, 204));
         canNvCliBtn.setText("CANCELAR");
         canNvCliBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 canNvCliBtnActionPerformed(evt);
+            }
+        });
+
+        dddField.setColumns(2);
+        dddField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        internoCheckBox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        internoCheckBox.setText("INTERNO");
+        internoCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                internoCheckBoxActionPerformed(evt);
             }
         });
 
@@ -332,9 +350,13 @@ public class CardLayoutFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(novoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(novoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(nomeField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(nomeField, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
                         .addComponent(enderecoField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(telefoneField, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, novoLayout.createSequentialGroup()
+                            .addComponent(dddField, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(telefoneField, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(internoCheckBox, javax.swing.GroupLayout.Alignment.TRAILING))
                     .addComponent(apartamentoField, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(novoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -368,15 +390,18 @@ public class CardLayoutFrame extends javax.swing.JFrame {
                             .addComponent(apartamentoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel11))
                         .addGap(12, 12, 12)
-                        .addGroup(novoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(telefoneField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10))))
-                .addContainerGap(568, Short.MAX_VALUE))
+                        .addGroup(novoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel10)
+                            .addComponent(dddField)
+                            .addComponent(telefoneField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(internoCheckBox)
+                .addContainerGap(541, Short.MAX_VALUE))
             .addGroup(novoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, novoLayout.createSequentialGroup()
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(732, Short.MAX_VALUE)))
+                    .addContainerGap(742, Short.MAX_VALUE)))
         );
 
         clientesPnl.add(novo, "novo");
@@ -693,7 +718,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
                 .addGroup(novaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(queijoSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(queijoLabel))
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
 
         vendasPnl.add(novaVendaPnl, "novaVenda");
@@ -809,7 +834,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
                             .addComponent(dataFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
         vendasPnl.add(listaVendaPnl, "listaVenda");
@@ -1247,6 +1272,23 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         vdao.novaVenda(venda);
     }//GEN-LAST:event_novaVendaBtnActionPerformed
 
+    private void nvCliBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nvCliBtnActionPerformed
+        EntityManager em = FonteDados.createEntityManager();
+        Cliente cliente = new Cliente();
+        ClienteDAOImpl cdao = new ClienteDAOImpl(em);
+        cliente.setEndereco(enderecoField.getText());
+        cliente.setInterno(internoCheckBox.isSelected());
+        cliente.setDdd(Integer.parseInt(dddField.getText()));
+        cliente.setTelefone(Integer.parseInt(telefoneField.getText()));
+        cliente.setNome(nomeField.getText());
+        cliente.setApartamento(apartamentoField.getText());
+        cdao.novoCliente(cliente);       
+    }//GEN-LAST:event_nvCliBtnActionPerformed
+
+    private void internoCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_internoCheckBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_internoCheckBoxActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1300,6 +1342,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
     private javax.swing.JPanel clientesPnl;
     private org.jdesktop.swingx.JXDatePicker dataFim;
     private org.jdesktop.swingx.JXDatePicker dataInicio;
+    private javax.swing.JTextField dddField;
     private java.awt.TextField enderecoField;
     private javax.swing.JLabel ervilhaLabel;
     private javax.swing.JSlider ervilhaSlider;
@@ -1310,6 +1353,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
     private javax.swing.JLabel fotosCaldos;
     private javax.swing.JPanel indexPnl;
     private javax.swing.JTextPane ingredientesText;
+    private javax.swing.JCheckBox internoCheckBox;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox jComboBox1;
