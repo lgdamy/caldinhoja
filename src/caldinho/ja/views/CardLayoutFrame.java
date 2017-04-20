@@ -6,6 +6,8 @@
 package caldinho.ja.views;
 
 import caldinho.ja.dao.ClienteDAOImpl;
+import caldinho.ja.dao.FonteDados;
+import caldinho.ja.dao.VendaDaoImpl;
 import caldinho.ja.escopo.Caldinho;
 import caldinho.ja.escopo.AboboraCarne;
 import caldinho.ja.escopo.CaldoVerde;
@@ -31,7 +33,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
     /**
      * Creates new form CardLayoutFrame
      */
-    EntityManager em;
+    
     public CardLayoutFrame() {
        
         initComponents();
@@ -1231,14 +1233,18 @@ public class CardLayoutFrame extends javax.swing.JFrame {
 
     private void novaVendaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novaVendaBtnActionPerformed
         Venda venda = new Venda();
-        ClienteDAOImpl cdao = new ClienteDAOImpl(em);
-        int ar[]={caldoVerdeSlider.getValue(),mandioquinhaSlider.getValue(),aboboraSlider.getValue()};
+        EntityManager em = FonteDados.createEntityManager();
+        ClienteDAOImpl cdao = new ClienteDAOImpl(em);   
+        VendaDaoImpl vdao = new VendaDaoImpl(em);
   
         venda.setCaldinhos(new int[]{caldoVerdeSlider.getValue(),mandioquinhaSlider.getValue(),aboboraSlider.getValue(),palmitoSlider.getValue(), feijaoSlider.getValue(),canjaSlider.getValue(),ervilhaSlider.getValue()});
         venda.setAdicionais(new int[]{torradaSlider.getValue(), cebolinhaSlider.getValue(), baconSlider.getValue(), queijoSlider.getValue()});
-        //FALTA IMPLEMENTAR ISSO AINDA
-        venda.setCliente(new Cliente());
+        /*FALTA IMPLEMENTAR ISSO AINDA
+        venda.setCliente();
+        */
         venda.setData(Calendar.getInstance());
+        
+        vdao.novaVenda(venda);
     }//GEN-LAST:event_novaVendaBtnActionPerformed
 
     /**
