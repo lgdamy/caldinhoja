@@ -5,6 +5,7 @@
  */
 package caldinho.ja.escopo;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import javax.persistence.*;
 
@@ -13,7 +14,7 @@ import javax.persistence.*;
  * @author lgalmeida
  */
 @Entity
-public class Venda {
+public class Venda implements Serializable {
     @Id @GeneratedValue
     private int id;
     @ManyToOne
