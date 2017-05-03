@@ -15,7 +15,7 @@ import javax.persistence.EntityManager;
  */
 public class IngredienteDAOImpl implements IngredienteDAO {
 
-    private EntityManager em;
+    private final EntityManager em;
 
     public IngredienteDAOImpl(EntityManager em) {
         this.em = em;

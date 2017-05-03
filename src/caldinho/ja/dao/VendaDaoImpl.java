@@ -14,7 +14,7 @@ import javax.persistence.EntityManager;
  * @author lgalmeida
  */
 public class VendaDaoImpl implements VendaDAO{
-    private EntityManager em;
+    private final EntityManager em;
     
     public VendaDaoImpl(EntityManager em){
         this.em=em;
