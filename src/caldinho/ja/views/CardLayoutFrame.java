@@ -22,6 +22,8 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.util.Calendar;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.swing.JOptionPane;
 
 /**
@@ -309,6 +311,11 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         enderecoField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         nvCliBtn.setText("NOVO");
+        nvCliBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nvCliBtnActionPerformed(evt);
+            }
+        });
 
         canNvCliBtn.setBackground(new java.awt.Color(255, 204, 204));
         canNvCliBtn.setText("CANCELAR");
@@ -1246,6 +1253,27 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         
         vdao.novaVenda(venda);
     }//GEN-LAST:event_novaVendaBtnActionPerformed
+
+    private void nvCliBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nvCliBtnActionPerformed
+        
+        EntityManagerFactory fabrica = Persistence.createEntityManagerFactory("CaldinhoJaPRPU");
+        EntityManager em = fabrica.createEntityManager();
+        Cliente cliente = new Cliente();
+        cliente.setNome(nomeField.getText());
+        cliente.setEndereco(enderecoField.getText());
+        cliente.setApartamento(apartamentoField.getText());
+        if(telefoneField.getText().length()>=10)
+        {
+            cliente.setDdd(Integer.parseInt(telefoneField.getText().substring(0,1)));
+            cliente.setTelefone(Integer.parseInt(telefoneField.getText().substring(2)));
+        }else{
+            cliente.setDdd(11);
+            cliente.setTelefone(Integer.parseInt(telefoneField.getText()));
+        }
+        ClienteDAOImpl clienteDAO = new ClienteDAOImpl(em);
+        clienteDAO.novoCliente(cliente);
+        
+    }//GEN-LAST:event_nvCliBtnActionPerformed
 
     /**
      * @param args the command line arguments
