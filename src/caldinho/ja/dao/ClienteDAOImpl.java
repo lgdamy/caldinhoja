@@ -23,7 +23,9 @@ public class ClienteDAOImpl implements ClienteDAO {
     
     @Override
     public void novoCliente(Cliente cliente){
+        em.getTransaction().begin();
         em.persist(cliente);
+        em.getTransaction().commit();
     }
     @Override
     public Cliente getCliente(int id){
@@ -31,14 +33,22 @@ public class ClienteDAOImpl implements ClienteDAO {
     }
     @Override
     public void deleteCliente(int id){
+        em.getTransaction().begin();
         em.remove(getCliente(id));
+        em.getTransaction().commit();
     }
     @Override
     public void atualizaCliente(Cliente cliente){
+        em.getTransaction().begin();
         em.merge(cliente);
+        em.getTransaction().commit();
     }
     @Override
     public List<Cliente> fetchClientes(){
         return em.createQuery("SELECT c FROM Cliente c", Cliente.class).getResultList();
+    }
+    
+    public List<Cliente> fetchClientes(String quesito){
+        return  em.createQuery("SELECT c FROM Cliente c WHERE c.nome LIKE :busca OR c.endereco LIKE :busca").setParameter("busca", "%"+quesito+"%").getResultList();
     }
 }

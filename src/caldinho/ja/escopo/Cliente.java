@@ -14,7 +14,7 @@ import javax.persistence.*;
  */
 @Entity
 public class Cliente implements Serializable {
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id; //PK
     private String nome;
     private int ddd;
