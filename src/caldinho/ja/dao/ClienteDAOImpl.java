@@ -49,6 +49,6 @@ public class ClienteDAOImpl implements ClienteDAO {
     }
     
     public List<Cliente> fetchClientes(String quesito){
-        return  em.createQuery("SELECT c FROM Cliente c WHERE c.nome LIKE :busca OR c.endereco LIKE :busca").setParameter("busca", "%"+quesito+"%").getResultList();
+        return  em.createQuery("SELECT c FROM Cliente c WHERE c.nome LIKE :busca OR c.endereco LIKE :busca OR CAST(c.telefone as CHAR) LIKE :busca").setParameter("busca", "%"+quesito+"%").getResultList();
     }
 }
