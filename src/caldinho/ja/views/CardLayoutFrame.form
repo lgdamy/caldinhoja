@@ -172,7 +172,7 @@
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="novoBtn" pref="160" max="32767" attributes="0"/>
-                              <Component id="jTextField1" alignment="0" pref="160" max="32767" attributes="0"/>
+                              <Component id="buscaField" alignment="0" pref="160" max="32767" attributes="0"/>
                               <Component id="buscaBtn" alignment="0" pref="160" max="32767" attributes="0"/>
                               <Component id="jSeparator2" alignment="0" max="32767" attributes="0"/>
                           </Group>
@@ -194,7 +194,7 @@
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="jSeparator2" min="-2" pref="10" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jTextField1" min="-2" pref="45" max="-2" attributes="0"/>
+                                  <Component id="buscaField" min="-2" pref="45" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="buscaBtn" min="-2" pref="45" max="-2" attributes="0"/>
                               </Group>
@@ -222,7 +222,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTable" name="jTable1">
+                    <Component class="javax.swing.JTable" name="tabelaClientes">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="4" rowCount="0">
@@ -274,7 +274,7 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="novoBtnActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField1">
+                <Component class="javax.swing.JTextField" name="buscaField">
                   <Properties>
                     <Property name="toolTipText" type="java.lang.String" value="Pesquisa..."/>
                     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -948,7 +948,7 @@
                                           <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace pref="14" max="32767" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                                   <Component id="listaVendasScroll" min="-2" pref="782" max="-2" attributes="0"/>
                               </Group>
                           </Group>

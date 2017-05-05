@@ -22,8 +22,6 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.util.Calendar;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -40,10 +38,11 @@ public class CardLayoutFrame extends javax.swing.JFrame {
     public CardLayoutFrame() {
        
         initComponents();
+        
     }
     public String cardname = "index";
     String ingredientesCaldoVerde, ingredientesMandioqAlhoPoro, ingredientesAboboraCarne, ingredientesPalmito, ingredientesFeijao, ingredientesCanja, ingredientesErvilha;
-
+    EntityManager em = FonteDados.createEntityManager();
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -62,9 +61,9 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         table = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabelaClientes = new javax.swing.JTable();
         novoBtn = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        buscaField = new javax.swing.JTextField();
         buscaBtn = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
         novo = new javax.swing.JPanel();
@@ -192,7 +191,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("CLIENTES");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -200,7 +199,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
                 "Nome", "Endereço", "Apartamento", "Telefone"
             }
         ));
-        jScrollPane3.setViewportView(jTable1);
+        jScrollPane3.setViewportView(tabelaClientes);
 
         novoBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         novoBtn.setText("Novo");
@@ -210,8 +209,8 @@ public class CardLayoutFrame extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.setToolTipText("Pesquisa...");
-        jTextField1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        buscaField.setToolTipText("Pesquisa...");
+        buscaField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
         buscaBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         buscaBtn.setText("Busca");
@@ -228,7 +227,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
             .addGroup(tableLayout.createSequentialGroup()
                 .addGroup(tableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(novoBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                    .addComponent(buscaField, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
                     .addComponent(buscaBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
                     .addComponent(jSeparator2))
                 .addGap(30, 30, 30)
@@ -247,7 +246,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buscaField, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buscaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 648, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -758,7 +757,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
                                     .addComponent(dataFim, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel14)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(listaVendasScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 782, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -1204,7 +1203,6 @@ public class CardLayoutFrame extends javax.swing.JFrame {
 
     private void novaVendaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novaVendaBtnActionPerformed
         Venda venda = new Venda();
-        EntityManager em = FonteDados.createEntityManager();
         ClienteDAOImpl cdao = new ClienteDAOImpl(em);   
         VendaDaoImpl vdao = new VendaDaoImpl(em);
   
@@ -1220,7 +1218,6 @@ public class CardLayoutFrame extends javax.swing.JFrame {
 
     private void nvCliBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nvCliBtnActionPerformed
         
-        EntityManager em = FonteDados.createEntityManager();
         Cliente cliente = new Cliente();
         cliente.setNome(nomeField.getText().toUpperCase());
         if (enderecoField.getText().isEmpty())
@@ -1245,23 +1242,23 @@ public class CardLayoutFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_nvCliBtnActionPerformed
 
     private void buscaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscaBtnActionPerformed
-        EntityManager em = FonteDados.createEntityManager();
+        
         ClienteDAOImpl clienteDAO = new ClienteDAOImpl(em);
         
         
-        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        DefaultTableModel modelo = (DefaultTableModel) tabelaClientes.getModel();
         modelo.setRowCount(0);
-        if (jTextField1.getText().isEmpty())
+        if (buscaField.getText().isEmpty())
             for (Cliente cliente : clienteDAO.fetchClientes()){
                 modelo.addRow(new Object[]{cliente.getNome(),
                 cliente.getEndereco(), cliente.getApartamento(),
-                "("+cliente.getDdd()+")"+cliente.getTelefone()});
+                "("+cliente.getDdd()+") "+cliente.getTelefone()});
         }
         else
-            for (Cliente cliente : clienteDAO.fetchClientes(jTextField1.getText()))
+            for (Cliente cliente : clienteDAO.fetchClientes(buscaField.getText()))
                 modelo.addRow(new Object[]{cliente.getNome(),
                 cliente.getEndereco(), cliente.getApartamento(),
-                "("+cliente.getDdd()+")"+cliente.getTelefone()});
+                "("+cliente.getDdd()+") "+cliente.getTelefone()});
     }//GEN-LAST:event_buscaBtnActionPerformed
 
     /**
@@ -1306,6 +1303,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
     private javax.swing.JLabel baconLabel;
     private javax.swing.JSlider baconSlider;
     private javax.swing.JButton buscaBtn;
+    private javax.swing.JTextField buscaField;
     private javax.swing.JLabel caldoVerdeLabel;
     private javax.swing.JSlider caldoVerdeSlider;
     private javax.swing.JButton canNvCliBtn;
@@ -1349,8 +1347,6 @@ public class CardLayoutFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel listaVendaPnl;
     private javax.swing.JButton listaVendasBtn;
     private javax.swing.JScrollPane listaVendasScroll;
@@ -1375,6 +1371,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
     private javax.swing.JPanel receitasCardsPnl;
     private javax.swing.JPanel receitasPnl;
     private javax.swing.JPanel receitasPnlCaldoVerde;
+    private javax.swing.JTable tabelaClientes;
     private javax.swing.JPanel table;
     private java.awt.TextField telefoneField;
     private javax.swing.JSlider torradaSlider;
