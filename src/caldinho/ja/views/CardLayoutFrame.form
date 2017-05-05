@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <NonVisualComponents>
+    <Component class="javax.persistence.EntityManager" name="em">
+      <Properties>
+        <Property name="persistenceUnit" type="java.lang.String" value="pu"/>
+      </Properties>
+    </Component>
+  </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="title" type="java.lang.String" value="CALDINHO J&#xc1;"/>
@@ -488,13 +495,6 @@
                               <Component id="jSeparator1" max="32767" attributes="0"/>
                               <Component id="jLabel4" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
-                                  <Component id="novaVendaBtn" min="-2" pref="160" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jComboBox1" max="32767" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="listaVendasBtn" min="-2" pref="160" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="mandioquinhaSlider" min="-2" max="-2" attributes="0"/>
@@ -552,7 +552,21 @@
                                           <Component id="caldoVerdeLabel" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace min="0" pref="530" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="495" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="novaVendaBtn" min="-2" pref="160" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="buscaClienteVendaField" min="-2" pref="436" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="buscaClienteVendaBtn" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Component id="listaClientecomboBox" max="32767" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="listaVendasBtn" min="-2" pref="160" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -566,13 +580,16 @@
                           <Component id="jLabel4" min="-2" pref="35" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="listaVendasBtn" pref="45" max="32767" attributes="0"/>
-                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                  <Component id="jComboBox1" alignment="3" max="32767" attributes="0"/>
-                                  <Component id="novaVendaBtn" alignment="3" pref="45" max="32767" attributes="0"/>
-                              </Group>
+                              <Component id="listaVendasBtn" max="32767" attributes="0"/>
+                              <Component id="novaVendaBtn" alignment="0" pref="45" max="32767" attributes="0"/>
+                              <Component id="listaClientecomboBox" alignment="0" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="buscaClienteVendaField" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
+                              <Component id="buscaClienteVendaBtn" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="caldoVerdeSlider" min="-2" max="-2" attributes="0"/>
                               <Component id="caldoVerdeLabel" min="-2" max="-2" attributes="0"/>
@@ -899,20 +916,31 @@
                     <Property name="text" type="java.lang.String" value="0 Queijos Ralados"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="jComboBox1">
+                <Component class="javax.swing.JComboBox" name="listaClientecomboBox">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="14" style="0"/>
                     </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="4">
-                        <StringItem index="0" value="Item 1"/>
-                        <StringItem index="1" value="Item 2"/>
-                        <StringItem index="2" value="Item 3"/>
-                        <StringItem index="3" value="Item 4"/>
+                        <StringItem index="0" value="1"/>
+                        <StringItem index="1" value="2"/>
+                        <StringItem index="2" value="3"/>
+                        <StringItem index="3" value="4"/>
                       </StringArray>
                     </Property>
+                    <Property name="toolTipText" type="java.lang.String" value=""/>
                   </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="buscaClienteVendaField">
+                </Component>
+                <Component class="javax.swing.JButton" name="buscaClienteVendaBtn">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Busca Cliente"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buscaClienteVendaBtnActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>

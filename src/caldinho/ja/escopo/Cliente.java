@@ -22,6 +22,19 @@ public class Cliente implements Serializable {
     private boolean interno;
     private String endereco;
     private String apartamento;
+    
+    @Override
+    public String toString(){
+        String retorna=nome;
+        if (interno) 
+            retorna += " - "+ apartamento;
+        else
+            if ( endereco != null && !endereco.isEmpty())
+                retorna += ", " + endereco + " - " + apartamento;
+            else
+                retorna += ", " + endereco;
+        return retorna;
+    }
 
     public int getId() {
         return id;

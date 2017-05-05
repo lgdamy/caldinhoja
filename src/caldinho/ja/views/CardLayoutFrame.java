@@ -6,7 +6,6 @@
 package caldinho.ja.views;
 
 import caldinho.ja.dao.ClienteDAOImpl;
-import caldinho.ja.dao.FonteDados;
 import caldinho.ja.dao.VendaDaoImpl;
 import caldinho.ja.escopo.Caldinho;
 import caldinho.ja.escopo.AboboraCarne;
@@ -20,9 +19,18 @@ import caldinho.ja.escopo.Palmito;
 import caldinho.ja.escopo.Venda;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Component;
+import java.util.ArrayList;
 import java.util.Calendar;
-import javax.persistence.EntityManager;
+import java.util.List;
+import java.util.Vector;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.ListCellRenderer;
+import javax.swing.MutableComboBoxModel;
+import javax.swing.event.ListDataListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -42,7 +50,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
     }
     public String cardname = "index";
     String ingredientesCaldoVerde, ingredientesMandioqAlhoPoro, ingredientesAboboraCarne, ingredientesPalmito, ingredientesFeijao, ingredientesCanja, ingredientesErvilha;
-    EntityManager em = FonteDados.createEntityManager();
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -52,6 +60,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        em = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("CaldinhoJaPRPU").createEntityManager();
         paiPanel = new javax.swing.JPanel();
         indexPnl = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -106,7 +115,9 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         baconLabel = new javax.swing.JLabel();
         cebolinhaLabel = new javax.swing.JLabel();
         queijoLabel = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        listaClientecomboBox = new javax.swing.JComboBox();
+        buscaClienteVendaField = new javax.swing.JTextField();
+        buscaClienteVendaBtn = new javax.swing.JButton();
         listaVendaPnl = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         listaVendasScroll = new javax.swing.JScrollPane();
@@ -539,8 +550,16 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         queijoLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         queijoLabel.setText("0 Queijos Ralados");
 
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        listaClientecomboBox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        listaClientecomboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4" }));
+        listaClientecomboBox.setToolTipText("");
+
+        buscaClienteVendaBtn.setText("Busca Cliente");
+        buscaClienteVendaBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscaClienteVendaBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout novaVendaPnlLayout = new javax.swing.GroupLayout(novaVendaPnl);
         novaVendaPnl.setLayout(novaVendaPnlLayout);
@@ -551,12 +570,6 @@ public class CardLayoutFrame extends javax.swing.JFrame {
                 .addGroup(novaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator1)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(novaVendaPnlLayout.createSequentialGroup()
-                        .addComponent(novaVendaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(listaVendasBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(novaVendaPnlLayout.createSequentialGroup()
                         .addGroup(novaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(novaVendaPnlLayout.createSequentialGroup()
@@ -603,7 +616,18 @@ public class CardLayoutFrame extends javax.swing.JFrame {
                                 .addComponent(caldoVerdeSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(caldoVerdeLabel)))
-                        .addGap(0, 530, Short.MAX_VALUE)))
+                        .addGap(0, 495, Short.MAX_VALUE))
+                    .addGroup(novaVendaPnlLayout.createSequentialGroup()
+                        .addComponent(novaVendaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(novaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(novaVendaPnlLayout.createSequentialGroup()
+                                .addComponent(buscaClienteVendaField, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(buscaClienteVendaBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(listaClientecomboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(listaVendasBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         novaVendaPnlLayout.setVerticalGroup(
@@ -613,11 +637,14 @@ public class CardLayoutFrame extends javax.swing.JFrame {
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(novaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(listaVendasBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
-                    .addGroup(novaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jComboBox1)
-                        .addComponent(novaVendaBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)))
-                .addGap(83, 83, 83)
+                    .addComponent(listaVendasBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(novaVendaBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+                    .addComponent(listaClientecomboBox))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(novaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buscaClienteVendaField, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buscaClienteVendaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
                 .addGroup(novaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(caldoVerdeSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(caldoVerdeLabel))
@@ -1261,6 +1288,21 @@ public class CardLayoutFrame extends javax.swing.JFrame {
                 "("+cliente.getDdd()+") "+cliente.getTelefone()});
     }//GEN-LAST:event_buscaBtnActionPerformed
 
+    private void buscaClienteVendaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscaClienteVendaBtnActionPerformed
+        ClienteDAOImpl clienteDAO = new ClienteDAOImpl(em);
+        listaClientecomboBox.removeAllItems();
+        List<Cliente> listaClientes;
+        if (buscaClienteVendaField.getText().isEmpty())
+            listaClientes = clienteDAO.fetchClientes();
+        else
+            listaClientes=clienteDAO.fetchClientes(buscaClienteVendaField.getText());
+        
+        for (int i = 0; i < listaClientes.size(); i++) {
+            listaClientecomboBox.addItem(listaClientes.get(i));  
+        }
+        
+    }//GEN-LAST:event_buscaClienteVendaBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1303,6 +1345,8 @@ public class CardLayoutFrame extends javax.swing.JFrame {
     private javax.swing.JLabel baconLabel;
     private javax.swing.JSlider baconSlider;
     private javax.swing.JButton buscaBtn;
+    private javax.swing.JButton buscaClienteVendaBtn;
+    private javax.swing.JTextField buscaClienteVendaField;
     private javax.swing.JTextField buscaField;
     private javax.swing.JLabel caldoVerdeLabel;
     private javax.swing.JSlider caldoVerdeSlider;
@@ -1315,6 +1359,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
     private javax.swing.JPanel clientesPnl;
     private org.jdesktop.swingx.JXDatePicker dataFim;
     private org.jdesktop.swingx.JXDatePicker dataInicio;
+    private javax.persistence.EntityManager em;
     private java.awt.TextField enderecoField;
     private javax.swing.JLabel ervilhaLabel;
     private javax.swing.JSlider ervilhaSlider;
@@ -1327,7 +1372,6 @@ public class CardLayoutFrame extends javax.swing.JFrame {
     private javax.swing.JTextPane ingredientesText;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1347,6 +1391,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JComboBox listaClientecomboBox;
     private javax.swing.JPanel listaVendaPnl;
     private javax.swing.JButton listaVendasBtn;
     private javax.swing.JScrollPane listaVendasScroll;
