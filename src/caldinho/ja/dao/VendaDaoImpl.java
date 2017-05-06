@@ -21,7 +21,9 @@ public class VendaDaoImpl implements VendaDAO{
     }
     @Override
     public void novaVenda(Venda venda) {
+        em.getTransaction().begin();
         em.persist(venda);
+        em.getTransaction().commit();
     }
 
     @Override
@@ -31,12 +33,16 @@ public class VendaDaoImpl implements VendaDAO{
 
     @Override
     public void deleteVenda(int id) {
+        em.getTransaction().begin();
         em.remove(getVenda(id));
+        em.getTransaction().commit();
     }
 
     @Override
     public void atualizaVenda(Venda venda) {
+        em.getTransaction().begin();
         em.merge(venda);
+        em.getTransaction().commit();
     }
 
     @Override

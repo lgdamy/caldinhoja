@@ -6,7 +6,7 @@
 package caldinho.ja.escopo;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
 import javax.persistence.*;
 
 /**
@@ -15,7 +15,8 @@ import javax.persistence.*;
  */
 @Entity
 public class Cliente implements Serializable {
-    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+    
+    @Id @GeneratedValue(strategy=GenerationType.IDENTITY) @Column(name = "CLIENTE_ID")
     private int cliente_id; //PK
     private String nome;
     private int ddd;
@@ -23,6 +24,7 @@ public class Cliente implements Serializable {
     private boolean interno;
     private String endereco;
     private String apartamento;
+    private List<Venda> compras;
     
     
     @Override
@@ -36,14 +38,6 @@ public class Cliente implements Serializable {
             else
                 retorna += ", " + endereco;
         return retorna;
-    }
-
-    public int getId() {
-        return cliente_id;
-    }
-
-    public void setId(int id) {
-        this.cliente_id = id;
     }
 
     public String getNome() {
@@ -93,6 +87,23 @@ public class Cliente implements Serializable {
     public void setApartamento(String apartamento) {
         this.apartamento = apartamento;
     }
+
+    public int getCliente_id() {
+        return cliente_id;
+    }
+
+    public void setCliente_id(int cliente_id) {
+        this.cliente_id = cliente_id;
+    }
+
+    public List<Venda> getCompras() {
+        return compras;
+    }
+
+    public void setCompras(List<Venda> compras) {
+        this.compras = compras;
+    }
+    
     
     
       

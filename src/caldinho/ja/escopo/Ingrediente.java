@@ -13,7 +13,8 @@ import javax.persistence.*;
  */
 @Entity
 public class Ingrediente implements Serializable {
-    @Id @GeneratedValue
+    
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int ingrediente_id;
     private String nome;
     private float qtd;
@@ -29,7 +30,7 @@ public class Ingrediente implements Serializable {
     }
     
     public Ingrediente(){}
-
+    
     public int getId() {
         return ingrediente_id;
     }

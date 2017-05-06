@@ -369,11 +369,6 @@ public class CardLayoutFrame extends javax.swing.JFrame {
 
         novaVendaBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         novaVendaBtn.setText("NOVA VENDA");
-        novaVendaBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                novaVendaBtnActionPerformed(evt);
-            }
-        });
 
         listaVendasBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         listaVendasBtn.setText("LISTA DE VENDAS");
@@ -1047,9 +1042,13 @@ public class CardLayoutFrame extends javax.swing.JFrame {
             venda.setCaldinhos(new int[]{caldoVerdeSlider.getValue(), mandioquinhaSlider.getValue(), aboboraSlider.getValue(), palmitoSlider.getValue(), feijaoSlider.getValue(), canjaSlider.getValue(), ervilhaSlider.getValue()});
             venda.setAdicionais(new int[]{torradaSlider.getValue(), cebolinhaSlider.getValue(), baconSlider.getValue(), queijoSlider.getValue()});
             venda.setCliente((Cliente)listaClientecomboBox.getSelectedItem());
+            if (venda.getCliente()==null){
+                throw new RuntimeException();
+            }
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(diaVendaDatePicker.getDate());
-            venda.setData(calendar);
+            
+            venda.setDataVenda(calendar);
 
             vdao.novaVenda(venda);
             JOptionPane.showMessageDialog(new JFrame(), "VENDA CONCLUÍDA", "SUCESSO",JOptionPane.INFORMATION_MESSAGE);
@@ -1336,21 +1335,6 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         CardLayout card = (CardLayout) vendasPnl.getLayout();
         card.show(vendasPnl, "novaVenda");
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void novaVendaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novaVendaBtnActionPerformed
-        Venda venda = new Venda();
-        ClienteDAOImpl cdao = new ClienteDAOImpl(em);
-        VendaDaoImpl vdao = new VendaDaoImpl(em);
-
-        venda.setCaldinhos(new int[]{caldoVerdeSlider.getValue(), mandioquinhaSlider.getValue(), aboboraSlider.getValue(), palmitoSlider.getValue(), feijaoSlider.getValue(), canjaSlider.getValue(), ervilhaSlider.getValue()});
-        venda.setAdicionais(new int[]{torradaSlider.getValue(), cebolinhaSlider.getValue(), baconSlider.getValue(), queijoSlider.getValue()});
-        /*FALTA IMPLEMENTAR ISSO AINDA
-         venda.setCliente();
-         */
-        venda.setData(Calendar.getInstance());
-
-        vdao.novaVenda(venda);
-    }//GEN-LAST:event_novaVendaBtnActionPerformed
 
     /**
      * @param args the command line arguments
