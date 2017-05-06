@@ -15,9 +15,9 @@ import javax.persistence.*;
  */
 @Entity
 public class Venda implements Serializable {
-    @Id @GeneratedValue
-    private int id;
-    @ManyToOne
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int venda_id;
+    @ManyToOne @JoinColumn(name = "cliente_id")
     private Cliente cliente;
     /**
      * 0-caldo verde 1-mandioquinha 2-abobora 3-palmito 4-feijao 5-canja 6-ervilha
@@ -31,11 +31,11 @@ public class Venda implements Serializable {
     private Calendar dataVenda;
 
     public int getId() {
-        return id;
+        return venda_id;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.venda_id = id;
     }
 
     public Cliente getCliente() {

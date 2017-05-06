@@ -14,7 +14,7 @@ import javax.persistence.*;
 @Entity
 public class Ingrediente implements Serializable {
     @Id @GeneratedValue
-    private int id;
+    private int ingrediente_id;
     private String nome;
     private float qtd;
     private String unidade;
@@ -31,11 +31,11 @@ public class Ingrediente implements Serializable {
     public Ingrediente(){}
 
     public int getId() {
-        return id;
+        return ingrediente_id;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.ingrediente_id = id;
     }
     
 

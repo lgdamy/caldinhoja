@@ -19,18 +19,13 @@ import caldinho.ja.escopo.Palmito;
 import caldinho.ja.escopo.Venda;
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Component;
-import java.util.ArrayList;
+import java.awt.event.ActionEvent;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Vector;
-import javax.swing.ComboBoxModel;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JList;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.ListCellRenderer;
-import javax.swing.MutableComboBoxModel;
-import javax.swing.event.ListDataListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -42,15 +37,27 @@ public class CardLayoutFrame extends javax.swing.JFrame {
     /**
      * Creates new form CardLayoutFrame
      */
-    
     public CardLayoutFrame() {
-       
+
         initComponents();
-        
+
+        //AÇÕES
+        //----------------------------------------------------------------------
+        ////BUSCA DE CLIENTES EM CLIENTES
+        buscaField.addActionListener(buscaClientesAction);
+        buscaBtn.addActionListener(buscaClientesAction);
+        ////NOVO CLIENTE
+        nvCliBtn.addActionListener(novoClienteAction);
+        ////BUSCA DE CLIENTES NA VENDA
+        buscaClienteVendaField.addActionListener(buscaClientesVendasAction);
+        buscaClienteVendaBtn.addActionListener(buscaClientesVendasAction);
+        ////REALIZA NOVA VENDA
+        novaVendaBtn.addActionListener(novaVendaAction);
+
     }
     public String cardname = "index";
     String ingredientesCaldoVerde, ingredientesMandioqAlhoPoro, ingredientesAboboraCarne, ingredientesPalmito, ingredientesFeijao, ingredientesCanja, ingredientesErvilha;
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -118,6 +125,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         listaClientecomboBox = new javax.swing.JComboBox();
         buscaClienteVendaField = new javax.swing.JTextField();
         buscaClienteVendaBtn = new javax.swing.JButton();
+        diaVendaDatePicker = new org.jdesktop.swingx.JXDatePicker();
         listaVendaPnl = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         listaVendasScroll = new javax.swing.JScrollPane();
@@ -225,11 +233,6 @@ public class CardLayoutFrame extends javax.swing.JFrame {
 
         buscaBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         buscaBtn.setText("Busca");
-        buscaBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buscaBtnActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout tableLayout = new javax.swing.GroupLayout(table);
         table.setLayout(tableLayout);
@@ -291,11 +294,6 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         enderecoField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         nvCliBtn.setText("NOVO");
-        nvCliBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nvCliBtnActionPerformed(evt);
-            }
-        });
 
         canNvCliBtn.setBackground(new java.awt.Color(255, 204, 204));
         canNvCliBtn.setText("CANCELAR");
@@ -554,12 +552,8 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         listaClientecomboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4" }));
         listaClientecomboBox.setToolTipText("");
 
-        buscaClienteVendaBtn.setText("Busca Cliente");
-        buscaClienteVendaBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buscaClienteVendaBtnActionPerformed(evt);
-            }
-        });
+        buscaClienteVendaBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        buscaClienteVendaBtn.setText("BUSCA");
 
         javax.swing.GroupLayout novaVendaPnlLayout = new javax.swing.GroupLayout(novaVendaPnl);
         novaVendaPnl.setLayout(novaVendaPnlLayout);
@@ -618,13 +612,15 @@ public class CardLayoutFrame extends javax.swing.JFrame {
                                 .addComponent(caldoVerdeLabel)))
                         .addGap(0, 495, Short.MAX_VALUE))
                     .addGroup(novaVendaPnlLayout.createSequentialGroup()
-                        .addComponent(novaVendaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(novaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(novaVendaBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                            .addComponent(diaVendaDatePicker, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(novaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(novaVendaPnlLayout.createSequentialGroup()
                                 .addComponent(buscaClienteVendaField, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(buscaClienteVendaBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(buscaClienteVendaBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE))
                             .addComponent(listaClientecomboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(listaVendasBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -643,7 +639,8 @@ public class CardLayoutFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(novaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buscaClienteVendaField, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buscaClienteVendaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(buscaClienteVendaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(diaVendaDatePicker, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addGroup(novaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(caldoVerdeSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -997,6 +994,112 @@ public class CardLayoutFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    //IMPLEMENTAÇÕES DAS AÇÕES
+    private final Action novoClienteAction = new AbstractAction() {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            switch (JOptionPane.showConfirmDialog(new JFrame(), "CONFIRMA ADIÇÃO DO CLIENTE?", "CONFIRMAÇÃO", JOptionPane.YES_NO_OPTION)) {
+                case 0:
+                    try {
+                        Cliente cliente = new Cliente();
+                        cliente.setNome(nomeField.getText().toUpperCase());
+                        if (enderecoField.getText().isEmpty()) {
+                            cliente.setEndereco("CLIENTE INTERNO");
+                            cliente.setInterno(true);
+                        } else {
+                            cliente.setEndereco(enderecoField.getText().toUpperCase());
+                        }
+                        cliente.setApartamento(apartamentoField.getText().toUpperCase());
+                        if (telefoneField.getText().length() >= 10) {
+                            cliente.setDdd(Integer.parseInt(telefoneField.getText().substring(0, 2)));
+                            cliente.setTelefone(Integer.parseInt(telefoneField.getText().substring(2)));
+                        } else {
+                            cliente.setDdd(11);
+                            cliente.setTelefone(Integer.parseInt(telefoneField.getText()));
+                        }
+                        ClienteDAOImpl clienteDAO = new ClienteDAOImpl(em);
+                        clienteDAO.novoCliente(cliente);
+                        JOptionPane.showMessageDialog(new JFrame(), cliente.getNome() + " ADICIONADO(A) COM SUCESSO", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
+                        nomeField.setText("");
+                        enderecoField.setText("");
+                        apartamentoField.setText("");
+                        telefoneField.setText("");
+                    } catch (NumberFormatException num) {
+                        JOptionPane.showMessageDialog(new JFrame(), "TELEFONE INCORRETO", "ERRO", JOptionPane.ERROR_MESSAGE);
+                    }
+                    break;
+                default:
+                    break;
+            }
+
+        }
+
+    };
+    private final Action novaVendaAction = new AbstractAction() {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try{
+            Venda venda = new Venda();
+            VendaDaoImpl vdao = new VendaDaoImpl(em);
+
+            venda.setCaldinhos(new int[]{caldoVerdeSlider.getValue(), mandioquinhaSlider.getValue(), aboboraSlider.getValue(), palmitoSlider.getValue(), feijaoSlider.getValue(), canjaSlider.getValue(), ervilhaSlider.getValue()});
+            venda.setAdicionais(new int[]{torradaSlider.getValue(), cebolinhaSlider.getValue(), baconSlider.getValue(), queijoSlider.getValue()});
+            venda.setCliente((Cliente)listaClientecomboBox.getSelectedItem());
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(diaVendaDatePicker.getDate());
+            venda.setData(calendar);
+
+            vdao.novaVenda(venda);
+            JOptionPane.showMessageDialog(new JFrame(), "VENDA CONCLUÍDA", "SUCESSO",JOptionPane.INFORMATION_MESSAGE);
+            }catch(Exception exc){
+                JOptionPane.showMessageDialog(new JFrame(), "OCORREU UM ERRO","FALHA", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    };
+    private final Action buscaClientesVendasAction = new AbstractAction() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            ClienteDAOImpl clienteDAO = new ClienteDAOImpl(em);
+            listaClientecomboBox.removeAllItems();
+            List<Cliente> listaClientes;
+            if (buscaClienteVendaField.getText().isEmpty()) {
+                listaClientes = clienteDAO.fetchClientes();
+            } else {
+                listaClientes = clienteDAO.fetchClientes(buscaClienteVendaField.getText());
+            }
+
+            for (Cliente listaCliente : listaClientes) {
+                listaClientecomboBox.addItem(listaCliente);
+            }
+        }
+    };
+
+    private final Action buscaClientesAction = new AbstractAction() {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            ClienteDAOImpl clienteDAO = new ClienteDAOImpl(em);
+
+            DefaultTableModel modelo = (DefaultTableModel) tabelaClientes.getModel();
+            modelo.setRowCount(0);
+            if (buscaField.getText().isEmpty()) {
+                for (Cliente cliente : clienteDAO.fetchClientes()) {
+                    modelo.addRow(new Object[]{cliente.getNome(),
+                        cliente.getEndereco(), cliente.getApartamento(),
+                        "(" + cliente.getDdd() + ") " + cliente.getTelefone()});
+                }
+            } else {
+                for (Cliente cliente : clienteDAO.fetchClientes(buscaField.getText())) {
+                    modelo.addRow(new Object[]{cliente.getNome(),
+                        cliente.getEndereco(), cliente.getApartamento(),
+                        "(" + cliente.getDdd() + ") " + cliente.getTelefone()});
+                }
+            }
+        }
+    };
+    //FIM IMPLEMENTAÇÕES DAS AÇÕES
 
     private void estoqueBtnestoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estoqueBtnestoqueActionPerformed
         CardLayout card = (CardLayout) paiPanel.getLayout();
@@ -1057,8 +1160,14 @@ public class CardLayoutFrame extends javax.swing.JFrame {
             receitasBtn.setBackground(Color.GRAY);
         }
         card.show(paiPanel, cardname);
-        
-        ingredientesCaldoVerde = ""; ingredientesMandioqAlhoPoro = ""; ingredientesAboboraCarne = ""; ingredientesPalmito = ""; ingredientesFeijao = ""; ingredientesCanja = ""; ingredientesErvilha = "";
+
+        ingredientesCaldoVerde = "";
+        ingredientesMandioqAlhoPoro = "";
+        ingredientesAboboraCarne = "";
+        ingredientesPalmito = "";
+        ingredientesFeijao = "";
+        ingredientesCanja = "";
+        ingredientesErvilha = "";
         for (int i = 0; i < CaldoVerde.getIngredientes().size(); i++) {
             ingredientesCaldoVerde += (i + 1) + ". " + CaldoVerde.getIngredientes().get(i).getNome() + " - " + (int) CaldoVerde.getIngredientes().get(i).getQtd() + " " + CaldoVerde.getIngredientes().get(i).getUnidade() + "\n\n";
             ingredientesMandioqAlhoPoro += (i + 1) + ". " + MandioqAlhoPorro.getIngredientes().get(i).getNome() + " - " + (int) MandioqAlhoPorro.getIngredientes().get(i).getQtd() + " " + MandioqAlhoPorro.getIngredientes().get(i).getUnidade() + "\n\n";
@@ -1069,7 +1178,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
             ingredientesErvilha += (i + 1) + ". " + Ervilha.getIngredientes().get(i).getNome() + " - " + (int) Ervilha.getIngredientes().get(i).getQtd() + " " + Ervilha.getIngredientes().get(i).getUnidade() + "\n\n";
 
         }
-        if(receitaComboBox.getSelectedIndex()==0){
+        if (receitaComboBox.getSelectedIndex() == 0) {
             ingredientesText.setText(ingredientesCaldoVerde);
             passosText.setText(CaldoVerde.getReceita());
             nomeCaldo.setText("Caldo Verde");
@@ -1161,7 +1270,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
                 break;
         }
         sopa.fazCaldo(Float.parseFloat(JOptionPane.showInputDialog("Informe a quantidade de " + nomeCaldo.getText() + " que será feita")));
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void canNvCliBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_canNvCliBtnActionPerformed
@@ -1175,47 +1284,47 @@ public class CardLayoutFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_novoBtnActionPerformed
 
     private void caldoVerdeSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_caldoVerdeSliderStateChanged
-        caldoVerdeLabel.setText(caldoVerdeSlider.getValue()+ " Caldos Verdes");
+        caldoVerdeLabel.setText(caldoVerdeSlider.getValue() + " Caldos Verdes");
     }//GEN-LAST:event_caldoVerdeSliderStateChanged
 
     private void mandioquinhaSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_mandioquinhaSliderStateChanged
-        mandioquinhaLabel.setText(mandioquinhaSlider.getValue()+ " Mandioquinhas com Alho Poró");
+        mandioquinhaLabel.setText(mandioquinhaSlider.getValue() + " Mandioquinhas com Alho Poró");
     }//GEN-LAST:event_mandioquinhaSliderStateChanged
 
     private void aboboraSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_aboboraSliderStateChanged
-        aboboraLabel.setText(aboboraSlider.getValue()+ " Abóboras com Carne");
+        aboboraLabel.setText(aboboraSlider.getValue() + " Abóboras com Carne");
     }//GEN-LAST:event_aboboraSliderStateChanged
 
     private void palmitoSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_palmitoSliderStateChanged
-        palmitoLabel.setText(palmitoSlider.getValue()+ " Caldos de Palmito");
+        palmitoLabel.setText(palmitoSlider.getValue() + " Caldos de Palmito");
     }//GEN-LAST:event_palmitoSliderStateChanged
 
     private void feijaoSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_feijaoSliderStateChanged
-        feijaoLabel.setText(feijaoSlider.getValue()+ " Caldinhos de Feijão");
+        feijaoLabel.setText(feijaoSlider.getValue() + " Caldinhos de Feijão");
     }//GEN-LAST:event_feijaoSliderStateChanged
 
     private void canjaSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_canjaSliderStateChanged
-        canjaLabel.setText(canjaSlider.getValue()+ " Canjas de Galinha");
+        canjaLabel.setText(canjaSlider.getValue() + " Canjas de Galinha");
     }//GEN-LAST:event_canjaSliderStateChanged
 
     private void ervilhaSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_ervilhaSliderStateChanged
-        ervilhaLabel.setText(ervilhaSlider.getValue()+ " Caldos de Ervilha");
+        ervilhaLabel.setText(ervilhaSlider.getValue() + " Caldos de Ervilha");
     }//GEN-LAST:event_ervilhaSliderStateChanged
 
     private void torradaSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_torradaSliderStateChanged
-        torradinhaLabel.setText(torradaSlider.getValue()+ " Torradinhas");
+        torradinhaLabel.setText(torradaSlider.getValue() + " Torradinhas");
     }//GEN-LAST:event_torradaSliderStateChanged
 
     private void baconSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_baconSliderStateChanged
-        baconLabel.setText(baconSlider.getValue()+ " Bacons");
+        baconLabel.setText(baconSlider.getValue() + " Bacons");
     }//GEN-LAST:event_baconSliderStateChanged
 
     private void cebolinhaSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_cebolinhaSliderStateChanged
-        cebolinhaLabel.setText(cebolinhaSlider.getValue()+ " Cebolinhas");
+        cebolinhaLabel.setText(cebolinhaSlider.getValue() + " Cebolinhas");
     }//GEN-LAST:event_cebolinhaSliderStateChanged
 
     private void queijoSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_queijoSliderStateChanged
-        queijoLabel.setText(queijoSlider.getValue()+ " Queijos Ralados");
+        queijoLabel.setText(queijoSlider.getValue() + " Queijos Ralados");
     }//GEN-LAST:event_queijoSliderStateChanged
 
     private void listaVendasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaVendasBtnActionPerformed
@@ -1230,78 +1339,18 @@ public class CardLayoutFrame extends javax.swing.JFrame {
 
     private void novaVendaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novaVendaBtnActionPerformed
         Venda venda = new Venda();
-        ClienteDAOImpl cdao = new ClienteDAOImpl(em);   
+        ClienteDAOImpl cdao = new ClienteDAOImpl(em);
         VendaDaoImpl vdao = new VendaDaoImpl(em);
-  
-        venda.setCaldinhos(new int[]{caldoVerdeSlider.getValue(),mandioquinhaSlider.getValue(),aboboraSlider.getValue(),palmitoSlider.getValue(), feijaoSlider.getValue(),canjaSlider.getValue(),ervilhaSlider.getValue()});
+
+        venda.setCaldinhos(new int[]{caldoVerdeSlider.getValue(), mandioquinhaSlider.getValue(), aboboraSlider.getValue(), palmitoSlider.getValue(), feijaoSlider.getValue(), canjaSlider.getValue(), ervilhaSlider.getValue()});
         venda.setAdicionais(new int[]{torradaSlider.getValue(), cebolinhaSlider.getValue(), baconSlider.getValue(), queijoSlider.getValue()});
         /*FALTA IMPLEMENTAR ISSO AINDA
-        venda.setCliente();
-        */
+         venda.setCliente();
+         */
         venda.setData(Calendar.getInstance());
-        
+
         vdao.novaVenda(venda);
     }//GEN-LAST:event_novaVendaBtnActionPerformed
-
-    private void nvCliBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nvCliBtnActionPerformed
-        
-        Cliente cliente = new Cliente();
-        cliente.setNome(nomeField.getText().toUpperCase());
-        if (enderecoField.getText().isEmpty())
-        {
-            cliente.setEndereco("CLIENTE INTERNO");
-            cliente.setInterno(true);
-        }
-        else
-            cliente.setEndereco(enderecoField.getText().toUpperCase());
-        cliente.setApartamento(apartamentoField.getText().toUpperCase());
-        if(telefoneField.getText().length()>=10)
-        {
-            cliente.setDdd(Integer.parseInt(telefoneField.getText().substring(0,2)));
-            cliente.setTelefone(Integer.parseInt(telefoneField.getText().substring(2)));
-        }else{
-            cliente.setDdd(11);
-            cliente.setTelefone(Integer.parseInt(telefoneField.getText()));
-        }
-        ClienteDAOImpl clienteDAO = new ClienteDAOImpl(em);
-        clienteDAO.novoCliente(cliente);
-        
-    }//GEN-LAST:event_nvCliBtnActionPerformed
-
-    private void buscaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscaBtnActionPerformed
-        
-        ClienteDAOImpl clienteDAO = new ClienteDAOImpl(em);
-        
-        
-        DefaultTableModel modelo = (DefaultTableModel) tabelaClientes.getModel();
-        modelo.setRowCount(0);
-        if (buscaField.getText().isEmpty())
-            for (Cliente cliente : clienteDAO.fetchClientes()){
-                modelo.addRow(new Object[]{cliente.getNome(),
-                cliente.getEndereco(), cliente.getApartamento(),
-                "("+cliente.getDdd()+") "+cliente.getTelefone()});
-        }
-        else
-            for (Cliente cliente : clienteDAO.fetchClientes(buscaField.getText()))
-                modelo.addRow(new Object[]{cliente.getNome(),
-                cliente.getEndereco(), cliente.getApartamento(),
-                "("+cliente.getDdd()+") "+cliente.getTelefone()});
-    }//GEN-LAST:event_buscaBtnActionPerformed
-
-    private void buscaClienteVendaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscaClienteVendaBtnActionPerformed
-        ClienteDAOImpl clienteDAO = new ClienteDAOImpl(em);
-        listaClientecomboBox.removeAllItems();
-        List<Cliente> listaClientes;
-        if (buscaClienteVendaField.getText().isEmpty())
-            listaClientes = clienteDAO.fetchClientes();
-        else
-            listaClientes=clienteDAO.fetchClientes(buscaClienteVendaField.getText());
-        
-        for (int i = 0; i < listaClientes.size(); i++) {
-            listaClientecomboBox.addItem(listaClientes.get(i));  
-        }
-        
-    }//GEN-LAST:event_buscaClienteVendaBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1359,6 +1408,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
     private javax.swing.JPanel clientesPnl;
     private org.jdesktop.swingx.JXDatePicker dataFim;
     private org.jdesktop.swingx.JXDatePicker dataInicio;
+    private org.jdesktop.swingx.JXDatePicker diaVendaDatePicker;
     private javax.persistence.EntityManager em;
     private java.awt.TextField enderecoField;
     private javax.swing.JLabel ervilhaLabel;
