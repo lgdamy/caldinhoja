@@ -6,6 +6,7 @@
 package caldinho.ja.dao;
 
 import caldinho.ja.escopo.Venda;
+import java.util.Calendar;
 import java.util.List;
 
 /**

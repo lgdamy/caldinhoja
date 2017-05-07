@@ -3,11 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/LuizGuilherme/Documents/NetBeansProjects/CaldinhoJaPR/src/caldinho/ja/dao/VendaDAO.java</file>
             <file>file:/C:/Users/LuizGuilherme/Documents/NetBeansProjects/CaldinhoJaPR/src/caldinho/ja/views/CardLayoutFrame.java</file>
+            <file>file:/C:/Users/LuizGuilherme/Documents/NetBeansProjects/CaldinhoJaPR/src/caldinho/ja/escopo/Venda.java</file>
+            <file>file:/C:/Users/LuizGuilherme/Documents/NetBeansProjects/CaldinhoJaPR/src/caldinho/ja/dao/VendaDaoImpl.java</file>
             <file>file:/C:/Users/LuizGuilherme/Documents/NetBeansProjects/CaldinhoJaPR/src/caldinho/ja/dao/ClienteDAOImpl.java</file>
             <file>file:/C:/Users/LuizGuilherme/Documents/NetBeansProjects/CaldinhoJaPR/src/caldinho/ja/escopo/Cliente.java</file>
             <file>file:/C:/Users/LuizGuilherme/Documents/NetBeansProjects/CaldinhoJaPR/nbproject/build-impl.xml</file>
             <file>file:/C:/Users/LuizGuilherme/Documents/NetBeansProjects/CaldinhoJaPR/src/caldinho/ja/dao/FonteDados.java</file>
+            <file>file:/C:/Users/LuizGuilherme/Documents/NetBeansProjects/CaldinhoJaPR/src/caldinho/ja/escopo/Ingrediente.java</file>
         </group>
     </open-files>
 </project-private>

@@ -20,6 +20,7 @@ import caldinho.ja.escopo.Venda;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 import javax.swing.AbstractAction;
@@ -51,8 +52,11 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         ////BUSCA DE CLIENTES NA VENDA
         buscaClienteVendaField.addActionListener(buscaClientesVendasAction);
         buscaClienteVendaBtn.addActionListener(buscaClientesVendasAction);
+        iniciarNovaVendaBtn.addActionListener(buscaClientesVendasAction);
         ////REALIZA NOVA VENDA
         novaVendaBtn.addActionListener(novaVendaAction);
+        ////BUSCA VENDAS
+        buscaVendasBtn.addActionListener(buscaVendasAction);
 
     }
     public String cardname = "index";
@@ -95,6 +99,17 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         nvCliBtn = new javax.swing.JButton();
         canNvCliBtn = new javax.swing.JButton();
         vendasPnl = new javax.swing.JPanel();
+        listaVendaPnl = new javax.swing.JPanel();
+        jLabel12 = new javax.swing.JLabel();
+        listaVendasScroll = new javax.swing.JScrollPane();
+        tabelaVendas = new javax.swing.JTable();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        iniciarNovaVendaBtn = new javax.swing.JButton();
+        dataInicio = new org.jdesktop.swingx.JXDatePicker();
+        dataFim = new org.jdesktop.swingx.JXDatePicker();
+        jSeparator3 = new javax.swing.JSeparator();
+        buscaVendasBtn = new javax.swing.JButton();
         novaVendaPnl = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         novaVendaBtn = new javax.swing.JButton();
@@ -126,15 +141,6 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         buscaClienteVendaField = new javax.swing.JTextField();
         buscaClienteVendaBtn = new javax.swing.JButton();
         diaVendaDatePicker = new org.jdesktop.swingx.JXDatePicker();
-        listaVendaPnl = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
-        listaVendasScroll = new javax.swing.JScrollPane();
-        listaVendasTable = new javax.swing.JTable();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        dataInicio = new org.jdesktop.swingx.JXDatePicker();
-        dataFim = new org.jdesktop.swingx.JXDatePicker();
         receitasPnl = new javax.swing.JPanel();
         receitasCardsPnl = new javax.swing.JPanel();
         receitasPnlCaldoVerde = new javax.swing.JPanel();
@@ -217,7 +223,15 @@ public class CardLayoutFrame extends javax.swing.JFrame {
             new String [] {
                 "Nome", "Endereço", "Apartamento", "Telefone"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane3.setViewportView(tabelaClientes);
 
         novoBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -240,14 +254,14 @@ public class CardLayoutFrame extends javax.swing.JFrame {
             tableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tableLayout.createSequentialGroup()
                 .addGroup(tableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(novoBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
                     .addComponent(buscaField, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
                     .addComponent(buscaBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                    .addComponent(jSeparator2))
-                .addGap(30, 30, 30)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 853, Short.MAX_VALUE)
+                    .addComponent(jSeparator2)
+                    .addComponent(novoBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 818, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 1055, Short.MAX_VALUE)
+            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 1006, Short.MAX_VALUE)
         );
         tableLayout.setVerticalGroup(
             tableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -293,10 +307,13 @@ public class CardLayoutFrame extends javax.swing.JFrame {
 
         enderecoField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
+        nvCliBtn.setBackground(new java.awt.Color(204, 255, 204));
+        nvCliBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nvCliBtn.setText("NOVO");
 
         canNvCliBtn.setBackground(new java.awt.Color(255, 204, 204));
-        canNvCliBtn.setText("CANCELAR");
+        canNvCliBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        canNvCliBtn.setText("LISTA DE CLIENTES");
         canNvCliBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 canNvCliBtnActionPerformed(evt);
@@ -363,13 +380,110 @@ public class CardLayoutFrame extends javax.swing.JFrame {
 
         vendasPnl.setLayout(new java.awt.CardLayout());
 
+        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel12.setText("VENDAS");
+
+        tabelaVendas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Data", "Cliente", "Sopas", "Adicionais", "Valor"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        listaVendasScroll.setViewportView(tabelaVendas);
+        if (tabelaVendas.getColumnModel().getColumnCount() > 0) {
+            tabelaVendas.getColumnModel().getColumn(1).setMinWidth(300);
+            tabelaVendas.getColumnModel().getColumn(4).setMaxWidth(45);
+        }
+
+        jLabel13.setText("INÍCIO");
+
+        jLabel14.setText("FINAL");
+
+        iniciarNovaVendaBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        iniciarNovaVendaBtn.setText("NOVA VENDA");
+        iniciarNovaVendaBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                iniciarNovaVendaBtnActionPerformed(evt);
+            }
+        });
+
+        buscaVendasBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        buscaVendasBtn.setText("PESQUISAR");
+
+        javax.swing.GroupLayout listaVendaPnlLayout = new javax.swing.GroupLayout(listaVendaPnl);
+        listaVendaPnl.setLayout(listaVendaPnlLayout);
+        listaVendaPnlLayout.setHorizontalGroup(
+            listaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(listaVendaPnlLayout.createSequentialGroup()
+                .addGroup(listaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(listaVendaPnlLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(listaVendaPnlLayout.createSequentialGroup()
+                        .addGroup(listaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(listaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jSeparator3)
+                                .addComponent(iniciarNovaVendaBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
+                            .addGroup(listaVendaPnlLayout.createSequentialGroup()
+                                .addGroup(listaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(dataInicio, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
+                                    .addComponent(dataFim, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(listaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel14)
+                                    .addComponent(jLabel13)))
+                            .addComponent(buscaVendasBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(listaVendasScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 816, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        listaVendaPnlLayout.setVerticalGroup(
+            listaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(listaVendaPnlLayout.createSequentialGroup()
+                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(listaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(listaVendaPnlLayout.createSequentialGroup()
+                        .addComponent(iniciarNovaVendaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(listaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel13)
+                            .addComponent(dataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(listaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel14)
+                            .addComponent(dataFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(buscaVendasBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(listaVendasScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 648, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        vendasPnl.add(listaVendaPnl, "listaVenda");
+
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("VENDAS");
+        jLabel4.setText("NOVA VENDA");
 
+        novaVendaBtn.setBackground(new java.awt.Color(204, 255, 204));
         novaVendaBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         novaVendaBtn.setText("NOVA VENDA");
 
+        listaVendasBtn.setBackground(new java.awt.Color(255, 204, 204));
         listaVendasBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         listaVendasBtn.setText("LISTA DE VENDAS");
         listaVendasBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -544,7 +658,6 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         queijoLabel.setText("0 Queijos Ralados");
 
         listaClientecomboBox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        listaClientecomboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4" }));
         listaClientecomboBox.setToolTipText("");
 
         buscaClienteVendaBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -624,18 +737,17 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         novaVendaPnlLayout.setVerticalGroup(
             novaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(novaVendaPnlLayout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(17, 17, 17)
                 .addGroup(novaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(listaVendasBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(novaVendaBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
                     .addComponent(listaClientecomboBox))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(novaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buscaClienteVendaField, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buscaClienteVendaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(diaVendaDatePicker, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(diaVendaDatePicker, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buscaClienteVendaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buscaClienteVendaField, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addGroup(novaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(caldoVerdeSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -685,123 +797,9 @@ public class CardLayoutFrame extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        diaVendaDatePicker.setDate(Calendar.getInstance().getTime());
+
         vendasPnl.add(novaVendaPnl, "novaVenda");
-
-        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel12.setText("VENDAS (LISTA)");
-
-        listaVendasTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Data", "Cliente", "Endereço", "Sopas", "Adicionais"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        listaVendasScroll.setViewportView(listaVendasTable);
-
-        jLabel13.setText("INÍCIO");
-
-        jLabel14.setText("FINAL");
-
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton2.setText("NOVA VENDA");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout listaVendaPnlLayout = new javax.swing.GroupLayout(listaVendaPnl);
-        listaVendaPnl.setLayout(listaVendaPnlLayout);
-        listaVendaPnlLayout.setHorizontalGroup(
-            listaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(listaVendaPnlLayout.createSequentialGroup()
-                .addGroup(listaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(listaVendaPnlLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(listaVendaPnlLayout.createSequentialGroup()
-                        .addGroup(listaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(listaVendaPnlLayout.createSequentialGroup()
-                                .addComponent(dataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel13))
-                            .addGroup(listaVendaPnlLayout.createSequentialGroup()
-                                .addGroup(listaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                                    .addComponent(dataFim, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel14)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(listaVendasScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 782, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-        );
-        listaVendaPnlLayout.setVerticalGroup(
-            listaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(listaVendaPnlLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(listaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(listaVendasScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(listaVendaPnlLayout.createSequentialGroup()
-                        .addGroup(listaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel13)
-                            .addComponent(dataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(listaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel14)
-                            .addComponent(dataFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        vendasPnl.add(listaVendaPnl, "listaVenda");
 
         paiPanel.add(vendasPnl, "vendas");
 
@@ -994,7 +992,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            switch (JOptionPane.showConfirmDialog(new JFrame(), "CONFIRMA ADIÇÃO DO CLIENTE?", "CONFIRMAÇÃO", JOptionPane.YES_NO_OPTION)) {
+            switch (JOptionPane.showConfirmDialog(paiPanel, "CONFIRMA ADIÇÃO DO CLIENTE?", "CONFIRMAÇÃO", JOptionPane.YES_NO_OPTION)) {
                 case 0:
                     try {
                         Cliente cliente = new Cliente();
@@ -1015,13 +1013,13 @@ public class CardLayoutFrame extends javax.swing.JFrame {
                         }
                         ClienteDAOImpl clienteDAO = new ClienteDAOImpl(em);
                         clienteDAO.novoCliente(cliente);
-                        JOptionPane.showMessageDialog(new JFrame(), cliente.getNome() + " ADICIONADO(A) COM SUCESSO", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(paiPanel, cliente.getNome() + " ADICIONADO(A) COM SUCESSO", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
                         nomeField.setText("");
                         enderecoField.setText("");
                         apartamentoField.setText("");
                         telefoneField.setText("");
                     } catch (NumberFormatException num) {
-                        JOptionPane.showMessageDialog(new JFrame(), "TELEFONE INCORRETO", "ERRO", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(paiPanel, "TELEFONE INCORRETO", "ERRO", JOptionPane.ERROR_MESSAGE);
                     }
                     break;
                 default:
@@ -1035,25 +1033,30 @@ public class CardLayoutFrame extends javax.swing.JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            try{
-            Venda venda = new Venda();
-            VendaDaoImpl vdao = new VendaDaoImpl(em);
+            int valor = 10*(caldoVerdeSlider.getValue()+mandioquinhaSlider.getValue()+aboboraSlider.getValue()+palmitoSlider.getValue()+feijaoSlider.getValue()+canjaSlider.getValue()+ervilhaSlider.getValue());
+            valor +=2*(torradaSlider.getValue()+queijoSlider.getValue()+baconSlider.getValue()+cebolinhaSlider.getValue());
+            try {
+                switch (JOptionPane.showConfirmDialog(paiPanel, "CONFIRMA A CONCLUSÃO DE VENDA? R$" + valor, "CONFIRMAÇÃO", JOptionPane.YES_NO_OPTION)) {
+                    case 0:
+                        Venda venda = new Venda();
+                        VendaDaoImpl vdao = new VendaDaoImpl(em);
 
-            venda.setCaldinhos(new int[]{caldoVerdeSlider.getValue(), mandioquinhaSlider.getValue(), aboboraSlider.getValue(), palmitoSlider.getValue(), feijaoSlider.getValue(), canjaSlider.getValue(), ervilhaSlider.getValue()});
-            venda.setAdicionais(new int[]{torradaSlider.getValue(), cebolinhaSlider.getValue(), baconSlider.getValue(), queijoSlider.getValue()});
-            venda.setCliente((Cliente)listaClientecomboBox.getSelectedItem());
-            if (venda.getCliente()==null){
-                throw new RuntimeException();
-            }
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(diaVendaDatePicker.getDate());
-            
-            venda.setDataVenda(calendar);
+                        venda.setCaldinhos(new int[]{caldoVerdeSlider.getValue(), mandioquinhaSlider.getValue(), aboboraSlider.getValue(), palmitoSlider.getValue(), feijaoSlider.getValue(), canjaSlider.getValue(), ervilhaSlider.getValue()});
+                        venda.setAdicionais(new int[]{torradaSlider.getValue(), cebolinhaSlider.getValue(), baconSlider.getValue(), queijoSlider.getValue()});
+                        venda.setCliente((Cliente) listaClientecomboBox.getSelectedItem());
+                        if (venda.getCliente() == null) {
+                            throw new RuntimeException();
+                        }
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.setTime(diaVendaDatePicker.getDate());
 
-            vdao.novaVenda(venda);
-            JOptionPane.showMessageDialog(new JFrame(), "VENDA CONCLUÍDA", "SUCESSO",JOptionPane.INFORMATION_MESSAGE);
-            }catch(Exception exc){
-                JOptionPane.showMessageDialog(new JFrame(), "OCORREU UM ERRO","FALHA", JOptionPane.ERROR_MESSAGE);
+                        venda.setDataVenda(calendar);
+
+                        vdao.novaVenda(venda);
+                        JOptionPane.showMessageDialog(paiPanel, "VENDA CONCLUÍDA", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
+                }
+            } catch (Exception exc) {
+                JOptionPane.showMessageDialog(paiPanel, "OCORREU UM ERRO", "FALHA", JOptionPane.ERROR_MESSAGE);
             }
         }
     };
@@ -1071,6 +1074,75 @@ public class CardLayoutFrame extends javax.swing.JFrame {
 
             for (Cliente listaCliente : listaClientes) {
                 listaClientecomboBox.addItem(listaCliente);
+            }
+        }
+    };
+    private final Action buscaVendasAction = new AbstractAction() {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            VendaDaoImpl vendaDAO = new VendaDaoImpl(em);
+
+            if (dataInicio.getDate() == null || dataFim.getDate() == null) {
+                JOptionPane.showMessageDialog(paiPanel, "ESPECIFIQUE AS DATAS ANTES DE PESQUISAR", "ERRO", JOptionPane.ERROR_MESSAGE);
+            } else {
+                DefaultTableModel modelo = (DefaultTableModel) tabelaVendas.getModel();
+                modelo.setRowCount(0);
+                Calendar inicio = Calendar.getInstance();
+                Calendar fim = Calendar.getInstance();
+                inicio.setTime(dataInicio.getDate());
+                fim.setTime(dataFim.getDate());
+
+                SimpleDateFormat sdf = new SimpleDateFormat("EEE - dd/MM/YYYY");
+                for (Venda venda : vendaDAO.fetchVendas(inicio, fim)) {
+                    String caldinhos = "";
+                    String adicionais = "";
+                    int valor = 0;
+                    if (venda.getCaldinhos()[0] != 0) {
+                        caldinhos += venda.getCaldinhos()[0] + " VRD ";
+                    }
+                    if (venda.getCaldinhos()[1] != 0) {
+                        caldinhos += venda.getCaldinhos()[1] + " MDQ ";
+                    }
+                    if (venda.getCaldinhos()[2] != 0) {
+                        caldinhos += venda.getCaldinhos()[2] + " ABB ";
+                    }
+                    if (venda.getCaldinhos()[3] != 0) {
+                        caldinhos += venda.getCaldinhos()[3] + " PAL ";
+                    }
+                    if (venda.getCaldinhos()[4] != 0) {
+                        caldinhos += venda.getCaldinhos()[4] + " FJO ";
+                    }
+                    if (venda.getCaldinhos()[5] != 0) {
+                        caldinhos += venda.getCaldinhos()[5] + " GLN ";
+                    }
+                    if (venda.getCaldinhos()[6] != 0) {
+                        caldinhos += venda.getCaldinhos()[6] + " ERV ";
+                    }
+                    if (venda.getAdicionais()[0] != 0) {
+                        adicionais += venda.getAdicionais()[0] + " TRD ";
+                    }
+                    if (venda.getAdicionais()[1] != 0) {
+                        adicionais += venda.getAdicionais()[1] + " CBL ";
+                    }
+                    if (venda.getAdicionais()[2] != 0) {
+                        adicionais += venda.getAdicionais()[2] + " BCN ";
+                    }
+                    if (venda.getAdicionais()[3] != 0) {
+                        adicionais += venda.getAdicionais()[3] + " QJO ";
+                    }
+                    for (int i = 0; i < 7; i++) {
+                        valor += venda.getCaldinhos()[i] * 10;
+                        if (i < 4) {
+                            valor += venda.getAdicionais()[i] * 2;
+                        }
+                    }
+                    modelo.addRow(new Object[]{sdf.format(venda.getDataVenda().getTime()),
+                        venda.getCliente().getNome() + " (" + venda.getCliente().getEndereco() + ")",
+                        caldinhos, adicionais, "R$" + valor
+
+                    });
+                }
             }
         }
     };
@@ -1331,10 +1403,10 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         card.show(vendasPnl, "listaVenda");
     }//GEN-LAST:event_listaVendasBtnActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void iniciarNovaVendaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarNovaVendaBtnActionPerformed
         CardLayout card = (CardLayout) vendasPnl.getLayout();
         card.show(vendasPnl, "novaVenda");
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_iniciarNovaVendaBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1381,6 +1453,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
     private javax.swing.JButton buscaClienteVendaBtn;
     private javax.swing.JTextField buscaClienteVendaField;
     private javax.swing.JTextField buscaField;
+    private javax.swing.JButton buscaVendasBtn;
     private javax.swing.JLabel caldoVerdeLabel;
     private javax.swing.JSlider caldoVerdeSlider;
     private javax.swing.JButton canNvCliBtn;
@@ -1404,8 +1477,8 @@ public class CardLayoutFrame extends javax.swing.JFrame {
     private javax.swing.JLabel fotosCaldos;
     private javax.swing.JPanel indexPnl;
     private javax.swing.JTextPane ingredientesText;
+    private javax.swing.JButton iniciarNovaVendaBtn;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1425,11 +1498,11 @@ public class CardLayoutFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JComboBox listaClientecomboBox;
     private javax.swing.JPanel listaVendaPnl;
     private javax.swing.JButton listaVendasBtn;
     private javax.swing.JScrollPane listaVendasScroll;
-    private javax.swing.JTable listaVendasTable;
     private javax.swing.JLabel mandioquinhaLabel;
     private javax.swing.JSlider mandioquinhaSlider;
     private javax.swing.JLabel nomeCaldo;
@@ -1451,6 +1524,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
     private javax.swing.JPanel receitasPnl;
     private javax.swing.JPanel receitasPnlCaldoVerde;
     private javax.swing.JTable tabelaClientes;
+    private javax.swing.JTable tabelaVendas;
     private javax.swing.JPanel table;
     private java.awt.TextField telefoneField;
     private javax.swing.JSlider torradaSlider;

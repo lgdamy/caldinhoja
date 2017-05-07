@@ -6,6 +6,7 @@
 package caldinho.ja.dao;
 
 import caldinho.ja.escopo.Venda;
+import java.util.Calendar;
 import java.util.List;
 import javax.persistence.EntityManager;
 
@@ -45,9 +46,15 @@ public class VendaDaoImpl implements VendaDAO{
         em.getTransaction().commit();
     }
 
+    
+    
+    public List<Venda> fetchVendas(Calendar inicio, Calendar fim) {
+        return em.createQuery("SELECT v FROM Venda v where v.dataVenda BETWEEN :inicio AND :fim", Venda.class).setParameter("inicio", inicio).setParameter("fim", fim).getResultList();
+    }
+
     @Override
     public List<Venda> fetchVendas() {
-        return em.createQuery("SELECT v FROM Venda v", Venda.class).getResultList();
+        return em.createQuery("SELECT v FROM Venda v",Venda.class).getResultList();
     }
     
 }

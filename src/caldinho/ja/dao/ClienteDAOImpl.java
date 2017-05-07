@@ -45,10 +45,10 @@ public class ClienteDAOImpl implements ClienteDAO {
     }
     @Override
     public List<Cliente> fetchClientes(){
-        return em.createQuery("SELECT c FROM Cliente c", Cliente.class).getResultList();
+        return em.createQuery("SELECT c FROM Cliente c ORDER BY c.nome ASC", Cliente.class).getResultList();
     }
     
     public List<Cliente> fetchClientes(String quesito){
-        return  em.createQuery("SELECT c FROM Cliente c WHERE c.nome LIKE :busca OR c.endereco LIKE :busca OR CAST(c.telefone as CHAR) LIKE :busca").setParameter("busca", "%"+quesito+"%").getResultList();
+        return  em.createQuery("SELECT c FROM Cliente c WHERE c.nome LIKE :busca OR c.endereco LIKE :busca OR CAST(c.telefone as CHAR) LIKE :busca ORDER BY c.nome ASC").setParameter("busca", "%"+quesito+"%").getResultList();
     }
 }
