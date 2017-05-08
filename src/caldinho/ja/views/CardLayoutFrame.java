@@ -20,9 +20,12 @@ import caldinho.ja.escopo.Venda;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.JFrame;
@@ -1438,7 +1441,16 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CardLayoutFrame().setVisible(true);
+                try {
+                    Process process = new ProcessBuilder("C:\\xampp\\xampp_start.exe").start();
+                } catch (IOException ex) {
+                    Logger.getLogger(CardLayoutFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                CardLayoutFrame appFrame = new CardLayoutFrame();
+                appFrame.setVisible(true);
+                appFrame.setLocationRelativeTo(null);
+                //new CardLayoutFrame().setVisible(true);
+                
             }
         });
     }
