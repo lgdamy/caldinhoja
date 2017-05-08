@@ -6,7 +6,7 @@
     <class>caldinho.ja.escopo.Ingrediente</class>
     <class>caldinho.ja.escopo.Venda</class>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/caldinhojanovo"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/caldinhoja?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="caldinhoja"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.password" value="caldinhoja"/>

@@ -29,7 +29,8 @@ public class ClienteDAOImpl implements ClienteDAO {
     }
     @Override
     public Cliente getCliente(int id){
-        return fetchClientes().get(id);
+        //return fetchClientes().get(id);
+        return (Cliente)em.createQuery("SELECT c FROM Cliente c WHERE c.cliente_id = :id").setParameter("id", id).getSingleResult();
     }
     @Override
     public void deleteCliente(int id){
