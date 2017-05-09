@@ -6,6 +6,7 @@
 package caldinho.ja.views;
 
 import caldinho.ja.dao.ClienteDAOImpl;
+import caldinho.ja.dao.FonteDados;
 import caldinho.ja.dao.VendaDaoImpl;
 import caldinho.ja.escopo.Caldinho;
 import caldinho.ja.escopo.AboboraCarne;
@@ -26,6 +27,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.persistence.EntityManager;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.JFrame;
@@ -45,6 +47,13 @@ public class CardLayoutFrame extends javax.swing.JFrame {
     public CardLayoutFrame() {
 
         initComponents();
+        ////FUNCIONAIS
+        tabelaClientes.removeColumn(tabelaClientes.getColumnModel().getColumn(4));
+        tabelaVendas.removeColumn(tabelaVendas.getColumnModel().getColumn(5));
+        labelcondicional1.setVisible(false);
+        labelcondicional2.setVisible(false);
+        editClienteBtn.setVisible(false);
+        ////FUNCIONAIS
 
         //AÇÕES
         //----------------------------------------------------------------------
@@ -63,9 +72,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         novaVendaBtn.addActionListener(novaVendaAction);
         ////BUSCA VENDAS
         buscaVendasBtn.addActionListener(buscaVendasAction);
-        
-        
-        
+
     }
     public String cardname = "index";
     String ingredientesCaldoVerde, ingredientesMandioqAlhoPoro, ingredientesAboboraCarne, ingredientesPalmito, ingredientesFeijao, ingredientesCanja, ingredientesErvilha;
@@ -95,6 +102,8 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         buscaBtn = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
         editClienteBtn = new javax.swing.JButton();
+        labelcondicional2 = new javax.swing.JLabel();
+        labelcondicional1 = new javax.swing.JLabel();
         novo = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -243,10 +252,15 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         });
         tabelaClientes.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tabelaClientes.getTableHeader().setReorderingAllowed(false);
+        tabelaClientes.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                tabelaClientesFocusGained(evt);
+            }
+        });
         jScrollPane3.setViewportView(tabelaClientes);
 
         novoBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        novoBtn.setText("Novo");
+        novoBtn.setText("NOVO");
         novoBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 novoBtnActionPerformed(evt);
@@ -257,22 +271,36 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         buscaField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
         buscaBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        buscaBtn.setText("Busca");
+        buscaBtn.setText("BUSCA");
 
         editClienteBtn.setBackground(new java.awt.Color(254, 254, 254));
         editClienteBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/caldinho/ja/images/edit.png"))); // NOI18N
+
+        labelcondicional2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelcondicional2.setForeground(new java.awt.Color(255, 51, 51));
+        labelcondicional2.setText("REMOVER");
+
+        labelcondicional1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelcondicional1.setForeground(new java.awt.Color(255, 51, 51));
+        labelcondicional1.setText("EDITAR");
 
         javax.swing.GroupLayout tableLayout = new javax.swing.GroupLayout(table);
         table.setLayout(tableLayout);
         tableLayout.setHorizontalGroup(
             tableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tableLayout.createSequentialGroup()
-                .addGroup(tableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(buscaField, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                    .addComponent(buscaBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                .addGroup(tableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(buscaField)
+                    .addComponent(buscaBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jSeparator2)
                     .addComponent(novoBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(editClienteBtn, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addGroup(tableLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(tableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelcondicional2, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(labelcondicional1, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(editClienteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 818, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -283,17 +311,23 @@ public class CardLayoutFrame extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tableLayout.createSequentialGroup()
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(tableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(tableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(tableLayout.createSequentialGroup()
                         .addComponent(novoBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(buscaField, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(buscaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(385, 385, 385)
-                        .addComponent(editClienteBtn))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(tableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(editClienteBtn)
+                            .addGroup(tableLayout.createSequentialGroup()
+                                .addComponent(labelcondicional1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(labelcondicional2)
+                                .addGap(14, 14, 14))))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 648, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -343,7 +377,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
             novoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, novoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 992, Short.MAX_VALUE)
+                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 986, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(novoLayout.createSequentialGroup()
                 .addGap(210, 210, 210)
@@ -1011,6 +1045,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            EntityManager em = FonteDados.createEntityManager();
             switch (JOptionPane.showConfirmDialog(paiPanel, "CONFIRMA ADIÇÃO DO CLIENTE?", "CONFIRMAÇÃO", JOptionPane.YES_NO_OPTION)) {
                 case 0:
                     try {
@@ -1052,6 +1087,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            EntityManager em = FonteDados.createEntityManager();
             int valor = 10 * (caldoVerdeSlider.getValue() + mandioquinhaSlider.getValue() + aboboraSlider.getValue() + palmitoSlider.getValue() + feijaoSlider.getValue() + canjaSlider.getValue() + ervilhaSlider.getValue());
             valor += 2 * (torradaSlider.getValue() + queijoSlider.getValue() + baconSlider.getValue() + cebolinhaSlider.getValue());
             try {
@@ -1082,6 +1118,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
     private final Action buscaClientesVendasAction = new AbstractAction() {
         @Override
         public void actionPerformed(ActionEvent e) {
+            EntityManager em = FonteDados.createEntityManager();
             ClienteDAOImpl clienteDAO = new ClienteDAOImpl(em);
             listaClientecomboBox.removeAllItems();
             List<Cliente> listaClientes;
@@ -1100,6 +1137,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            EntityManager em = FonteDados.createEntityManager();
             VendaDaoImpl vendaDAO = new VendaDaoImpl(em);
 
             if (dataInicio.getDate() == null || dataFim.getDate() == null) {
@@ -1170,6 +1208,8 @@ public class CardLayoutFrame extends javax.swing.JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+
+            EntityManager em = FonteDados.createEntityManager();
             ClienteDAOImpl clienteDAO = new ClienteDAOImpl(em);
 
             DefaultTableModel modelo = (DefaultTableModel) tabelaClientes.getModel();
@@ -1189,16 +1229,21 @@ public class CardLayoutFrame extends javax.swing.JFrame {
                         cliente.getCliente_id()});
                 }
             }
-            //tabelaClientes.removeColumn(tabelaClientes.getColumnModel().getColumn(4));
+            labelcondicional1.setVisible(false);
+            labelcondicional2.setVisible(false);
+            editClienteBtn.setVisible(false);
+
         }
     };
-    
+
     private final Action editClienteAction = new AbstractAction() {
         @Override
         public void actionPerformed(ActionEvent e) {
             //numero do cliente:
-            int id = Integer.parseInt(String.valueOf(tabelaClientes.getModel().getValueAt(tabelaClientes.getSelectedRow(), 4)));
-            JOptionPane.showInputDialog(paiPanel, new EditDeleteCliente(id));
+            if (tabelaClientes.getSelectedRow() != -1) {
+                int id = Integer.parseInt(String.valueOf(tabelaClientes.getModel().getValueAt(tabelaClientes.getSelectedRow(), 4)));
+                JOptionPane.showOptionDialog(paiPanel, new EditDeleteCliente(id), "ALTERAR/REMOVER CLIENTE", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, new Object[]{}, null);
+            }
         }
     };
     //FIM IMPLEMENTAÇÕES DAS AÇÕES
@@ -1439,6 +1484,12 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         card.show(vendasPnl, "novaVenda");
     }//GEN-LAST:event_iniciarNovaVendaBtnActionPerformed
 
+    private void tabelaClientesFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tabelaClientesFocusGained
+        labelcondicional1.setVisible(true);
+        labelcondicional2.setVisible(true);
+        editClienteBtn.setVisible(true);
+    }//GEN-LAST:event_tabelaClientesFocusGained
+
     /**
      * @param args the command line arguments
      */
@@ -1540,6 +1591,8 @@ public class CardLayoutFrame extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JLabel labelcondicional1;
+    private javax.swing.JLabel labelcondicional2;
     private javax.swing.JComboBox listaClientecomboBox;
     private javax.swing.JPanel listaVendaPnl;
     private javax.swing.JButton listaVendasBtn;
