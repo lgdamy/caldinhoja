@@ -30,9 +30,7 @@ import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -53,6 +51,8 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         labelcondicional1.setVisible(false);
         labelcondicional2.setVisible(false);
         editClienteBtn.setVisible(false);
+        labelcondicional.setVisible(false);
+        deleteVendaBtn.setVisible(false);
         ////FUNCIONAIS
 
         //AÇÕES
@@ -72,6 +72,8 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         novaVendaBtn.addActionListener(novaVendaAction);
         ////BUSCA VENDAS
         buscaVendasBtn.addActionListener(buscaVendasAction);
+        ////DELETE VENDA
+        deleteVendaBtn.addActionListener(deleteVendaAction);
 
     }
     public String cardname = "index";
@@ -128,6 +130,8 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         dataFim = new org.jdesktop.swingx.JXDatePicker();
         jSeparator3 = new javax.swing.JSeparator();
         buscaVendasBtn = new javax.swing.JButton();
+        deleteVendaBtn = new javax.swing.JButton();
+        labelcondicional = new javax.swing.JLabel();
         novaVendaPnl = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         novaVendaBtn = new javax.swing.JButton();
@@ -295,7 +299,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
                     .addComponent(jSeparator2)
                     .addComponent(novoBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(tableLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(13, Short.MAX_VALUE)
                         .addGroup(tableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelcondicional2, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(labelcondicional1, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -452,6 +456,11 @@ public class CardLayoutFrame extends javax.swing.JFrame {
             }
         });
         tabelaVendas.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tabelaVendas.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                tabelaVendasFocusGained(evt);
+            }
+        });
         listaVendasScroll.setViewportView(tabelaVendas);
         if (tabelaVendas.getColumnModel().getColumnCount() > 0) {
             tabelaVendas.getColumnModel().getColumn(1).setMinWidth(300);
@@ -474,6 +483,13 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         buscaVendasBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         buscaVendasBtn.setText("PESQUISAR");
 
+        deleteVendaBtn.setBackground(new java.awt.Color(255, 255, 255));
+        deleteVendaBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/caldinho/ja/images/delete.gif"))); // NOI18N
+
+        labelcondicional.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelcondicional.setForeground(new java.awt.Color(255, 51, 51));
+        labelcondicional.setText("DELETAR");
+
         javax.swing.GroupLayout listaVendaPnlLayout = new javax.swing.GroupLayout(listaVendaPnl);
         listaVendaPnl.setLayout(listaVendaPnlLayout);
         listaVendaPnlLayout.setHorizontalGroup(
@@ -485,20 +501,27 @@ public class CardLayoutFrame extends javax.swing.JFrame {
                         .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(listaVendaPnlLayout.createSequentialGroup()
                         .addGroup(listaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(listaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jSeparator3)
-                                .addComponent(iniciarNovaVendaBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
+                            .addComponent(jSeparator3)
+                            .addComponent(iniciarNovaVendaBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, listaVendaPnlLayout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(labelcondicional)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(deleteVendaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(listaVendaPnlLayout.createSequentialGroup()
-                                .addGroup(listaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(dataInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(dataFim, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(listaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel14)
-                                    .addComponent(jLabel13)))
-                            .addComponent(buscaVendasBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(listaVendaPnlLayout.createSequentialGroup()
+                                        .addGroup(listaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(dataInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(dataFim, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(listaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel14)
+                                            .addComponent(jLabel13)))
+                                    .addComponent(buscaVendasBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(18, 18, 18)
-                        .addComponent(listaVendasScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 774, Short.MAX_VALUE)))
+                        .addComponent(listaVendasScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 818, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         listaVendaPnlLayout.setVerticalGroup(
@@ -521,7 +544,12 @@ public class CardLayoutFrame extends javax.swing.JFrame {
                             .addComponent(dataFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(buscaVendasBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(listaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(deleteVendaBtn)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, listaVendaPnlLayout.createSequentialGroup()
+                                .addComponent(labelcondicional)
+                                .addGap(26, 26, 26))))
                     .addComponent(listaVendasScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 648, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -771,7 +799,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
                                 .addComponent(caldoVerdeSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(caldoVerdeLabel)))
-                        .addGap(0, 491, Short.MAX_VALUE))
+                        .addGap(0, 526, Short.MAX_VALUE))
                     .addGroup(novaVendaPnlLayout.createSequentialGroup()
                         .addGroup(novaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(novaVendaBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
@@ -1196,9 +1224,29 @@ public class CardLayoutFrame extends javax.swing.JFrame {
                     }
                     modelo.addRow(new Object[]{sdf.format(venda.getDataVenda().getTime()),
                         venda.getCliente().getNome() + " (" + venda.getCliente().getEndereco() + ")",
-                        caldinhos, adicionais, "R$" + valor
+                        caldinhos, adicionais, "R$" + valor, venda.getVenda_id()
 
                     });
+                }
+            }
+        labelcondicional.setVisible(false);
+        deleteVendaBtn.setVisible(false);
+        }
+    };
+    
+    private final Action deleteVendaAction = new AbstractAction() {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (tabelaVendas.getSelectedRow() != -1){
+                EntityManager em = FonteDados.createEntityManager();
+                VendaDaoImpl vdao = new VendaDaoImpl(em);
+                switch(JOptionPane.showConfirmDialog(paiPanel, "TEM CERTEZA QUE DESEJA DELETAR ESTA VENDA?", "DELETA VENDA", JOptionPane.YES_NO_OPTION,JOptionPane.PLAIN_MESSAGE)){
+                    case 0:
+                        vdao.deleteVenda(Integer.parseInt(String.valueOf(tabelaVendas.getModel().getValueAt(tabelaVendas.getSelectedRow(), 5))));
+                        break;
+                    default:
+                        break;
                 }
             }
         }
@@ -1490,6 +1538,11 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         editClienteBtn.setVisible(true);
     }//GEN-LAST:event_tabelaClientesFocusGained
 
+    private void tabelaVendasFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tabelaVendasFocusGained
+        labelcondicional.setVisible(true);
+        deleteVendaBtn.setVisible(true);
+    }//GEN-LAST:event_tabelaVendasFocusGained
+
     /**
      * @param args the command line arguments
      */
@@ -1556,6 +1609,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
     private javax.swing.JPanel clientesPnl;
     private org.jdesktop.swingx.JXDatePicker dataFim;
     private org.jdesktop.swingx.JXDatePicker dataInicio;
+    private javax.swing.JButton deleteVendaBtn;
     private org.jdesktop.swingx.JXDatePicker diaVendaDatePicker;
     private javax.swing.JButton editClienteBtn;
     private javax.persistence.EntityManager em;
@@ -1591,6 +1645,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JLabel labelcondicional;
     private javax.swing.JLabel labelcondicional1;
     private javax.swing.JLabel labelcondicional2;
     private javax.swing.JComboBox listaClientecomboBox;

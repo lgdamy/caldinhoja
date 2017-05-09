@@ -29,7 +29,7 @@ public class VendaDaoImpl implements VendaDAO{
 
     @Override
     public Venda getVenda(int id) {
-        return fetchVendas().get(id);
+        return em.createQuery("SELECT v FROM Venda v WHERE v.venda_id = :id",Venda.class).setParameter("id", id).getSingleResult();
     }
 
     @Override
