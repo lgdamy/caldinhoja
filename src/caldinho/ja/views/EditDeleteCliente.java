@@ -8,14 +8,7 @@ package caldinho.ja.views;
 import caldinho.ja.dao.ClienteDAOImpl;
 import caldinho.ja.dao.FonteDados;
 import caldinho.ja.escopo.Cliente;
-import java.awt.Window;
-import java.awt.event.ActionEvent;
 import javax.persistence.EntityManager;
-import javax.swing.AbstractAction;
-import javax.swing.Action;
-import javax.swing.JInternalFrame;
-import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
 
 /**
  *
@@ -34,8 +27,8 @@ public class EditDeleteCliente extends javax.swing.JPanel {
 
         Cliente cliente = cdao.getCliente(ID);
         idField.setText(String.valueOf(cliente.getCliente_id()));
-        nomeTextField.setText(cliente.getNome());
-        enderecoTextField.setText(cliente.getEndereco());
+        nomeField.setText(cliente.getNome());
+        enderecoField.setText(cliente.getEndereco());
         apartamentoField.setText(cliente.getApartamento());
         telefoneField.setText(String.valueOf(cliente.getDdd()) + String.valueOf(cliente.getTelefone()));
         
@@ -52,16 +45,14 @@ public class EditDeleteCliente extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        nomeTextField = new javax.swing.JTextField();
-        enderecoTextField = new javax.swing.JTextField();
+        nomeField = new javax.swing.JTextField();
+        enderecoField = new javax.swing.JTextField();
         apartamentoField = new javax.swing.JTextField();
         telefoneField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        alteraClienteBtn = new javax.swing.JButton();
-        deleteClienteBtn = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         idField = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -73,20 +64,6 @@ public class EditDeleteCliente extends javax.swing.JPanel {
         jLabel3.setText("Apartamento");
 
         jLabel4.setText("Telefone");
-
-        alteraClienteBtn.setText("Alterar");
-        alteraClienteBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                alteraClienteBtnActionPerformed(evt);
-            }
-        });
-
-        deleteClienteBtn.setText("Remover");
-        deleteClienteBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteClienteBtnActionPerformed(evt);
-            }
-        });
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
@@ -101,12 +78,9 @@ public class EditDeleteCliente extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(alteraClienteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(198, 198, 198)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(deleteClienteBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE))
+                        .addGap(0, 186, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,8 +90,8 @@ public class EditDeleteCliente extends javax.swing.JPanel {
                             .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nomeTextField)
-                            .addComponent(enderecoTextField)
+                            .addComponent(nomeField)
+                            .addComponent(enderecoField)
                             .addComponent(apartamentoField)
                             .addComponent(telefoneField)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -136,11 +110,11 @@ public class EditDeleteCliente extends javax.swing.JPanel {
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nomeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nomeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(enderecoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(enderecoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -151,59 +125,15 @@ public class EditDeleteCliente extends javax.swing.JPanel {
                     .addComponent(telefoneField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(alteraClienteBtn, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(deleteClienteBtn)
-                    .addComponent(jSeparator1))
+                .addComponent(jSeparator1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void alteraClienteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alteraClienteBtnActionPerformed
-        Cliente cliente = cdao.getCliente(Integer.parseInt(idField.getText()));
-        cliente.setNome(nomeTextField.getText().toUpperCase());
-        if (enderecoTextField.getText().isEmpty()) {
-            cliente.setEndereco("CLIENTE INTERNO");
-            cliente.setInterno(true);
-        } else {
-            cliente.setEndereco(enderecoTextField.getText().toUpperCase());
-            cliente.setInterno(false);
-        }
-        cliente.setApartamento(apartamentoField.getText().toUpperCase());
-        if (telefoneField.getText().length() >= 10) {
-            cliente.setDdd(Integer.parseInt(telefoneField.getText().substring(0, 2)));
-            cliente.setTelefone(Integer.parseInt(telefoneField.getText().substring(2)));
-        } else {
-            cliente.setDdd(11);
-            cliente.setTelefone(Integer.parseInt(telefoneField.getText()));
-        }
-        ClienteDAOImpl clienteDAO = new ClienteDAOImpl(em);
-        clienteDAO.atualizaCliente(cliente);
-        Window w = SwingUtilities.getWindowAncestor(telefoneField);
-        JOptionPane.showMessageDialog(w, "CLIENTE ALTERADO");
-        w.dispose();
-        
-        
-        
-    }//GEN-LAST:event_alteraClienteBtnActionPerformed
-
-    private void deleteClienteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteClienteBtnActionPerformed
-        Window w = SwingUtilities.getWindowAncestor(idField);
-        JOptionPane.showConfirmDialog(w, "TEM CERTEZA QUE QUER APAGAR O CLIENTE?","CONFIRMAR", JOptionPane.ERROR_MESSAGE);
-        try{
-        cdao.deleteCliente(Integer.parseInt(idField.getText()));
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(w, "IMPOSSÍVEL EXCLUIR UM CLIENTE QUE JA CONCLUÍU UMA VENDA","OPERAÇÃO NEGADA",JOptionPane.ERROR_MESSAGE);
-        }
-        w.dispose();
-    }//GEN-LAST:event_deleteClienteBtnActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton alteraClienteBtn;
     private javax.swing.JTextField apartamentoField;
-    private javax.swing.JButton deleteClienteBtn;
-    private javax.swing.JTextField enderecoTextField;
+    private javax.swing.JTextField enderecoField;
     private javax.swing.JTextField idField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -211,7 +141,49 @@ public class EditDeleteCliente extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField nomeTextField;
+    private javax.swing.JTextField nomeField;
     private javax.swing.JTextField telefoneField;
     // End of variables declaration//GEN-END:variables
+
+    public String getApartamentoField() {
+        return apartamentoField.getText();
+    }
+
+    public void setApartamentoField(String apartamentoField) {
+        this.apartamentoField.setText(apartamentoField);
+    }
+
+    public String getEnderecoField() {
+        return enderecoField.getText();
+    }
+
+    public void setEnderecoField(String enderecoField) {
+        this.enderecoField.setText(enderecoField);
+    }
+
+    public String getIdField() {
+        return idField.getText();
+    }
+
+    public void setIdField(String idField) {
+        this.idField.setText(idField);
+    }
+
+    public String getNomeField() {
+        return nomeField.getText();
+    }
+
+    public void setNomeField(String nomeField) {
+        this.nomeField.setText(nomeField);
+    }
+
+    public String getTelefoneField() {
+        return telefoneField.getText();
+    }
+
+    public void setTelefoneField(String telefoneField) {
+        this.telefoneField.setText(telefoneField);
+    }
+
+    
 }

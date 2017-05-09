@@ -183,7 +183,7 @@
                               <Component id="jSeparator2" alignment="0" max="32767" attributes="0"/>
                               <Component id="novoBtn" alignment="0" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace pref="13" max="32767" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="labelcondicional2" alignment="1" min="-2" max="-2" attributes="0"/>
                                       <Component id="labelcondicional1" alignment="1" min="-2" max="-2" attributes="0"/>

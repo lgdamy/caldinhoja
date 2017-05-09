@@ -1073,7 +1073,6 @@ public class CardLayoutFrame extends javax.swing.JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            EntityManager em = FonteDados.createEntityManager();
             switch (JOptionPane.showConfirmDialog(paiPanel, "CONFIRMA ADIÇÃO DO CLIENTE?", "CONFIRMAÇÃO", JOptionPane.YES_NO_OPTION)) {
                 case 0:
                     try {
@@ -1115,7 +1114,6 @@ public class CardLayoutFrame extends javax.swing.JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            EntityManager em = FonteDados.createEntityManager();
             int valor = 10 * (caldoVerdeSlider.getValue() + mandioquinhaSlider.getValue() + aboboraSlider.getValue() + palmitoSlider.getValue() + feijaoSlider.getValue() + canjaSlider.getValue() + ervilhaSlider.getValue());
             valor += 2 * (torradaSlider.getValue() + queijoSlider.getValue() + baconSlider.getValue() + cebolinhaSlider.getValue());
             try {
@@ -1146,7 +1144,6 @@ public class CardLayoutFrame extends javax.swing.JFrame {
     private final Action buscaClientesVendasAction = new AbstractAction() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            EntityManager em = FonteDados.createEntityManager();
             ClienteDAOImpl clienteDAO = new ClienteDAOImpl(em);
             listaClientecomboBox.removeAllItems();
             List<Cliente> listaClientes;
@@ -1157,6 +1154,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
             }
 
             for (Cliente listaCliente : listaClientes) {
+                em.refresh(listaCliente);
                 listaClientecomboBox.addItem(listaCliente);
             }
         }
@@ -1165,7 +1163,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            EntityManager em = FonteDados.createEntityManager();
+
             VendaDaoImpl vendaDAO = new VendaDaoImpl(em);
 
             if (dataInicio.getDate() == null || dataFim.getDate() == null) {
@@ -1180,6 +1178,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
 
                 SimpleDateFormat sdf = new SimpleDateFormat("EEE - dd/MM/YYYY");
                 for (Venda venda : vendaDAO.fetchVendas(inicio, fim)) {
+                    em.refresh(venda);
                     String caldinhos = "";
                     String adicionais = "";
                     int valor = 0;
@@ -1229,21 +1228,22 @@ public class CardLayoutFrame extends javax.swing.JFrame {
                     });
                 }
             }
-        labelcondicional.setVisible(false);
-        deleteVendaBtn.setVisible(false);
+            labelcondicional.setVisible(false);
+            deleteVendaBtn.setVisible(false);
         }
     };
-    
+
     private final Action deleteVendaAction = new AbstractAction() {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (tabelaVendas.getSelectedRow() != -1){
+            if (tabelaVendas.getSelectedRow() != -1) {
                 EntityManager em = FonteDados.createEntityManager();
                 VendaDaoImpl vdao = new VendaDaoImpl(em);
-                switch(JOptionPane.showConfirmDialog(paiPanel, "TEM CERTEZA QUE DESEJA DELETAR ESTA VENDA?", "DELETA VENDA", JOptionPane.YES_NO_OPTION,JOptionPane.PLAIN_MESSAGE)){
+                switch (JOptionPane.showConfirmDialog(paiPanel, "TEM CERTEZA QUE DESEJA DELETAR ESTA VENDA?", "DELETA VENDA", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE)) {
                     case 0:
                         vdao.deleteVenda(Integer.parseInt(String.valueOf(tabelaVendas.getModel().getValueAt(tabelaVendas.getSelectedRow(), 5))));
+                        buscaVendasAction.actionPerformed(e);
                         break;
                     default:
                         break;
@@ -1257,13 +1257,13 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
 
-            EntityManager em = FonteDados.createEntityManager();
+            //em = FonteDados.createEntityManager();
             ClienteDAOImpl clienteDAO = new ClienteDAOImpl(em);
-
             DefaultTableModel modelo = (DefaultTableModel) tabelaClientes.getModel();
             modelo.setRowCount(0);
             if (buscaField.getText().isEmpty()) {
                 for (Cliente cliente : clienteDAO.fetchClientes()) {
+                    em.refresh(cliente);
                     modelo.addRow(new Object[]{cliente.getNome(),
                         cliente.getEndereco(), cliente.getApartamento(),
                         "(" + cliente.getDdd() + ") " + cliente.getTelefone(),
@@ -1271,6 +1271,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
                 }
             } else {
                 for (Cliente cliente : clienteDAO.fetchClientes(buscaField.getText())) {
+                    em.refresh(cliente);
                     modelo.addRow(new Object[]{cliente.getNome(),
                         cliente.getEndereco(), cliente.getApartamento(),
                         "(" + cliente.getDdd() + ") " + cliente.getTelefone(),
@@ -1290,7 +1291,50 @@ public class CardLayoutFrame extends javax.swing.JFrame {
             //numero do cliente:
             if (tabelaClientes.getSelectedRow() != -1) {
                 int id = Integer.parseInt(String.valueOf(tabelaClientes.getModel().getValueAt(tabelaClientes.getSelectedRow(), 4)));
-                JOptionPane.showOptionDialog(paiPanel, new EditDeleteCliente(id), "ALTERAR/REMOVER CLIENTE", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, new Object[]{}, null);
+                ClienteDAOImpl clienteDAO = new ClienteDAOImpl(em);
+                Cliente cliente = clienteDAO.getCliente(id);
+                //POPULAR JFRAME
+                EditDeleteCliente editDeleteCliente = new EditDeleteCliente(id);
+                editDeleteCliente.setIdField(String.valueOf(id));
+                editDeleteCliente.setNomeField(cliente.getNome());
+                editDeleteCliente.setEnderecoField(cliente.getEndereco());
+                editDeleteCliente.setApartamentoField(cliente.getApartamento());
+                editDeleteCliente.setTelefoneField(String.valueOf(cliente.getDdd()) + String.valueOf(cliente.getTelefone()));
+                int dec = JOptionPane.showOptionDialog(paiPanel, editDeleteCliente, "ALTERAR/REMOVER CLIENTE", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, new Object[]{"ALTERAR", "REMOVER"}, null);
+                switch (dec) {
+                    case 0:
+                        cliente.setNome(editDeleteCliente.getNomeField().toUpperCase());
+                        if (editDeleteCliente.getEnderecoField().isEmpty()) {
+                            cliente.setEndereco("CLIENTE INTERNO");
+                            cliente.setInterno(true);
+                        } else {
+                            cliente.setEndereco(editDeleteCliente.getEnderecoField().toUpperCase());
+                            cliente.setInterno(false);
+                        }
+                        cliente.setApartamento(editDeleteCliente.getApartamentoField().toUpperCase());
+                        if (editDeleteCliente.getTelefoneField().length() >= 10) {
+                            cliente.setDdd(Integer.parseInt(editDeleteCliente.getTelefoneField().substring(0, 2)));
+                            cliente.setTelefone(Integer.parseInt(editDeleteCliente.getTelefoneField().substring(2)));
+                        } else {
+                            cliente.setDdd(11);
+                            cliente.setTelefone(Integer.parseInt(editDeleteCliente.getTelefoneField()));
+                        }
+                        clienteDAO.atualizaCliente(cliente);
+                        JOptionPane.showMessageDialog(paiPanel, cliente.getNome() + "ALTERADO COM SUCESSO!", "SUCESSO", JOptionPane.PLAIN_MESSAGE);
+                        break;
+                    case 1:
+                        if (JOptionPane.showConfirmDialog(paiPanel, "TEM CERTEZA QUE DESEIJA REMOVER " + cliente.getNome() + "?", "CONFIRMAÇÃO", JOptionPane.YES_NO_OPTION) == 0) {
+                            try {
+                                clienteDAO.deleteCliente(id);
+                            } catch (Exception exc) {
+                                JOptionPane.showMessageDialog(paiPanel, "IMPOSSÍVEL EXCLUIR UM CLIENTE QUE JA CONCLUÍU UMA VENDA", "OPERAÇÃO NEGADA", JOptionPane.ERROR_MESSAGE);
+                            }
+                        }
+                        break;
+                    default:
+                        break;
+                }
+                buscaClientesAction.actionPerformed(e);
             }
         }
     };

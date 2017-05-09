@@ -19,12 +19,9 @@
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="alteraClienteBtn" min="-2" pref="168" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="198" max="-2" attributes="0"/>
                       <Component id="jSeparator1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="deleteClienteBtn" pref="168" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="186" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
@@ -37,8 +34,8 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="nomeTextField" max="32767" attributes="0"/>
-                          <Component id="enderecoTextField" max="32767" attributes="0"/>
+                          <Component id="nomeField" max="32767" attributes="0"/>
+                          <Component id="enderecoField" max="32767" attributes="0"/>
                           <Component id="apartamentoField" alignment="0" max="32767" attributes="0"/>
                           <Component id="telefoneField" alignment="0" max="32767" attributes="0"/>
                       </Group>
@@ -64,12 +61,12 @@
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="nomeTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="nomeField" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="enderecoTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="enderecoField" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -83,20 +80,16 @@
                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="alteraClienteBtn" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="deleteClienteBtn" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jSeparator1" alignment="0" max="32767" attributes="0"/>
-              </Group>
+              <Component id="jSeparator1" max="32767" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JTextField" name="nomeTextField">
+    <Component class="javax.swing.JTextField" name="nomeField">
     </Component>
-    <Component class="javax.swing.JTextField" name="enderecoTextField">
+    <Component class="javax.swing.JTextField" name="enderecoField">
     </Component>
     <Component class="javax.swing.JTextField" name="apartamentoField">
     </Component>
@@ -121,22 +114,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Telefone"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="alteraClienteBtn">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Alterar"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="alteraClienteBtnActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="deleteClienteBtn">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Remover"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteClienteBtnActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JSeparator" name="jSeparator1">
       <Properties>
