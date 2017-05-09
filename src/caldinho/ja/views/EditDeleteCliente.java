@@ -8,10 +8,14 @@ package caldinho.ja.views;
 import caldinho.ja.dao.ClienteDAOImpl;
 import caldinho.ja.dao.FonteDados;
 import caldinho.ja.escopo.Cliente;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import javax.persistence.EntityManager;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
+import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -34,6 +38,8 @@ public class EditDeleteCliente extends javax.swing.JPanel {
         enderecoTextField.setText(cliente.getEndereco());
         apartamentoField.setText(cliente.getApartamento());
         telefoneField.setText(String.valueOf(cliente.getDdd()) + String.valueOf(cliente.getTelefone()));
+        
+        
 
     }
 
@@ -58,6 +64,7 @@ public class EditDeleteCliente extends javax.swing.JPanel {
         deleteClienteBtn = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         idField = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
 
         jLabel1.setText("Nome");
 
@@ -75,10 +82,17 @@ public class EditDeleteCliente extends javax.swing.JPanel {
         });
 
         deleteClienteBtn.setText("Remover");
+        deleteClienteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteClienteBtnActionPerformed(evt);
+            }
+        });
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
         idField.setEnabled(false);
+
+        jLabel5.setText("ID#");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -87,12 +101,12 @@ public class EditDeleteCliente extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(85, Short.MAX_VALUE)
-                        .addComponent(alteraClienteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap()
+                        .addComponent(alteraClienteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(deleteClienteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(deleteClienteBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,14 +122,19 @@ public class EditDeleteCliente extends javax.swing.JPanel {
                             .addComponent(telefoneField)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(idField, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(idField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(idField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(3, 3, 3)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(idField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nomeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
@@ -160,7 +179,24 @@ public class EditDeleteCliente extends javax.swing.JPanel {
         }
         ClienteDAOImpl clienteDAO = new ClienteDAOImpl(em);
         clienteDAO.atualizaCliente(cliente);
+        Window w = SwingUtilities.getWindowAncestor(telefoneField);
+        JOptionPane.showMessageDialog(w, "CLIENTE ALTERADO");
+        w.dispose();
+        
+        
+        
     }//GEN-LAST:event_alteraClienteBtnActionPerformed
+
+    private void deleteClienteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteClienteBtnActionPerformed
+        Window w = SwingUtilities.getWindowAncestor(idField);
+        JOptionPane.showConfirmDialog(w, "TEM CERTEZA QUE QUER APAGAR O CLIENTE?","CONFIRMAR", JOptionPane.ERROR_MESSAGE);
+        try{
+        cdao.deleteCliente(Integer.parseInt(idField.getText()));
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(w, "IMPOSSÍVEL EXCLUIR UM CLIENTE QUE JA CONCLUÍU UMA VENDA","OPERAÇÃO NEGADA",JOptionPane.ERROR_MESSAGE);
+        }
+        w.dispose();
+    }//GEN-LAST:event_deleteClienteBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -173,6 +209,7 @@ public class EditDeleteCliente extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField nomeTextField;
     private javax.swing.JTextField telefoneField;
