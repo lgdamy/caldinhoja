@@ -42,9 +42,12 @@ public class CardLayoutFrame extends javax.swing.JFrame {
     /**
      * Creates new form CardLayoutFrame
      */
+    private int vrd=0,mnd=0,abb=0,pal=0,fjo=0,can=0,erv=0,tor=0,qjo=0,bac=0,ceb=0;
     public CardLayoutFrame() {
 
         initComponents();
+
+        
         ////FUNCIONAIS
         tabelaClientes.removeColumn(tabelaClientes.getColumnModel().getColumn(4));
         tabelaVendas.removeColumn(tabelaVendas.getColumnModel().getColumn(5));
@@ -53,6 +56,10 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         editClienteBtn.setVisible(false);
         labelcondicional.setVisible(false);
         deleteVendaBtn.setVisible(false);
+        dnABB.setVisible(false);dnBAC.setVisible(false);dnCEB.setVisible(false);
+        dnERV.setVisible(false);dnFJO.setVisible(false);dnGAL.setVisible(false);
+        dnMND.setVisible(false);dnPAL.setVisible(false);dnQJO.setVisible(false);
+        dnTOR.setVisible(false);dnVRD.setVisible(false);
         ////FUNCIONAIS
 
         //AÇÕES
@@ -74,6 +81,9 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         buscaVendasBtn.addActionListener(buscaVendasAction);
         ////DELETE VENDA
         deleteVendaBtn.addActionListener(deleteVendaAction);
+        ////BOTOES DE CUSTOMIZAÇÃO DA VENDA
+        upABB.addActionListener(atualizaValorAction);upBAC.addActionListener(atualizaValorAction);upCEB.addActionListener(atualizaValorAction);upERV.addActionListener(atualizaValorAction);upFJO.addActionListener(atualizaValorAction);upGAL.addActionListener(atualizaValorAction);upMND.addActionListener(atualizaValorAction);upPAL.addActionListener(atualizaValorAction);upQJO.addActionListener(atualizaValorAction);upTOR.addActionListener(atualizaValorAction);upVRD.addActionListener(atualizaValorAction);
+        dnABB.addActionListener(atualizaValorAction);dnBAC.addActionListener(atualizaValorAction);dnCEB.addActionListener(atualizaValorAction);dnERV.addActionListener(atualizaValorAction);dnFJO.addActionListener(atualizaValorAction);dnGAL.addActionListener(atualizaValorAction);dnMND.addActionListener(atualizaValorAction);dnPAL.addActionListener(atualizaValorAction);dnQJO.addActionListener(atualizaValorAction);dnTOR.addActionListener(atualizaValorAction);dnVRD.addActionListener(atualizaValorAction);
 
     }
     public String cardname = "index";
@@ -138,13 +148,6 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         novaVendaBtn = new javax.swing.JButton();
         listaVendasBtn = new javax.swing.JButton();
-        caldoVerdeSlider = new javax.swing.JSlider();
-        mandioquinhaSlider = new javax.swing.JSlider();
-        aboboraSlider = new javax.swing.JSlider();
-        palmitoSlider = new javax.swing.JSlider();
-        feijaoSlider = new javax.swing.JSlider();
-        ervilhaSlider = new javax.swing.JSlider();
-        canjaSlider = new javax.swing.JSlider();
         caldoVerdeLabel = new javax.swing.JLabel();
         mandioquinhaLabel = new javax.swing.JLabel();
         aboboraLabel = new javax.swing.JLabel();
@@ -153,10 +156,6 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         canjaLabel = new javax.swing.JLabel();
         ervilhaLabel = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        torradaSlider = new javax.swing.JSlider();
-        baconSlider = new javax.swing.JSlider();
-        cebolinhaSlider = new javax.swing.JSlider();
-        queijoSlider = new javax.swing.JSlider();
         torradinhaLabel = new javax.swing.JLabel();
         baconLabel = new javax.swing.JLabel();
         cebolinhaLabel = new javax.swing.JLabel();
@@ -165,6 +164,29 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         buscaClienteVendaField = new javax.swing.JTextField();
         buscaClienteVendaBtn = new javax.swing.JButton();
         diaVendaDatePicker = new org.jdesktop.swingx.JXDatePicker();
+        upVRD = new javax.swing.JButton();
+        dnVRD = new javax.swing.JButton();
+        upMND = new javax.swing.JButton();
+        dnMND = new javax.swing.JButton();
+        dnABB = new javax.swing.JButton();
+        dnPAL = new javax.swing.JButton();
+        dnFJO = new javax.swing.JButton();
+        dnGAL = new javax.swing.JButton();
+        dnERV = new javax.swing.JButton();
+        upABB = new javax.swing.JButton();
+        upPAL = new javax.swing.JButton();
+        upFJO = new javax.swing.JButton();
+        upGAL = new javax.swing.JButton();
+        upERV = new javax.swing.JButton();
+        upTOR = new javax.swing.JButton();
+        upBAC = new javax.swing.JButton();
+        upCEB = new javax.swing.JButton();
+        upQJO = new javax.swing.JButton();
+        dnTOR = new javax.swing.JButton();
+        dnBAC = new javax.swing.JButton();
+        dnCEB = new javax.swing.JButton();
+        dnQJO = new javax.swing.JButton();
+        valorField = new javax.swing.JLabel();
         receitasPnl = new javax.swing.JPanel();
         receitasCardsPnl = new javax.swing.JPanel();
         receitasPnlCaldoVerde = new javax.swing.JPanel();
@@ -200,7 +222,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
             indexPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(indexPnlLayout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1002, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 14, Short.MAX_VALUE))
+                .addGap(0, 4, Short.MAX_VALUE))
         );
         indexPnlLayout.setVerticalGroup(
             indexPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,7 +243,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
             estoquePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(estoquePnlLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 992, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 986, Short.MAX_VALUE)
                 .addContainerGap())
         );
         estoquePnlLayout.setVerticalGroup(
@@ -414,7 +436,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
                         .addGroup(novoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel16)
                             .addComponent(canNvCliBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(305, Short.MAX_VALUE))
+                .addContainerGap(308, Short.MAX_VALUE))
         );
         novoLayout.setVerticalGroup(
             novoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -591,169 +613,37 @@ public class CardLayoutFrame extends javax.swing.JFrame {
             }
         });
 
-        caldoVerdeSlider.setMaximum(5);
-        caldoVerdeSlider.setMinorTickSpacing(1);
-        caldoVerdeSlider.setPaintTicks(true);
-        caldoVerdeSlider.setSnapToTicks(true);
-        caldoVerdeSlider.setToolTipText("");
-        caldoVerdeSlider.setValue(0);
-        caldoVerdeSlider.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                caldoVerdeSliderStateChanged(evt);
-            }
-        });
-
-        mandioquinhaSlider.setMaximum(5);
-        mandioquinhaSlider.setMinorTickSpacing(1);
-        mandioquinhaSlider.setPaintTicks(true);
-        mandioquinhaSlider.setSnapToTicks(true);
-        mandioquinhaSlider.setToolTipText("");
-        mandioquinhaSlider.setValue(0);
-        mandioquinhaSlider.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                mandioquinhaSliderStateChanged(evt);
-            }
-        });
-
-        aboboraSlider.setMaximum(5);
-        aboboraSlider.setMinorTickSpacing(1);
-        aboboraSlider.setPaintTicks(true);
-        aboboraSlider.setSnapToTicks(true);
-        aboboraSlider.setToolTipText("");
-        aboboraSlider.setValue(0);
-        aboboraSlider.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                aboboraSliderStateChanged(evt);
-            }
-        });
-
-        palmitoSlider.setMaximum(5);
-        palmitoSlider.setMinorTickSpacing(1);
-        palmitoSlider.setPaintTicks(true);
-        palmitoSlider.setSnapToTicks(true);
-        palmitoSlider.setToolTipText("");
-        palmitoSlider.setValue(0);
-        palmitoSlider.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                palmitoSliderStateChanged(evt);
-            }
-        });
-
-        feijaoSlider.setMaximum(5);
-        feijaoSlider.setMinorTickSpacing(1);
-        feijaoSlider.setPaintTicks(true);
-        feijaoSlider.setSnapToTicks(true);
-        feijaoSlider.setToolTipText("");
-        feijaoSlider.setValue(0);
-        feijaoSlider.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                feijaoSliderStateChanged(evt);
-            }
-        });
-
-        ervilhaSlider.setMaximum(5);
-        ervilhaSlider.setMinorTickSpacing(1);
-        ervilhaSlider.setPaintTicks(true);
-        ervilhaSlider.setSnapToTicks(true);
-        ervilhaSlider.setToolTipText("");
-        ervilhaSlider.setValue(0);
-        ervilhaSlider.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                ervilhaSliderStateChanged(evt);
-            }
-        });
-
-        canjaSlider.setMaximum(5);
-        canjaSlider.setMinorTickSpacing(1);
-        canjaSlider.setPaintTicks(true);
-        canjaSlider.setSnapToTicks(true);
-        canjaSlider.setToolTipText("");
-        canjaSlider.setValue(0);
-        canjaSlider.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                canjaSliderStateChanged(evt);
-            }
-        });
-
-        caldoVerdeLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        caldoVerdeLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         caldoVerdeLabel.setText("0 Caldos Verdes");
 
-        mandioquinhaLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        mandioquinhaLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         mandioquinhaLabel.setText("0 Mandioquinhas com Alho Poró");
 
-        aboboraLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        aboboraLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         aboboraLabel.setText("0 Abóboras com Carne");
 
-        palmitoLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        palmitoLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         palmitoLabel.setText("0 Caldos de Palmito");
 
-        feijaoLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        feijaoLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         feijaoLabel.setText("0 Caldinhos de Feijão");
 
-        canjaLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        canjaLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         canjaLabel.setText("0 Canjas de Galinha");
 
-        ervilhaLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        ervilhaLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         ervilhaLabel.setText("0 Caldos de Ervilha");
 
-        torradaSlider.setMaximum(5);
-        torradaSlider.setMinorTickSpacing(1);
-        torradaSlider.setPaintTicks(true);
-        torradaSlider.setSnapToTicks(true);
-        torradaSlider.setToolTipText("");
-        torradaSlider.setValue(0);
-        torradaSlider.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                torradaSliderStateChanged(evt);
-            }
-        });
-
-        baconSlider.setMaximum(5);
-        baconSlider.setMinorTickSpacing(1);
-        baconSlider.setPaintTicks(true);
-        baconSlider.setSnapToTicks(true);
-        baconSlider.setToolTipText("");
-        baconSlider.setValue(0);
-        baconSlider.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                baconSliderStateChanged(evt);
-            }
-        });
-
-        cebolinhaSlider.setMaximum(5);
-        cebolinhaSlider.setMinorTickSpacing(1);
-        cebolinhaSlider.setPaintTicks(true);
-        cebolinhaSlider.setSnapToTicks(true);
-        cebolinhaSlider.setToolTipText("");
-        cebolinhaSlider.setValue(0);
-        cebolinhaSlider.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                cebolinhaSliderStateChanged(evt);
-            }
-        });
-
-        queijoSlider.setMaximum(5);
-        queijoSlider.setMinorTickSpacing(1);
-        queijoSlider.setPaintTicks(true);
-        queijoSlider.setSnapToTicks(true);
-        queijoSlider.setToolTipText("");
-        queijoSlider.setValue(0);
-        queijoSlider.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                queijoSliderStateChanged(evt);
-            }
-        });
-
-        torradinhaLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        torradinhaLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         torradinhaLabel.setText("0 Torradinhas");
 
-        baconLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        baconLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         baconLabel.setText("0 Bacons");
 
-        cebolinhaLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        cebolinhaLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         cebolinhaLabel.setText("0 Cebolinhas");
 
-        queijoLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        queijoLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         queijoLabel.setText("0 Queijos Ralados");
 
         listaClientecomboBox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -761,6 +651,163 @@ public class CardLayoutFrame extends javax.swing.JFrame {
 
         buscaClienteVendaBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         buscaClienteVendaBtn.setText("BUSCA");
+
+        upVRD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/caldinho/ja/images/up_arrow.png"))); // NOI18N
+        upVRD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                upVRDActionPerformed(evt);
+            }
+        });
+
+        dnVRD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/caldinho/ja/images/dn_arrow.png"))); // NOI18N
+        dnVRD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dnVRDActionPerformed(evt);
+            }
+        });
+
+        upMND.setIcon(new javax.swing.ImageIcon(getClass().getResource("/caldinho/ja/images/up_arrow.png"))); // NOI18N
+        upMND.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                upMNDActionPerformed(evt);
+            }
+        });
+
+        dnMND.setIcon(new javax.swing.ImageIcon(getClass().getResource("/caldinho/ja/images/dn_arrow.png"))); // NOI18N
+        dnMND.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dnMNDActionPerformed(evt);
+            }
+        });
+
+        dnABB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/caldinho/ja/images/dn_arrow.png"))); // NOI18N
+        dnABB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dnABBActionPerformed(evt);
+            }
+        });
+
+        dnPAL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/caldinho/ja/images/dn_arrow.png"))); // NOI18N
+        dnPAL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dnPALActionPerformed(evt);
+            }
+        });
+
+        dnFJO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/caldinho/ja/images/dn_arrow.png"))); // NOI18N
+        dnFJO.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dnFJOActionPerformed(evt);
+            }
+        });
+
+        dnGAL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/caldinho/ja/images/dn_arrow.png"))); // NOI18N
+        dnGAL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dnGALActionPerformed(evt);
+            }
+        });
+
+        dnERV.setIcon(new javax.swing.ImageIcon(getClass().getResource("/caldinho/ja/images/dn_arrow.png"))); // NOI18N
+        dnERV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dnERVActionPerformed(evt);
+            }
+        });
+
+        upABB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/caldinho/ja/images/up_arrow.png"))); // NOI18N
+        upABB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                upABBActionPerformed(evt);
+            }
+        });
+
+        upPAL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/caldinho/ja/images/up_arrow.png"))); // NOI18N
+        upPAL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                upPALActionPerformed(evt);
+            }
+        });
+
+        upFJO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/caldinho/ja/images/up_arrow.png"))); // NOI18N
+        upFJO.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                upFJOActionPerformed(evt);
+            }
+        });
+
+        upGAL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/caldinho/ja/images/up_arrow.png"))); // NOI18N
+        upGAL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                upGALActionPerformed(evt);
+            }
+        });
+
+        upERV.setIcon(new javax.swing.ImageIcon(getClass().getResource("/caldinho/ja/images/up_arrow.png"))); // NOI18N
+        upERV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                upERVActionPerformed(evt);
+            }
+        });
+
+        upTOR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/caldinho/ja/images/up_arrow.png"))); // NOI18N
+        upTOR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                upTORActionPerformed(evt);
+            }
+        });
+
+        upBAC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/caldinho/ja/images/up_arrow.png"))); // NOI18N
+        upBAC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                upBACActionPerformed(evt);
+            }
+        });
+
+        upCEB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/caldinho/ja/images/up_arrow.png"))); // NOI18N
+        upCEB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                upCEBActionPerformed(evt);
+            }
+        });
+
+        upQJO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/caldinho/ja/images/up_arrow.png"))); // NOI18N
+        upQJO.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                upQJOActionPerformed(evt);
+            }
+        });
+
+        dnTOR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/caldinho/ja/images/dn_arrow.png"))); // NOI18N
+        dnTOR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dnTORActionPerformed(evt);
+            }
+        });
+
+        dnBAC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/caldinho/ja/images/dn_arrow.png"))); // NOI18N
+        dnBAC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dnBACActionPerformed(evt);
+            }
+        });
+
+        dnCEB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/caldinho/ja/images/dn_arrow.png"))); // NOI18N
+        dnCEB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dnCEBActionPerformed(evt);
+            }
+        });
+
+        dnQJO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/caldinho/ja/images/dn_arrow.png"))); // NOI18N
+        dnQJO.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dnQJOActionPerformed(evt);
+            }
+        });
+
+        valorField.setFont(new java.awt.Font("Impact", 0, 24)); // NOI18N
+        valorField.setText("VALOR DO PEDIDO: R$0");
 
         javax.swing.GroupLayout novaVendaPnlLayout = new javax.swing.GroupLayout(novaVendaPnl);
         novaVendaPnl.setLayout(novaVendaPnlLayout);
@@ -775,65 +822,87 @@ public class CardLayoutFrame extends javax.swing.JFrame {
                         .addGroup(novaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(listaClientecomboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(novaVendaPnlLayout.createSequentialGroup()
-                                .addComponent(mandioquinhaSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(mandioquinhaLabel)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(novaVendaPnlLayout.createSequentialGroup()
+                                .addGroup(novaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(novaVendaPnlLayout.createSequentialGroup()
+                                        .addComponent(dnVRD, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(upVRD, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(diaVendaDatePicker, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(novaVendaPnlLayout.createSequentialGroup()
+                                        .addComponent(dnMND, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(upMND, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(novaVendaPnlLayout.createSequentialGroup()
+                                        .addComponent(dnABB, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(upABB, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(novaVendaPnlLayout.createSequentialGroup()
+                                        .addComponent(dnPAL, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(upPAL, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(novaVendaPnlLayout.createSequentialGroup()
+                                        .addComponent(dnFJO, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(upFJO, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(novaVendaPnlLayout.createSequentialGroup()
+                                        .addComponent(dnGAL, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(upGAL, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(novaVendaPnlLayout.createSequentialGroup()
+                                        .addComponent(dnERV, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(upERV, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGroup(novaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(novaVendaPnlLayout.createSequentialGroup()
-                                        .addComponent(caldoVerdeSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                                        .addGroup(novaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(novaVendaPnlLayout.createSequentialGroup()
+                                                .addComponent(dnTOR, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(upTOR, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(buscaClienteVendaField, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, novaVendaPnlLayout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(palmitoLabel)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(dnQJO, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(caldoVerdeLabel))
+                                        .addComponent(upQJO, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(novaVendaPnlLayout.createSequentialGroup()
-                                        .addComponent(diaVendaDatePicker, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(buscaClienteVendaField, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(novaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(mandioquinhaLabel)
+                                            .addComponent(caldoVerdeLabel)
+                                            .addComponent(feijaoLabel)
+                                            .addComponent(canjaLabel)
+                                            .addComponent(aboboraLabel)
+                                            .addComponent(ervilhaLabel))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(novaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(dnBAC, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(dnCEB, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(novaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(upBAC, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(upCEB, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(18, 18, 18)
+                                .addGroup(novaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(novaVendaPnlLayout.createSequentialGroup()
+                                        .addComponent(buscaClienteVendaBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(buscaClienteVendaBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)))
-                                .addGap(18, 18, 18)
-                                .addComponent(novaVendaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(listaVendasBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(novaVendaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(listaVendasBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(novaVendaPnlLayout.createSequentialGroup()
+                                        .addGroup(novaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(torradinhaLabel)
+                                            .addComponent(baconLabel)
+                                            .addComponent(cebolinhaLabel)
+                                            .addComponent(queijoLabel))
+                                        .addGap(0, 0, Short.MAX_VALUE)))))
                         .addGap(82, 82, 82))
                     .addGroup(novaVendaPnlLayout.createSequentialGroup()
-                        .addGroup(novaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(novaVendaPnlLayout.createSequentialGroup()
-                                .addComponent(aboboraSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(aboboraLabel))
-                            .addGroup(novaVendaPnlLayout.createSequentialGroup()
-                                .addComponent(ervilhaSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ervilhaLabel))
-                            .addGroup(novaVendaPnlLayout.createSequentialGroup()
-                                .addComponent(torradaSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(torradinhaLabel))
-                            .addGroup(novaVendaPnlLayout.createSequentialGroup()
-                                .addComponent(baconSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(baconLabel))
-                            .addGroup(novaVendaPnlLayout.createSequentialGroup()
-                                .addComponent(cebolinhaSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cebolinhaLabel))
-                            .addGroup(novaVendaPnlLayout.createSequentialGroup()
-                                .addComponent(queijoSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(queijoLabel))
-                            .addGroup(novaVendaPnlLayout.createSequentialGroup()
-                                .addComponent(canjaSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(canjaLabel))
-                            .addGroup(novaVendaPnlLayout.createSequentialGroup()
-                                .addComponent(palmitoSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(palmitoLabel))
-                            .addGroup(novaVendaPnlLayout.createSequentialGroup()
-                                .addComponent(feijaoSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(feijaoLabel)))
+                        .addComponent(valorField)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -845,68 +914,71 @@ public class CardLayoutFrame extends javax.swing.JFrame {
                 .addComponent(listaClientecomboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(novaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(novaVendaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(novaVendaPnlLayout.createSequentialGroup()
                         .addGroup(novaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(novaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(buscaClienteVendaField, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(buscaClienteVendaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(diaVendaDatePicker, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(26, 26, 26)
+                        .addGroup(novaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(torradinhaLabel)
+                            .addComponent(dnVRD, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(upVRD, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(upTOR, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dnTOR, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(caldoVerdeLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(novaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(upMND, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dnMND, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(upBAC, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(baconLabel)
+                            .addComponent(dnBAC, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(mandioquinhaLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(novaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(dnCEB, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dnABB, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(upABB, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(aboboraLabel)
+                            .addComponent(upCEB, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cebolinhaLabel))
                         .addGroup(novaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(novaVendaPnlLayout.createSequentialGroup()
-                                .addGap(32, 32, 32)
-                                .addComponent(caldoVerdeLabel))
+                                .addGap(6, 6, 6)
+                                .addGroup(novaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(upQJO, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(dnQJO, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(queijoLabel)))
                             .addGroup(novaVendaPnlLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(caldoVerdeSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addGap(4, 4, 4)
                                 .addGroup(novaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(mandioquinhaSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(mandioquinhaLabel))
-                                .addGap(18, 18, 18)
+                                    .addComponent(upPAL, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(dnPAL, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(palmitoLabel))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(novaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(aboboraSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(aboboraLabel))
-                                .addGap(18, 18, 18)
+                                    .addComponent(upFJO, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(feijaoLabel)
+                                    .addComponent(dnFJO, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(novaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(novaVendaPnlLayout.createSequentialGroup()
-                                        .addComponent(palmitoSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addGroup(novaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(feijaoSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(feijaoLabel))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(novaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(canjaSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(canjaLabel))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(novaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(ervilhaSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(ervilhaLabel)))
-                                    .addComponent(palmitoLabel)))))
-                    .addGroup(novaVendaPnlLayout.createSequentialGroup()
-                        .addComponent(novaVendaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(novaVendaPnlLayout.createSequentialGroup()
-                        .addComponent(listaVendasBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(upGAL, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(canjaLabel)
+                                    .addComponent(dnGAL, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(novaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(upERV, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(ervilhaLabel)
+                                    .addComponent(dnERV, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addComponent(listaVendasBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(novaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(torradaSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(torradinhaLabel))
-                .addGap(18, 18, 18)
-                .addGroup(novaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(baconSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(baconLabel))
-                .addGap(18, 18, 18)
-                .addGroup(novaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cebolinhaSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cebolinhaLabel))
-                .addGap(18, 18, 18)
-                .addGroup(novaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(queijoSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(queijoLabel))
-                .addContainerGap())
+                .addComponent(valorField)
+                .addContainerGap(296, Short.MAX_VALUE))
         );
 
         diaVendaDatePicker.setDate(Calendar.getInstance().getTime());
@@ -1100,6 +1172,17 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     //IMPLEMENTAÇÕES DAS AÇÕES
+    private final Action atualizaValorAction = new AbstractAction() {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            
+            int valor = 10 * (vrd + mnd + abb + pal + fjo + can + erv);
+            valor += 2 * (tor+ qjo + bac + ceb);
+            
+            valorField.setText("VALOR DO PEDIDO: R$"+String.valueOf(valor));
+        }
+    };
     private final Action novoClienteAction = new AbstractAction() {
 
         @Override
@@ -1145,16 +1228,16 @@ public class CardLayoutFrame extends javax.swing.JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            int valor = 10 * (caldoVerdeSlider.getValue() + mandioquinhaSlider.getValue() + aboboraSlider.getValue() + palmitoSlider.getValue() + feijaoSlider.getValue() + canjaSlider.getValue() + ervilhaSlider.getValue());
-            valor += 2 * (torradaSlider.getValue() + queijoSlider.getValue() + baconSlider.getValue() + cebolinhaSlider.getValue());
+            int valor = 10 * (vrd + mnd + abb + pal + fjo + can + erv);
+            valor += 2 * (tor+ qjo + bac + ceb);
             try {
                 switch (JOptionPane.showConfirmDialog(paiPanel, "CONFIRMA A CONCLUSÃO DE VENDA? R$" + valor, "CONFIRMAÇÃO", JOptionPane.YES_NO_OPTION)) {
                     case 0:
                         Venda venda = new Venda();
                         VendaDaoImpl vdao = new VendaDaoImpl(em);
 
-                        venda.setCaldinhos(new int[]{caldoVerdeSlider.getValue(), mandioquinhaSlider.getValue(), aboboraSlider.getValue(), palmitoSlider.getValue(), feijaoSlider.getValue(), canjaSlider.getValue(), ervilhaSlider.getValue()});
-                        venda.setAdicionais(new int[]{torradaSlider.getValue(), cebolinhaSlider.getValue(), baconSlider.getValue(), queijoSlider.getValue()});
+                        venda.setCaldinhos(new int[]{vrd, mnd, abb, pal, fjo, can, erv});
+                        venda.setAdicionais(new int[]{tor, ceb, bac, qjo});
                         venda.setCliente((Cliente) listaClientecomboBox.getSelectedItem());
                         if (venda.getCliente() == null) {
                             throw new RuntimeException();
@@ -1553,55 +1636,6 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         card.show(clientesPnl, "novo");
     }//GEN-LAST:event_novoBtnActionPerformed
 
-    private void caldoVerdeSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_caldoVerdeSliderStateChanged
-        caldoVerdeLabel.setText(caldoVerdeSlider.getValue() + " Caldos Verdes");
-    }//GEN-LAST:event_caldoVerdeSliderStateChanged
-
-    private void mandioquinhaSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_mandioquinhaSliderStateChanged
-        mandioquinhaLabel.setText(mandioquinhaSlider.getValue() + " Mandioquinhas com Alho Poró");
-    }//GEN-LAST:event_mandioquinhaSliderStateChanged
-
-    private void aboboraSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_aboboraSliderStateChanged
-        aboboraLabel.setText(aboboraSlider.getValue() + " Abóboras com Carne");
-    }//GEN-LAST:event_aboboraSliderStateChanged
-
-    private void palmitoSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_palmitoSliderStateChanged
-        palmitoLabel.setText(palmitoSlider.getValue() + " Caldos de Palmito");
-    }//GEN-LAST:event_palmitoSliderStateChanged
-
-    private void feijaoSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_feijaoSliderStateChanged
-        feijaoLabel.setText(feijaoSlider.getValue() + " Caldinhos de Feijão");
-    }//GEN-LAST:event_feijaoSliderStateChanged
-
-    private void canjaSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_canjaSliderStateChanged
-        canjaLabel.setText(canjaSlider.getValue() + " Canjas de Galinha");
-    }//GEN-LAST:event_canjaSliderStateChanged
-
-    private void ervilhaSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_ervilhaSliderStateChanged
-        ervilhaLabel.setText(ervilhaSlider.getValue() + " Caldos de Ervilha");
-    }//GEN-LAST:event_ervilhaSliderStateChanged
-
-    private void torradaSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_torradaSliderStateChanged
-        torradinhaLabel.setText(torradaSlider.getValue() + " Torradinhas");
-    }//GEN-LAST:event_torradaSliderStateChanged
-
-    private void baconSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_baconSliderStateChanged
-        baconLabel.setText(baconSlider.getValue() + " Bacons");
-    }//GEN-LAST:event_baconSliderStateChanged
-
-    private void cebolinhaSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_cebolinhaSliderStateChanged
-        cebolinhaLabel.setText(cebolinhaSlider.getValue() + " Cebolinhas");
-    }//GEN-LAST:event_cebolinhaSliderStateChanged
-
-    private void queijoSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_queijoSliderStateChanged
-        queijoLabel.setText(queijoSlider.getValue() + " Queijos Ralados");
-    }//GEN-LAST:event_queijoSliderStateChanged
-
-    private void listaVendasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaVendasBtnActionPerformed
-        CardLayout card = (CardLayout) vendasPnl.getLayout();
-        card.show(vendasPnl, "listaVenda");
-    }//GEN-LAST:event_listaVendasBtnActionPerformed
-
     private void iniciarNovaVendaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarNovaVendaBtnActionPerformed
         CardLayout card = (CardLayout) vendasPnl.getLayout();
         card.show(vendasPnl, "novaVenda");
@@ -1617,6 +1651,209 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         labelcondicional.setVisible(true);
         deleteVendaBtn.setVisible(true);
     }//GEN-LAST:event_tabelaVendasFocusGained
+
+    private void dnQJOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dnQJOActionPerformed
+        qjo--;
+        queijoLabel.setText(qjo+" Queijos Ralados");
+        if(qjo==0){
+            dnQJO.setVisible(false);
+        }
+        atualizaValorAction.actionPerformed(evt);
+    }//GEN-LAST:event_dnQJOActionPerformed
+
+    private void dnCEBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dnCEBActionPerformed
+        ceb--;
+        cebolinhaLabel.setText(ceb+" Cebolinhas");
+        if(ceb==0){
+            dnCEB.setVisible(false);
+        }
+        atualizaValorAction.actionPerformed(evt);
+    }//GEN-LAST:event_dnCEBActionPerformed
+
+    private void dnBACActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dnBACActionPerformed
+        bac--;
+        baconLabel.setText(bac+" Bacons");
+        if(bac==0){
+            dnBAC.setVisible(false);
+        }
+        atualizaValorAction.actionPerformed(evt);
+    }//GEN-LAST:event_dnBACActionPerformed
+
+    private void dnTORActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dnTORActionPerformed
+        tor--;
+        torradinhaLabel.setText(tor+" Torradinhas");
+        if(tor==0){
+            dnTOR.setVisible(false);
+        }
+        atualizaValorAction.actionPerformed(evt);
+    }//GEN-LAST:event_dnTORActionPerformed
+
+    private void upQJOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upQJOActionPerformed
+        qjo++;
+        queijoLabel.setText(qjo+" Queijos Ralados");
+        if(!dnQJO.isVisible()){
+            dnQJO.setVisible(true);
+        }
+        atualizaValorAction.actionPerformed(evt);
+    }//GEN-LAST:event_upQJOActionPerformed
+
+    private void upCEBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upCEBActionPerformed
+        ceb++;
+        cebolinhaLabel.setText(ceb+" Cebolinhas");
+        if(!dnCEB.isVisible()){
+            dnCEB.setVisible(true);
+        }
+        atualizaValorAction.actionPerformed(evt);
+    }//GEN-LAST:event_upCEBActionPerformed
+
+    private void upBACActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upBACActionPerformed
+        bac++;
+        baconLabel.setText(bac+" Bacons");
+        if(!dnBAC.isVisible()){
+            dnBAC.setVisible(true);
+        }
+        atualizaValorAction.actionPerformed(evt);
+    }//GEN-LAST:event_upBACActionPerformed
+
+    private void upTORActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upTORActionPerformed
+        tor++;
+        torradinhaLabel.setText(tor+" Torradinhas");
+        if(!dnTOR.isVisible()){
+            dnTOR.setVisible(true);
+        }
+        atualizaValorAction.actionPerformed(evt);
+    }//GEN-LAST:event_upTORActionPerformed
+
+    private void upERVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upERVActionPerformed
+        erv++;
+        ervilhaLabel.setText(erv+" Caldos de Ervilha");
+        if(!dnERV.isVisible()){
+            dnERV.setVisible(true);
+        }
+        atualizaValorAction.actionPerformed(evt);
+    }//GEN-LAST:event_upERVActionPerformed
+
+    private void upGALActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upGALActionPerformed
+        can++;
+        canjaLabel.setText(can+" Canjas de Galinha");
+        if(!dnGAL.isVisible()){
+            dnGAL.setVisible(true);
+        }
+        atualizaValorAction.actionPerformed(evt);
+    }//GEN-LAST:event_upGALActionPerformed
+
+    private void upFJOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upFJOActionPerformed
+        fjo++;
+        feijaoLabel.setText(fjo+" Caldinhos de Feijão");
+        if(!dnFJO.isVisible()){
+            dnFJO.setVisible(true);
+        }
+        atualizaValorAction.actionPerformed(evt);
+    }//GEN-LAST:event_upFJOActionPerformed
+
+    private void upPALActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upPALActionPerformed
+        pal++;
+        palmitoLabel.setText(pal+" Caldos de Palmito");
+        if(!dnPAL.isVisible()){
+            dnPAL.setVisible(true);
+        }
+        atualizaValorAction.actionPerformed(evt);
+    }//GEN-LAST:event_upPALActionPerformed
+
+    private void upABBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upABBActionPerformed
+        abb++;
+        aboboraLabel.setText(abb+" Abóboras com Carne");
+        if(!dnABB.isVisible()){
+            dnABB.setVisible(true);
+        }
+        atualizaValorAction.actionPerformed(evt);
+    }//GEN-LAST:event_upABBActionPerformed
+
+    private void dnERVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dnERVActionPerformed
+        erv--;
+        ervilhaLabel.setText(erv+" Caldos de Ervilha");
+        if(erv==0){
+            dnERV.setVisible(false);
+        }
+        atualizaValorAction.actionPerformed(evt);
+    }//GEN-LAST:event_dnERVActionPerformed
+
+    private void dnGALActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dnGALActionPerformed
+        can--;
+        canjaLabel.setText(can+" Canjas de Galinha");
+        if(can==0){
+            dnGAL.setVisible(false);
+        }
+        atualizaValorAction.actionPerformed(evt);
+    }//GEN-LAST:event_dnGALActionPerformed
+
+    private void dnFJOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dnFJOActionPerformed
+        fjo--;
+        feijaoLabel.setText(fjo+" Caldinhos de Feijão");
+        if(fjo==0){
+            dnFJO.setVisible(false);
+        }
+        atualizaValorAction.actionPerformed(evt);
+    }//GEN-LAST:event_dnFJOActionPerformed
+
+    private void dnPALActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dnPALActionPerformed
+        pal--;
+        palmitoLabel.setText(pal+" Caldos de Palmito");
+        if(pal==0){
+            dnPAL.setVisible(false);
+        }
+        atualizaValorAction.actionPerformed(evt);
+    }//GEN-LAST:event_dnPALActionPerformed
+
+    private void dnABBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dnABBActionPerformed
+        abb--;
+        aboboraLabel.setText(abb+" Abóboras com Carne");
+        if(abb==0){
+            dnABB.setVisible(false);
+        }
+        atualizaValorAction.actionPerformed(evt);
+    }//GEN-LAST:event_dnABBActionPerformed
+
+    private void dnMNDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dnMNDActionPerformed
+        mnd--;
+        mandioquinhaLabel.setText(mnd+ " Mandioquinhas com Alho Poró");
+        if(mnd==0){
+            dnMND.setVisible(false);
+        }
+        atualizaValorAction.actionPerformed(evt);
+    }//GEN-LAST:event_dnMNDActionPerformed
+
+    private void upMNDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upMNDActionPerformed
+        mnd++;
+        mandioquinhaLabel.setText(mnd+" Mandioquinhas com Alho Poró");
+        if(!dnMND.isVisible()){
+            dnMND.setVisible(true);
+        }
+        atualizaValorAction.actionPerformed(evt);
+    }//GEN-LAST:event_upMNDActionPerformed
+
+    private void dnVRDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dnVRDActionPerformed
+        vrd--;
+        caldoVerdeLabel.setText(vrd+ " Caldos Verdes");
+        if(vrd==0){
+            dnVRD.setVisible(false);
+        }
+        atualizaValorAction.actionPerformed(evt);
+    }//GEN-LAST:event_dnVRDActionPerformed
+
+    private void upVRDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upVRDActionPerformed
+        vrd ++;
+        caldoVerdeLabel.setText(vrd+" Caldos Verdes");
+        if(!dnVRD.isVisible()){
+            dnVRD.setVisible(true);
+        }
+        atualizaValorAction.actionPerformed(evt);
+    }//GEN-LAST:event_upVRDActionPerformed
+
+    private void listaVendasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaVendasBtnActionPerformed
+        CardLayout card = (CardLayout) vendasPnl.getLayout();
+        card.show(vendasPnl, "listaVenda");
+    }//GEN-LAST:event_listaVendasBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1664,37 +1901,41 @@ public class CardLayoutFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel aboboraLabel;
-    private javax.swing.JSlider aboboraSlider;
     private java.awt.TextField apartamentoField;
     private javax.swing.JLabel baconLabel;
-    private javax.swing.JSlider baconSlider;
     private javax.swing.JButton buscaBtn;
     private javax.swing.JButton buscaClienteVendaBtn;
     private javax.swing.JTextField buscaClienteVendaField;
     private javax.swing.JTextField buscaField;
     private javax.swing.JButton buscaVendasBtn;
     private javax.swing.JLabel caldoVerdeLabel;
-    private javax.swing.JSlider caldoVerdeSlider;
     private javax.swing.JButton canNvCliBtn;
     private javax.swing.JLabel canjaLabel;
-    private javax.swing.JSlider canjaSlider;
     private javax.swing.JLabel cebolinhaLabel;
-    private javax.swing.JSlider cebolinhaSlider;
     private javax.swing.JButton clientesBtn;
     private javax.swing.JPanel clientesPnl;
     private org.jdesktop.swingx.JXDatePicker dataFim;
     private org.jdesktop.swingx.JXDatePicker dataInicio;
     private javax.swing.JButton deleteVendaBtn;
     private org.jdesktop.swingx.JXDatePicker diaVendaDatePicker;
+    private javax.swing.JButton dnABB;
+    private javax.swing.JButton dnBAC;
+    private javax.swing.JButton dnCEB;
+    private javax.swing.JButton dnERV;
+    private javax.swing.JButton dnFJO;
+    private javax.swing.JButton dnGAL;
+    private javax.swing.JButton dnMND;
+    private javax.swing.JButton dnPAL;
+    private javax.swing.JButton dnQJO;
+    private javax.swing.JButton dnTOR;
+    private javax.swing.JButton dnVRD;
     private javax.swing.JButton editClienteBtn;
     private javax.persistence.EntityManager em;
     private java.awt.TextField enderecoField;
     private javax.swing.JLabel ervilhaLabel;
-    private javax.swing.JSlider ervilhaSlider;
     private javax.swing.JButton estoqueBtn;
     private javax.swing.JPanel estoquePnl;
     private javax.swing.JLabel feijaoLabel;
-    private javax.swing.JSlider feijaoSlider;
     private javax.swing.JLabel fotosCaldos;
     private javax.swing.JPanel indexPnl;
     private javax.swing.JTextPane ingredientesText;
@@ -1730,7 +1971,6 @@ public class CardLayoutFrame extends javax.swing.JFrame {
     private javax.swing.JButton listaVendasBtn;
     private javax.swing.JScrollPane listaVendasScroll;
     private javax.swing.JLabel mandioquinhaLabel;
-    private javax.swing.JSlider mandioquinhaSlider;
     private javax.swing.JLabel nomeCaldo;
     private java.awt.TextField nomeField;
     private javax.swing.JButton novaVendaBtn;
@@ -1740,10 +1980,8 @@ public class CardLayoutFrame extends javax.swing.JFrame {
     private javax.swing.JButton nvCliBtn;
     private javax.swing.JPanel paiPanel;
     private javax.swing.JLabel palmitoLabel;
-    private javax.swing.JSlider palmitoSlider;
     private javax.swing.JTextPane passosText;
     private javax.swing.JLabel queijoLabel;
-    private javax.swing.JSlider queijoSlider;
     private javax.swing.JComboBox receitaComboBox;
     private javax.swing.JButton receitasBtn;
     private javax.swing.JPanel receitasCardsPnl;
@@ -1753,8 +1991,19 @@ public class CardLayoutFrame extends javax.swing.JFrame {
     private javax.swing.JTable tabelaVendas;
     private javax.swing.JPanel table;
     private java.awt.TextField telefoneField;
-    private javax.swing.JSlider torradaSlider;
     private javax.swing.JLabel torradinhaLabel;
+    private javax.swing.JButton upABB;
+    private javax.swing.JButton upBAC;
+    private javax.swing.JButton upCEB;
+    private javax.swing.JButton upERV;
+    private javax.swing.JButton upFJO;
+    private javax.swing.JButton upGAL;
+    private javax.swing.JButton upMND;
+    private javax.swing.JButton upPAL;
+    private javax.swing.JButton upQJO;
+    private javax.swing.JButton upTOR;
+    private javax.swing.JButton upVRD;
+    private javax.swing.JLabel valorField;
     private javax.swing.JButton vendasBtn;
     private javax.swing.JPanel vendasPnl;
     // End of variables declaration//GEN-END:variables
