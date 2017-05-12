@@ -865,7 +865,7 @@
                                           </Group>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="102" attributes="0">
-                                                  <EmptySpace pref="18" max="32767" attributes="0"/>
+                                                  <EmptySpace pref="21" max="32767" attributes="0"/>
                                                   <Group type="103" groupAlignment="1" attributes="0">
                                                       <Group type="102" attributes="0">
                                                           <Component id="dnTOR" min="-2" pref="20" max="-2" attributes="0"/>
@@ -908,7 +908,7 @@
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="102" attributes="0">
-                                                  <Component id="buscaClienteVendaBtn" pref="128" max="32767" attributes="0"/>
+                                                  <Component id="buscaClienteVendaBtn" pref="132" max="32767" attributes="0"/>
                                                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                                                   <Component id="novaVendaBtn" min="-2" pref="64" max="-2" attributes="0"/>
                                                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -1024,7 +1024,7 @@
                           <Component id="jSeparator1" min="-2" pref="16" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="valorField" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="296" max="32767" attributes="0"/>
+                          <EmptySpace pref="299" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>

@@ -84,6 +84,8 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         ////BOTOES DE CUSTOMIZAÇÃO DA VENDA
         upABB.addActionListener(atualizaValorAction);upBAC.addActionListener(atualizaValorAction);upCEB.addActionListener(atualizaValorAction);upERV.addActionListener(atualizaValorAction);upFJO.addActionListener(atualizaValorAction);upGAL.addActionListener(atualizaValorAction);upMND.addActionListener(atualizaValorAction);upPAL.addActionListener(atualizaValorAction);upQJO.addActionListener(atualizaValorAction);upTOR.addActionListener(atualizaValorAction);upVRD.addActionListener(atualizaValorAction);
         dnABB.addActionListener(atualizaValorAction);dnBAC.addActionListener(atualizaValorAction);dnCEB.addActionListener(atualizaValorAction);dnERV.addActionListener(atualizaValorAction);dnFJO.addActionListener(atualizaValorAction);dnGAL.addActionListener(atualizaValorAction);dnMND.addActionListener(atualizaValorAction);dnPAL.addActionListener(atualizaValorAction);dnQJO.addActionListener(atualizaValorAction);dnTOR.addActionListener(atualizaValorAction);dnVRD.addActionListener(atualizaValorAction);
+        ////MUDANÇA DE DATAS
+        diaVendaDatePicker.addActionListener(disableVendasAction);
 
     }
     public String cardname = "index";
@@ -854,7 +856,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
                                         .addComponent(upERV, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGroup(novaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(novaVendaPnlLayout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                                         .addGroup(novaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addGroup(novaVendaPnlLayout.createSequentialGroup()
                                                 .addComponent(dnTOR, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -888,7 +890,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(novaVendaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(novaVendaPnlLayout.createSequentialGroup()
-                                        .addComponent(buscaClienteVendaBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                                        .addComponent(buscaClienteVendaBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
                                         .addGap(18, 18, 18)
                                         .addComponent(novaVendaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
@@ -978,7 +980,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(valorField)
-                .addContainerGap(296, Short.MAX_VALUE))
+                .addContainerGap(299, Short.MAX_VALUE))
         );
 
         diaVendaDatePicker.setDate(Calendar.getInstance().getTime());
@@ -1172,6 +1174,75 @@ public class CardLayoutFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     //IMPLEMENTAÇÕES DAS AÇÕES
+    
+    private final Action enableVendasAction = new AbstractAction() {
+        @Override       
+        public void actionPerformed(ActionEvent e) {
+            Calendar dia = Calendar.getInstance();
+            dia.setTime(diaVendaDatePicker.getDate());
+            
+            switch (dia.get(Calendar.DAY_OF_WEEK)) {
+                case Calendar.MONDAY:
+                    caldoVerdeLabel.setForeground(Color.BLACK);
+                    canjaLabel.setForeground(Color.BLACK);
+                    upVRD.setVisible(true);
+                    upGAL.setVisible(true);
+                    break;
+                case Calendar.TUESDAY:
+                    mandioquinhaLabel.setForeground(Color.BLACK);
+                    canjaLabel.setForeground(Color.BLACK);
+                    upMND.setVisible(true);
+                    upGAL.setVisible(true);
+                    break;
+                case Calendar.WEDNESDAY:
+                    aboboraLabel.setForeground(Color.BLACK);
+                    canjaLabel.setForeground(Color.BLACK);
+                    upABB.setVisible(true);
+                    upGAL.setVisible(true);
+                    break;
+                case Calendar.THURSDAY:
+                    palmitoLabel.setForeground(Color.BLACK);
+                    ervilhaLabel.setForeground(Color.BLACK);
+                    upPAL.setVisible(true);
+                    upERV.setVisible(true);
+                    break;
+                case Calendar.FRIDAY:
+                    feijaoLabel.setForeground(Color.BLACK);
+                    ervilhaLabel.setForeground(Color.BLACK);
+                    upFJO.setVisible(true);
+                    upERV.setVisible(true);
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
+    
+    private final Action disableVendasAction = new AbstractAction() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            vrd=0;mnd=0;abb=0;pal=0;fjo=0;can=0;erv=0;
+            caldoVerdeLabel.setForeground(Color.GRAY);
+            mandioquinhaLabel.setForeground(Color.GRAY);
+            aboboraLabel.setForeground(Color.GRAY);
+            palmitoLabel.setForeground(Color.GRAY);
+            feijaoLabel.setForeground(Color.GRAY);
+            canjaLabel.setForeground(Color.GRAY);
+            ervilhaLabel.setForeground(Color.GRAY);
+            
+            upABB.setVisible(false);dnABB.setVisible(false);
+            upMND.setVisible(false);dnMND.setVisible(false);
+            upVRD.setVisible(false);dnVRD.setVisible(false);
+            upGAL.setVisible(false);dnGAL.setVisible(false);
+            upFJO.setVisible(false);dnFJO.setVisible(false);
+            upERV.setVisible(false);dnERV.setVisible(false);
+            upPAL.setVisible(false);dnPAL.setVisible(false);
+         
+            enableVendasAction.actionPerformed(e);
+            atualizaValorAction.actionPerformed(e);
+            atualizaLabelsCaldosVenda.actionPerformed(e);
+        }
+    };
     private final Action atualizaValorAction = new AbstractAction() {
 
         @Override
@@ -1181,6 +1252,19 @@ public class CardLayoutFrame extends javax.swing.JFrame {
             valor += 2 * (tor+ qjo + bac + ceb);
             
             valorField.setText("VALOR DO PEDIDO: R$"+String.valueOf(valor));
+        }
+    };
+    
+    private final Action atualizaLabelsCaldosVenda = new AbstractAction() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            caldoVerdeLabel.setText(vrd + " Caldos Verdes");
+            mandioquinhaLabel.setText(mnd + " Mandioquinhas com Alho Poró");
+            aboboraLabel.setText(abb + " Abóboras com Carne");
+            palmitoLabel.setText(pal + " Caldos de Palmito");
+            feijaoLabel.setText(fjo + " Caldinhos de Feijão");
+            canjaLabel.setText(can + " Canjas de Galinha");
+            ervilhaLabel.setText(erv + " Caldos de Ervilha");
         }
     };
     private final Action novoClienteAction = new AbstractAction() {
@@ -1639,6 +1723,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
     private void iniciarNovaVendaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarNovaVendaBtnActionPerformed
         CardLayout card = (CardLayout) vendasPnl.getLayout();
         card.show(vendasPnl, "novaVenda");
+        disableVendasAction.actionPerformed(evt);
     }//GEN-LAST:event_iniciarNovaVendaBtnActionPerformed
 
     private void tabelaClientesFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tabelaClientesFocusGained
