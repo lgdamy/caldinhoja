@@ -30,10 +30,10 @@ public class Cliente implements Serializable {
     @Override
     public String toString(){
         String retorna=nome;
-        if (interno) 
+        if (interno==true) 
             retorna += " - "+ apartamento;
         else
-            if ( endereco != null && !endereco.isEmpty())
+            if ( apartamento != null && !apartamento.isEmpty())
                 retorna += ", " + endereco + " - " + apartamento;
             else
                 retorna += ", " + endereco;
@@ -94,14 +94,6 @@ public class Cliente implements Serializable {
 
     public void setCliente_id(int cliente_id) {
         this.cliente_id = cliente_id;
-    }
-
-    public List<Venda> getCompras() {
-        return compras;
-    }
-
-    public void setCompras(List<Venda> compras) {
-        this.compras = compras;
     }
     
     

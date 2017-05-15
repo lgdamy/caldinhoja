@@ -1185,32 +1185,32 @@ public class CardLayoutFrame extends javax.swing.JFrame {
                 case Calendar.MONDAY:
                     caldoVerdeLabel.setForeground(Color.BLACK);
                     canjaLabel.setForeground(Color.BLACK);
-                    upVRD.setVisible(true);
-                    upGAL.setVisible(true);
+                    upVRD.setEnabled(true);
+                    upGAL.setEnabled(true);
                     break;
                 case Calendar.TUESDAY:
                     mandioquinhaLabel.setForeground(Color.BLACK);
                     canjaLabel.setForeground(Color.BLACK);
-                    upMND.setVisible(true);
-                    upGAL.setVisible(true);
+                    upMND.setEnabled(true);
+                    upGAL.setEnabled(true);
                     break;
                 case Calendar.WEDNESDAY:
                     aboboraLabel.setForeground(Color.BLACK);
                     canjaLabel.setForeground(Color.BLACK);
-                    upABB.setVisible(true);
-                    upGAL.setVisible(true);
+                    upABB.setEnabled(true);
+                    upGAL.setEnabled(true);
                     break;
                 case Calendar.THURSDAY:
                     palmitoLabel.setForeground(Color.BLACK);
                     ervilhaLabel.setForeground(Color.BLACK);
-                    upPAL.setVisible(true);
-                    upERV.setVisible(true);
+                    upPAL.setEnabled(true);
+                    upERV.setEnabled(true);
                     break;
                 case Calendar.FRIDAY:
                     feijaoLabel.setForeground(Color.BLACK);
                     ervilhaLabel.setForeground(Color.BLACK);
-                    upFJO.setVisible(true);
-                    upERV.setVisible(true);
+                    upFJO.setEnabled(true);
+                    upERV.setEnabled(true);
                     break;
                 default:
                     break;
@@ -1230,13 +1230,13 @@ public class CardLayoutFrame extends javax.swing.JFrame {
             canjaLabel.setForeground(Color.GRAY);
             ervilhaLabel.setForeground(Color.GRAY);
             
-            upABB.setVisible(false);dnABB.setVisible(false);
-            upMND.setVisible(false);dnMND.setVisible(false);
-            upVRD.setVisible(false);dnVRD.setVisible(false);
-            upGAL.setVisible(false);dnGAL.setVisible(false);
-            upFJO.setVisible(false);dnFJO.setVisible(false);
-            upERV.setVisible(false);dnERV.setVisible(false);
-            upPAL.setVisible(false);dnPAL.setVisible(false);
+            upABB.setEnabled(false);dnABB.setVisible(false);
+            upMND.setEnabled(false);dnMND.setVisible(false);
+            upVRD.setEnabled(false);dnVRD.setVisible(false);
+            upGAL.setEnabled(false);dnGAL.setVisible(false);
+            upFJO.setEnabled(false);dnFJO.setVisible(false);
+            upERV.setEnabled(false);dnERV.setVisible(false);
+            upPAL.setEnabled(false);dnPAL.setVisible(false);
          
             enableVendasAction.actionPerformed(e);
             atualizaValorAction.actionPerformed(e);
@@ -1352,7 +1352,6 @@ public class CardLayoutFrame extends javax.swing.JFrame {
             }
 
             for (Cliente listaCliente : listaClientes) {
-                em.refresh(listaCliente);
                 listaClientecomboBox.addItem(listaCliente);
             }
         }
@@ -1495,7 +1494,11 @@ public class CardLayoutFrame extends javax.swing.JFrame {
                 EditDeleteCliente editDeleteCliente = new EditDeleteCliente(id);
                 editDeleteCliente.setIdField(String.valueOf(id));
                 editDeleteCliente.setNomeField(cliente.getNome());
-                editDeleteCliente.setEnderecoField(cliente.getEndereco());
+                if (cliente.isInterno()==false){
+                    editDeleteCliente.setEnderecoField(cliente.getEndereco());
+                }else{
+                    editDeleteCliente.setEnderecoField("");
+                }
                 editDeleteCliente.setApartamentoField(cliente.getApartamento());
                 editDeleteCliente.setTelefoneField(String.valueOf(cliente.getDdd()) + String.valueOf(cliente.getTelefone()));
                 int dec = JOptionPane.showOptionDialog(paiPanel, editDeleteCliente, "ALTERAR/REMOVER CLIENTE", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, new Object[]{"ALTERAR", "REMOVER"}, null);
@@ -1518,7 +1521,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
                             cliente.setTelefone(Integer.parseInt(editDeleteCliente.getTelefoneField()));
                         }
                         clienteDAO.atualizaCliente(cliente);
-                        JOptionPane.showMessageDialog(paiPanel, cliente.getNome() + "ALTERADO COM SUCESSO!", "SUCESSO", JOptionPane.PLAIN_MESSAGE);
+                        JOptionPane.showMessageDialog(paiPanel, cliente.getNome() + " ALTERADO COM SUCESSO!", "SUCESSO", JOptionPane.PLAIN_MESSAGE);
                         break;
                     case 1:
                         if (JOptionPane.showConfirmDialog(paiPanel, "TEM CERTEZA QUE DESEIJA REMOVER " + cliente.getNome() + "?", "CONFIRMAÇÃO", JOptionPane.YES_NO_OPTION) == 0) {
@@ -1565,6 +1568,8 @@ public class CardLayoutFrame extends javax.swing.JFrame {
             vendasBtn.setBackground(Color.LIGHT_GRAY);
             receitasBtn.setBackground(Color.LIGHT_GRAY);
         }
+        CardLayout cardClientes = (CardLayout) clientesPnl.getLayout();
+        cardClientes.show(clientesPnl, "table");
         card.show(paiPanel, cardname);
     }//GEN-LAST:event_clientesBtnclientesActionPerformed
 
@@ -1581,6 +1586,8 @@ public class CardLayoutFrame extends javax.swing.JFrame {
             vendasBtn.setBackground(Color.GRAY);
             receitasBtn.setBackground(Color.LIGHT_GRAY);
         }
+        CardLayout cardVendas = (CardLayout) vendasPnl.getLayout();
+        cardVendas.show(vendasPnl, "listaVenda");
         card.show(paiPanel, cardname);
     }//GEN-LAST:event_vendasBtnvendasActionPerformed
 
@@ -1969,6 +1976,7 @@ public class CardLayoutFrame extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 try {
                     Process process = new ProcessBuilder("C:\\xampp\\xampp_start.exe").start();

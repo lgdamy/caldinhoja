@@ -15,6 +15,8 @@ import javax.persistence.*;
  */
 @Entity
 public class Venda implements Serializable {
+    @ManyToOne
+    private Cliente compras;
     
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(name = "VENDA_ID")
     private int venda_id;
